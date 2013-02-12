@@ -17,6 +17,9 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.xpath.XPathExpression;
 /**
+ *
+ *This method use XPath to parse XML
+ * 
  * XML looks like this:
  * <site>
  * 		<title>Importing</title>
