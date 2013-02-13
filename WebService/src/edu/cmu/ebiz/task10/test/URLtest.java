@@ -1,6 +1,9 @@
 package edu.cmu.ebiz.task10.test;
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.StringReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -16,6 +19,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.xpath.XPathExpression;
+import org.xml.sax.InputSource;
 /**
  *
  *This method use XPath to parse XML
@@ -44,21 +48,55 @@ public class URLtest {
 		//URLConnection yc = oracle.openConnection();
 		
 		//BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
-		
+		/**
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db = dbf.newDocumentBuilder();
-		Document doc = db.parse("http://api.sba.gov/rec_sites/category/managing%20a%20business.xml");
-		
-		XPathFactory factory = XPathFactory.newInstance();
-		XPath xPath = factory.newXPath();
-		javax.xml.xpath.XPathExpression expr = xPath.compile("//site/title/text()");
+		Document doc = db.parse("http://api.sba.gov/geodata/all_links_for_county_of/allegheny/pa.xml");
+		**/
+		URL url = new URL(
+				"http://api.sba.gov/geodata/all_links_for_county_of/allegheny/pa.xml");
+		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+		connection.setDoInput(true);
+        connection.setRequestMethod("GET");
+        
+        InputStream in = connection.getInputStream();
+        
+        if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+            // OK
+        	
+        	BufferedReader reader = new BufferedReader(new InputStreamReader(
+					in));
+			String line;
+
+			StringBuffer buffer = new StringBuffer();
+			while ((line = reader.readLine()) != null) {
+				buffer.append(line);
+			}
+			reader.close();
+
+			String xmlString = buffer.toString();
+			System.out.println(xmlString);
+			
+			
+			// parse XML
+        	DocumentBuilderFactory factory = DocumentBuilderFactory
+					.newInstance();
+			factory.setNamespaceAware(true); // never forget this!
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			InputSource is = new InputSource(new StringReader(xmlString));
+			//ByteArrayInputStream stream = new ByteArrayInputStream(xmlString.getBytes());
+			Document doc = builder.parse(is);
+        
+		XPathFactory xfactory = XPathFactory.newInstance();
+		XPath xPath = xfactory.newXPath();
+		javax.xml.xpath.XPathExpression expr = xPath.compile("//site/county_name/text()");
 		
 		Object result = expr.evaluate(doc, XPathConstants.NODESET);
 		NodeList nodes = (NodeList) result;
 		for (int i = 0; i<nodes.getLength(); i++) {
 			System.out.println(nodes.item(i).getNodeValue());
 		}
-		
+        }
 		
 		/**
 		Element e = doc.getDocumentElement();
