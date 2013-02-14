@@ -1,5 +1,5 @@
  <div class="masthead">
-	        <h2>Small Business Portal - Team Snipers</h2>
+	        <h3>Small Business Portal</h3>
 	        <div class="navbar">
 	          <div class="navbar-inner">
 	            <div class="container">
