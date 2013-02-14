@@ -52,6 +52,24 @@
 
 <div class="row-fluid" class="span12" onload="initialize()">
 	<div class="span12">
+		<jsp:include page="error-list.jsp" />
+		<br />
+		<form class="form-horizontal" method="POST"
+			action="simple-search.do">
+			<div class="control-group">
+				<div class="controls">
+					<input type="text" id="search"
+						placeholder="Places you want" name="searchPlaces">
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<button type="submit" class="btn">Search</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="span12">
 		<h4>Search result of Restaurant in Pittsburgh area</h4>
 	</div>
 	<div class="span12" align="center"
