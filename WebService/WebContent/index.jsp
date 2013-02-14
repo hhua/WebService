@@ -12,8 +12,8 @@
 	  	<div class="container">
 		  	
 			<div id="indexicon" align="center" style="margin-bottom: 20px;">
-				<img style="height: 200px;"src="img/drive-business.jpg" />
-				<h2 style="text-shadow: 0.1em 0.1em 0.01em #F5F5F5; ">Small Business Portal</h2>
+				<img style="height: 180px;"src="img/drive-business.jpg" />
+				<h2 style="text-shadow: 0.1em 0.1em 0.1em #F5F5F5; margin-top: -10px;">Small Business Portal</h2>
 			</div>
 	
 			<div class="row-fluid">
