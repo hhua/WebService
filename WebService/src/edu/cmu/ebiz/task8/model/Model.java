@@ -5,14 +5,10 @@
 
 package edu.cmu.ebiz.task8.model;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-
 public class Model {
 	
-	//private CustomerDAO customerDAO;
 
-	public Model(ServletConfig config) throws ServletException {
+	public Model() {
 
 	}
 	
