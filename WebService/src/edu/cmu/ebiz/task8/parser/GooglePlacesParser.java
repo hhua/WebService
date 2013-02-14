@@ -14,7 +14,7 @@ import org.json.simple.JSONValue;
 public class GooglePlacesParser {
 	
 	// parsing JSON data with text places search with Google Places API
-	public static void jsonParser(String json){
+	public static void jsonParser(String jsonData){
 		try {
 			URL url = new URL(
 					"https://maps.googleapis.com/maps/api/place/textsearch/json?query=restuarants+in+Pittsburgh&key=AIzaSyDy-3-hP8uDctn2XDeXw5EbV_H2Sza9WZg&sensor=false");
