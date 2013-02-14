@@ -1,5 +1,7 @@
 package edu.cmu.ebiz.task8.controller;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +51,8 @@ public class SimpleSearchAction extends Action {
 			}
 			
 			//handle request
+			String query = form.getSearchPlaces();
+			URL requestURL = generateBasicURL(query);
 
 			// Success
 			return "simplesearch.jsp";
@@ -56,6 +60,20 @@ public class SimpleSearchAction extends Action {
 			errors.add(e.toString());
 			return "error.jsp";
 		}
+	}
+	
+	// generate basic Google Places text search api call
+	private URL generateBasicURL(String query){
+		try{
+			String places = query.replace(' ', '+');
+			URL url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + places + "&key=AIzaSyDy-3-hP8uDctn2XDeXw5EbV_H2Sza9WZg&sensor=false");
+			
+			return url;
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 
 }
