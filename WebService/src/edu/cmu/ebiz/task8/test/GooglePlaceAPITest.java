@@ -9,7 +9,12 @@ import java.util.Iterator;
 import java.util.Map;
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import edu.cmu.ebiz.task8.parser.KeyFinder;
 
 public class GooglePlaceAPITest {
 	public static void main(String[] args) {
@@ -29,35 +34,26 @@ public class GooglePlaceAPITest {
 			String jsonString = buffer.toString();
 
 			System.out.println(jsonString);
-			
-			Object obj=JSONValue.parse(jsonString);
-			JSONArray array=(JSONArray)obj;
-			
 
-			//JSONParser parser = new JSONParser();
-			//Map json = (Map) parser.parse(jsonString);
-			Map json = (Map)array.get(0);
-			Map json1 = (Map)array.get(1);
-			Iterator iter = json.entrySet().iterator();
-			Iterator iter1 = json.entrySet().iterator();
-			System.out.println("==iterate result==");
+			// parse start
+			
+			Object obj =JSONValue.parse(jsonString);
+			JSONObject response = (JSONObject) obj;
 
-			while (iter.hasNext()) {
-				Map.Entry entry = (Map.Entry) iter.next();
-				System.out.println(entry.getKey() + "=>" + entry.getValue());
+			JSONArray array = (JSONArray) response.get("results");
+			
+			
+			for(int i = 0; i< array.size(); i++){
+				System.out.println(array.get(i));
+				JSONObject result = (JSONObject) array.get(i);
+				
 			}
-			
 
-			System.out.println("==toJSONString()==");
-			System.out.println(JSONValue.toJSONString(json));
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-//		} catch (ParseException ex) {
-//			ex.printStackTrace();
-//		}
 
 	}
 }

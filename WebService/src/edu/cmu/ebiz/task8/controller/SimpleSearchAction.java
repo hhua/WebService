@@ -11,6 +11,7 @@ import org.mybeans.form.FormBeanException;
 import org.mybeans.form.FormBeanFactory;
 
 import edu.cmu.ebiz.task8.formbean.SimpleSearchForm;
+import edu.cmu.ebiz.task8.parser.GooglePlacesParser;
 
 public class SimpleSearchAction extends Action {
 	private FormBeanFactory<SimpleSearchForm> formBeanFactory = FormBeanFactory
@@ -53,6 +54,8 @@ public class SimpleSearchAction extends Action {
 			//handle request
 			String query = form.getSearchPlaces();
 			URL requestURL = generateBasicURL(query);
+			
+			GooglePlacesParser.jsonParser(requestURL);
 
 			// Success
 			return "simplesearch.jsp";
