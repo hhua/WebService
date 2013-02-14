@@ -7,6 +7,7 @@
 			$(this).tab('show');
 		})
 	</script>
+	<hr>
 
 	<div id="display-recommendedsites" class="span12">
 		<ul id="myTab" class="nav nav-tabs">
