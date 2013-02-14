@@ -9,16 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import edu.cmu.ebiz.task8.model.Model;
-
-
 @SuppressWarnings("serial")
 public class Controller extends HttpServlet {
 	public void init() throws ServletException {
-        Model model = new Model(getServletConfig());
+        //Model model = new Model(getServletConfig());
 
         //Action.add(new AddAction(model));
-       
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -43,6 +39,9 @@ public class Controller extends HttpServlet {
         String      action = getActionName(servletPath);
         String      urlName = request.getRequestURL().toString();
         urlName = getURLName(urlName);
+        
+        // start the website
+        
         
       	// Let the logged in user run his chosen action
 		return Action.perform(action, request);
@@ -90,4 +89,13 @@ public class Controller extends HttpServlet {
         return path.substring(slash+1);
     }
     
+    private boolean containsAction(String action, String[] list	){
+    	for (String item : list	){
+    		if(item.equals(action)){
+    			return true;
+    		}
+    	}
+    	
+    	return false;
+    }
 }

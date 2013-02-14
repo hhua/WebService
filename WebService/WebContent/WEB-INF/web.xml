@@ -22,7 +22,7 @@
     
     <servlet>
         <servlet-name>controller</servlet-name>
-        <servlet-class>   edu.cmu.ebiz.task10.controller.Controller   </servlet-class>
+        <servlet-class>   edu.cmu.ebiz.task8.controller.Controller   </servlet-class>
         <init-param>
           <param-name>    jdbcDriverName          </param-name> 
 	      <param-value>   com.mysql.jdbc.Driver   </param-value>
