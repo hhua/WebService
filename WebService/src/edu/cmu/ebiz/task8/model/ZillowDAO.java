@@ -203,12 +203,12 @@ public class ZillowDAO {
 
 		return null;
 	}
-	/**
+	
 	public static void main(String[] args) {
 		System.out.println("-----------");
-		getIncome("PA", "Pittsburgh", "Shadyside");
+//		getIncome("PA", "Pittsburgh", "Shadyside");
 	}
-	**/
+	
 	// covert space to %20, prevent data error
 	private String replaceSpace(String str) {
 		StringBuffer sb = new StringBuffer();

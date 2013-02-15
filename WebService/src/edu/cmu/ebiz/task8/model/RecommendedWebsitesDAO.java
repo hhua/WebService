@@ -64,13 +64,14 @@ public class RecommendedWebsitesDAO {
 			for(int i = 0; i< manageTitle.getLength(); i++){
 				RecommendedWebsitesBean currentManage = new RecommendedWebsitesBean();
 				currentManage.setTitle(manageTitle.item(i).getNodeValue());
-				currentManage.setURL(manageURL.item(i).getNodeValue());
+				currentManage.setUrl(manageURL.item(i).getNodeValue());
 				currentManage.setDescription(manageDesc.item(i).getNodeValue());
 				
 				manage.add(currentManage);
-				System.out.print("--------"+ manage.subList(0, 40));
+				
 			}
 			
+			return manage;
 			
 //			
 //			System.out.println("--------"+ manageNodes.item(1).getNodeValue());

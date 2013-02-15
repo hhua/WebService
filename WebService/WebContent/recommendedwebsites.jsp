@@ -35,7 +35,7 @@
 							<tbody>
 								<c:forEach var="manage" items="${manage}">
 									<tr>
-										<td style="text-align: left;">${manage.name} </td>
+										<td style="text-align: left;">${manage.title} </td>
 										<td style="text-align: left;">${manage.url}</td>
 										<td style="text-align: left;">${manage.description} </td> 
 									</tr>
