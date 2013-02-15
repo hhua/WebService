@@ -43,7 +43,7 @@ $(document).ready(function() {
     </script>
 	<hr>
 
-	<div id="display-recommendedsites" class="span12">
+	<div id="display-recommendedsites" class="span11">
 		<ul id="myTab" class="nav nav-tabs">
 			<li class="active"><a href="#home" data-toggle="tab"><b>Manage a Business</b></a></li>
 			<li><a href="#profile1" data-toggle="tab"><b>Finance a Business</b></a></li>

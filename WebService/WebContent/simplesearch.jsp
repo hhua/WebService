@@ -79,7 +79,8 @@ var locations1 = [
 	</div>
 	
 	<div class="span12">
-		<h4>Search result of Restaurant in Pittsburgh area</h4>
+		<h4 class="lead">Search result of </h4>
+		
 	</div>
 	<div class="span12" align="center"
 		style="margin-left: 0px; padding-left: 0px;">

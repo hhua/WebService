@@ -19,20 +19,29 @@
 			<div class="row-fluid">
 				<div id="simplesearch" align="center" >
 					 <h2 class="lead">Simple Search</h2>
+					 <!--  
 					 <form class="form-inline">
-					 	  <!--   <label class="control-label" for="inputLoc">Location</label> -->
 					 	  <div class="input-prepend">
 					 	  		<span class="add-on"><i class="icon-map-marker"></i></span>
 						  		<input type="text" id="inputLoc" class="input input-large simplein" placeholder="Location">
 						  </div>
 						  <span style="margin-left: 10px"></span>
-						  <!--  <label class="control-label" for="inputCat">Category</label> -->
 						  <div class="input-prepend">
 						  		<span class="add-on"><i class="icon-list-alt"></i></span>
 						  		<input type="text" id="inputCat" class="input input-large simplein" placeholder="Business Category">
 						  </div>
  						  <span style="margin-left: 10px"></span>
 						  <button type="submit" class="btn"><i class="icon-search"></i>Search</button>
+					</form>
+					-->
+					<form class="form-horizontal" method="POST" action="simple-search.do" class="form-inline">
+						<div class="input-prepend">
+								<span class="add-on"><i class="icon-map-marker"></i></span>
+								<input type="text" id="search"  class="input-xxlarge" placeholder="Places you want, e.g. Restaurant in Pittsburgh"
+									name="searchPlaces">
+						</div>
+						<button type="submit" class="btn"><i class="icon-search"></i>Search</button>
+						
 					</form>
 				</div>
 				
@@ -56,11 +65,14 @@
 				      		<div class="span3 searchbox" style="border-top: 2px solid rgb(252,215,36);">
 				      				<h5>Demographic Research</h5>
 									<hr>
+									<form method="POST" action="demographic.do">
 									<div class="customerSearch">
-										<input type="text" placeholder="condition 1">
-										<input type="text" placeholder="condition 2">
+										<input type="text" name="area"  placeholder="Neighborhood Area" >
+										<input type="text" name="city"  placeholder="City" >
+										<input type="text" name="state"  placeholder="State" >
 										<button class="btn">Search</button>
 									</div>
+									</form>
 									<hr>
 				      				<div class="customerLink">
 				      					<a href="#" >Customize Search &raquo;</a>
