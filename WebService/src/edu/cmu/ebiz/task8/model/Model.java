@@ -11,10 +11,17 @@ package edu.cmu.ebiz.task8.model;
 
 public class Model {
 	private ZillowDAO zillowDAO;
+	private RecommendedWebsitesDAO recommendedWebsitesDAO;
 
 	public Model() {
 		zillowDAO = new ZillowDAO();
+		recommendedWebsitesDAO = new RecommendedWebsitesDAO();
 	}
 	
 	public ZillowDAO getZillowDAO() { return zillowDAO; }
+
+	public RecommendedWebsitesDAO getRecommendedWebsitesDAO() {
+		return recommendedWebsitesDAO;
+	}
+	
 }
