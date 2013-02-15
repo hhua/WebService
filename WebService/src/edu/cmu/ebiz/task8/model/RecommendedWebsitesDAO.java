@@ -43,13 +43,17 @@ public class RecommendedWebsitesDAO {
 			XPathExpression expr = xpath.compile("//site/title/text() | //site/url/text() | //site/description/text()");
 
 			Object result = expr.evaluate(doc, XPathConstants.NODESET);
-			NodeList nodes = (NodeList) result;
+			NodeList manageNodes = (NodeList) result;
 			//Test
-			for (int i = 0; i<nodes.getLength(); i++) {
-				System.out.println(nodes.item(i).getNodeValue());
+			for (int i = 0; i<manageNodes.getLength(); i++) {
+				System.out.println(manageNodes.item(i).getNodeValue());
 			}
-//			RecommendedWebsitesBean manage = new RecommendedWebsitesBean();
-//			manage.setTitle(title)
+			
+			RecommendedWebsitesBean manage = new RecommendedWebsitesBean();
+			manage.setTitle(manageNodes.item(0).getNodeValue());
+			manage.setURL(manageNodes.item(1).getNodeValue());
+			manage.setDescription(manageNodes.item(2).getNodeValue());
+			
 		} catch (SAXException e) {
 			e.printStackTrace();
 		} catch (ParserConfigurationException e) {
