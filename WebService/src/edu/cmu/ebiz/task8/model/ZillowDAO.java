@@ -19,6 +19,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import edu.cmu.ebiz.task8.bean.PeopleAgeBean;
+import edu.cmu.ebiz.task8.bean.PeopleGenderBean;
 import edu.cmu.ebiz.task8.bean.PeopleIncomeBean;
 import edu.cmu.ebiz.task8.bean.PeopleSegmentBean;
 
@@ -98,19 +100,6 @@ public class ZillowDAO {
 			 * </liveshere>
 			 */
 			//get <title>
-			/**
-			XPathExpression exprTitle = xpath.compile("//page[name='People']/segmentation/liveshere/title/text()");
-			Object resultTitle = exprTitle.evaluate(doc, XPathConstants.NODESET);
-			NodeList titles = (NodeList) resultTitle;
-			//get <name>
-			XPathExpression exprName = xpath.compile("//page[name='People']/segmentation/liveshere/name/text()");
-			Object resultName = exprName.evaluate(doc, XPathConstants.NODESET);
-			NodeList names = (NodeList) resultName;
-			//get <description>
-			XPathExpression exprDesc = xpath.compile("//page[name='People']/segmentation/liveshere/description/text()");
-			Object resultDesc = exprDesc.evaluate(doc, XPathConstants.NODESET);
-			NodeList descs = (NodeList) resultDesc;
-			**/
 			NodeList titles = GetXMLDocString.getExpressionResult(doc, "//page[name='People']/segmentation/liveshere/title/text()");
 			NodeList names = GetXMLDocString.getExpressionResult(doc, "//page[name='People']/segmentation/liveshere/name/text()");
 			NodeList descs = GetXMLDocString.getExpressionResult(doc, "//page[name='People']/segmentation/liveshere/description/text()");
@@ -153,34 +142,7 @@ public class ZillowDAO {
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			InputSource is = new InputSource(new StringReader(xmlString));
 			Document doc = builder.parse(is);
-	
-			/**
-=======
 
-			XPathFactory xFactory = XPathFactory.newInstance();
-			XPath xpath = xFactory.newXPath();
-
-			//before using XPath get information, first check error code!
-			XPathExpression msgCode = xpath.compile("//message/code/text()");
-			Object code = msgCode.evaluate(doc, XPathConstants.NODE);
-			Node codeNode = (Node) code;
-			if (!codeNode.getNodeValue().equals("0"))
-				return null;
-
->>>>>>> branch 'master' of ssh://git@github.com/chinesecold/WebService.git
-			//here is your customize xpath expression
-			XPathExpression exprNation = xpath.compile("//attribute[name='Median Household Income']/values/nation/value/text()");
-			Object resultNation = exprNation.evaluate(doc, XPathConstants.NODESET);
-			NodeList nationIncome = (NodeList) resultNation;
-			//get city income
-			XPathExpression exprCity = xpath.compile("//attribute[name='Median Household Income']/values/city/value/text()");
-			Object resultCity = exprCity.evaluate(doc, XPathConstants.NODESET);
-			NodeList cityIncome = (NodeList) resultCity;
-			//get neighborhood income, some area may not have this data: example, shadyside, pittsburgh
-			XPathExpression exprNeighbor = xpath.compile("//attribute[name='Median Household Income']/values/neighborhood/value/text()");
-			Object resultNeighbor = exprNeighbor.evaluate(doc, XPathConstants.NODESET);
-			NodeList neighborIncome = (NodeList) resultNeighbor;
-			**/
 			// easy way to get result of XPath Expression, just call GetXMLDocString
 			NodeList nationIncome = GetXMLDocString.getExpressionResult(doc, "//attribute[name='Median Household Income']/values/nation/value/text()");
 			NodeList cityIncome = GetXMLDocString.getExpressionResult(doc, "//attribute[name='Median Household Income']/values/city/value/text()");
@@ -214,9 +176,131 @@ public class ZillowDAO {
 		return null;
 	}
 	
-	public static void main(String[] args) {
-		System.out.println("-----------");
-//		getIncome("PA", "Pittsburgh", "Shadyside");
+	public PeopleGenderBean getGender(String state, String city, String area) {
+		try {
+			// prepare statement, based on your own api
+			String preparedURL = "http://www.zillow.com/webservice/GetDemographics.htm?zws-id=X1-ZWz1di5yjoznd7_2ca3z" 
+					+"&state="+ replaceSpace(state)
+					+"&city=" + replaceSpace(city)
+					+"&neighborhood=" + replaceSpace(area);
+
+			String xmlString = GetXMLDocString.getString(preparedURL);
+
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			factory.setNamespaceAware(true); // never forget this!
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			InputSource is = new InputSource(new StringReader(xmlString));
+			Document doc = builder.parse(is);
+
+			XPathFactory xFactory = XPathFactory.newInstance();
+			XPath xpath = xFactory.newXPath();
+			
+			PeopleGenderBean gender = new PeopleGenderBean();
+			
+			NodeList divorcedF = GetXMLDocString.getExpressionResult(doc, 
+					"//page[name='People']/tables/table[name='Census Summary-RelationshipStatus']/data/attribute[name='Divorced-Female']/value/text()");
+			NodeList divorcedM = GetXMLDocString.getExpressionResult(doc, 
+					"//page[name='People']/tables/table[name='Census Summary-RelationshipStatus']/data/attribute[name='Divorced-Male']/value/text()");
+			NodeList marryF = GetXMLDocString.getExpressionResult(doc, 
+					"//page[name='People']/tables/table[name='Census Summary-RelationshipStatus']/data/attribute[name='Married-Female']/value/text()");
+			NodeList marryM = GetXMLDocString.getExpressionResult(doc, 
+					"//page[name='People']/tables/table[name='Census Summary-RelationshipStatus']/data/attribute[name='Married-Male']/value/text()");
+			NodeList singleF = GetXMLDocString.getExpressionResult(doc, 
+					"//page[name='People']/tables/table[name='Census Summary-RelationshipStatus']/data/attribute[name='Single-Female']/value/text()");
+			NodeList singleM = GetXMLDocString.getExpressionResult(doc, 
+					"//page[name='People']/tables/table[name='Census Summary-RelationshipStatus']/data/attribute[name='Single-Male']/value/text()");
+			NodeList wF = GetXMLDocString.getExpressionResult(doc, 
+					"//page[name='People']/tables/table[name='Census Summary-RelationshipStatus']/data/attribute[name='Widowed-Female']/value/text()");
+			NodeList wM = GetXMLDocString.getExpressionResult(doc, 
+					"//page[name='People']/tables/table[name='Census Summary-RelationshipStatus']/data/attribute[name='Widowed-Male']/value/text()");
+			
+			gender.setDivorcedFemale(divorcedF.item(0).getNodeValue());
+			gender.setDivorcedMale(divorcedM.item(0).getNodeValue());
+			gender.setMarriedFemale(marryF.item(0).getNodeValue());
+			gender.setMarriedMale(marryM.item(0).getNodeValue());
+			gender.setSingleFemale(singleF.item(0).getNodeValue());
+			gender.setSingleMale(singleM.item(0).getNodeValue());
+			gender.setWidowedFemale(wF.item(0).getNodeValue());
+			gender.setWidowedMale(wM.item(0).getNodeValue());
+
+			return gender;
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		}  catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+	
+	public PeopleAgeBean getAgeDecade(String state, String city, String area) {
+		try {
+			// prepare statement, based on your own api
+			String preparedURL = "http://www.zillow.com/webservice/GetDemographics.htm?zws-id=X1-ZWz1di5yjoznd7_2ca3z" 
+					+"&state="+ replaceSpace(state)
+					+"&city=" + replaceSpace(city)
+					+"&neighborhood=" + replaceSpace(area);
+
+			String xmlString = GetXMLDocString.getString(preparedURL);
+
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			factory.setNamespaceAware(true); // never forget this!
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			InputSource is = new InputSource(new StringReader(xmlString));
+			Document doc = builder.parse(is);
+
+			XPathFactory xFactory = XPathFactory.newInstance();
+			XPath xpath = xFactory.newXPath();
+			
+			PeopleAgeBean ages = new PeopleAgeBean();
+			
+			NodeList zeros = GetXMLDocString.getExpressionResult(doc, 
+					"//page[name='People']/tables/table[name='Census Summary-AgeDecade']/data/attribute[name='0s']/value/text()");
+			NodeList tens = GetXMLDocString.getExpressionResult(doc, 
+					"//page[name='People']/tables/table[name='Census Summary-AgeDecade']/data/attribute[name='10s']/value/text()");
+			NodeList twentys = GetXMLDocString.getExpressionResult(doc, 
+					"//page[name='People']/tables/table[name='Census Summary-AgeDecade']/data/attribute[name='20s']/value/text()");
+			NodeList thirtys = GetXMLDocString.getExpressionResult(doc, 
+					"//page[name='People']/tables/table[name='Census Summary-AgeDecade']/data/attribute[name='30s']/value/text()");
+			NodeList fortys = GetXMLDocString.getExpressionResult(doc, 
+					"//page[name='People']/tables/table[name='Census Summary-AgeDecade']/data/attribute[name='40s']/value/text()");
+			NodeList fiftys = GetXMLDocString.getExpressionResult(doc, 
+					"//page[name='People']/tables/table[name='Census Summary-AgeDecade']/data/attribute[name='50s']/value/text()");
+			
+			String a0s = zeros.item(0).getNodeValue();
+			Double d0s = (double) Math.round(Double.parseDouble(a0s)*1000)/10;
+			String a10s = tens.item(0).getNodeValue();
+			Double d10s = (double) Math.round(Double.parseDouble(a10s)*1000)/10;
+			String a20s = twentys.item(0).getNodeValue();
+			Double d20s = (double) Math.round(Double.parseDouble(a20s)*1000)/10;
+			String a30s = thirtys.item(0).getNodeValue();
+			Double d30s = (double) Math.round(Double.parseDouble(a30s)*1000)/10;
+			String a40s = fortys.item(0).getNodeValue();
+			Double d40s = (double) Math.round(Double.parseDouble(a40s)*1000)/10;
+			String a50s = fiftys.item(0).getNodeValue();
+			Double d50s = (double) Math.round(Double.parseDouble(a50s)*1000)/10;
+			
+			Double d60s = 100 - d0s - d10s -d20s -d30s - d40s -d50s;
+			ages.setZero(d0s);
+			ages.setTen(d10s);
+			ages.setTwenty(d20s);
+			ages.setThirty(d30s);
+			ages.setForty(d40s);
+			ages.setFifty(d50s);
+			ages.setSixseventy(d60s);
+
+			return ages;
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		}  catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 	
 	// covert space to %20, prevent data error

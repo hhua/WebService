@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.mybeans.form.FormBeanException;
 import org.mybeans.form.FormBeanFactory;
 
+import edu.cmu.ebiz.task8.bean.PeopleAgeBean;
+import edu.cmu.ebiz.task8.bean.PeopleGenderBean;
 import edu.cmu.ebiz.task8.bean.PeopleIncomeBean;
 import edu.cmu.ebiz.task8.bean.PeopleSegmentBean;
 import edu.cmu.ebiz.task8.formbean.DemographicForm;
@@ -43,8 +45,6 @@ public class DemographicAction extends Action {
 				return "demographic.jsp";
 			}
 			
-			
-			
 			String state = form.getState();
 			String city = form.getCity();
 			String area = form.getArea();
@@ -57,18 +57,24 @@ public class DemographicAction extends Action {
 				errors.add("Can't get information, please check your input");
 				return "demographic.jsp";
 			}
-			
+			// income info
 			PeopleIncomeBean income = zillowDAO.getIncome(state, city, area);
 			request.setAttribute("income", income);
-			
+			//segment info
 			ArrayList<PeopleSegmentBean> segmentsList = zillowDAO.getSegmentation(state, city, area);
-			
 			PeopleSegmentBean[] segments = new PeopleSegmentBean[segmentsList.size()];
 			for(int i = 0; i<segmentsList.size(); i++) {
 				segments[i] = segmentsList.get(i);
 			}
-			
 			request.setAttribute("segmentList", segments);
+			
+			//gender info
+			PeopleGenderBean gender = zillowDAO.getGender(state, city, area);
+			request.setAttribute("gender", gender);
+			
+			//age info
+			PeopleAgeBean age = zillowDAO.getAgeDecade(state, city, area);
+			request.setAttribute("age", age);
 			
 			return "demographic.jsp";
 			

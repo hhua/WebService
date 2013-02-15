@@ -69,10 +69,70 @@
 											
 											<div id="gender" class="searchbox">
 												<h4 style="border-bottom:1px solid rgb(35,116,255); padding-bottom: 5px; padding-left: 10px;">Gender statistics</h4>
+												<div style="padding-left: 5px; padding-right: 5px;">
+													<p><b>Divorced-Female: </b>${gender.divorcedFemale }</p>
+													<p><b>Divorced-Male: </b>${gender.divorcedMale }</p>
+													<p><b>Married-Female: </b>${gender.marriedFemale }</p>
+													<p><b>Married-Male: </b>${gender.marriedMale }</p>
+													<p><b>Single-Female: </b>${gender.singleFemale }</p>
+													<p><b>Single-Male: </b>${gender.singleMale }</p>
+													<p><b>Widowed-Female: </b>${gender.widowedFemale }</p>
+													<p><b>Widowed-Male: </b>${gender.widowedMale }</p>
+												</div>
 											</div>
 										</div>
 								</div>
-							</div>
+								
+								<div class="row-fluid" style="margin-left: 20px">
+										<div id="age" class="searchbox span11" >
+											<h4 style="border-bottom:1px solid rgb(35,116,255); padding-bottom: 5px; padding-left: 10px;">Age information of People</h4>
+											<div class="progress span11">
+												<div class="bar bar-success progress-striped" style="width: ${age.zero }%;">0s</div>
+											  	<div class="bar bar-success" style="width: ${age.ten }%;">10s</div>
+											  	<div class="bar bar-info" style="width: ${age.twenty }%;">20s</div>
+											  	<div class="bar bar-info" style="width: ${age.thirty }%;">30s</div>
+											  	<div class="bar" style="width: ${age.forty }%;">40s</div>
+											  	<div class="bar" style="width: ${age.fifty }%;">50s</div>
+											  	<div class="bar bar-warning" style="width: ${age.sixseventy }%;"> >=60s</div>
+											</div>
+											<table class="table table-bordered">
+													 <thead>
+											                <tr>
+											                  <th>Age Decades</th>
+											                  <th>Percentage</th>
+											                  <th>Age Decades</th>
+											                  <th>Percentage</th>
+											                </tr>
+										              </thead>
+										              <tbody>
+										              		<tr>
+										              				<td>0s</td>
+										              				<td>${age.zero }</td>
+										              				<td>10s</td>
+										              				<td>${age.ten }</td>
+										              		</tr>
+										              		<tr>
+										              				<td>20s</td>
+										              				<td>${age.twenty }</td>
+										              				<td>30s</td>
+										              				<td>${age.thirty }</td>
+										              		</tr>
+										              		<tr>
+										              				<td>40s</td>
+										              				<td>${age.forty }</td>
+										              				<td>50s</td>
+										              				<td>${age.fifty }</td>
+										              		</tr>
+										              		<tr>
+										              				<td>>=60s</td>
+										              				<td>${age.sixseventy }</td>
+										              				<td colspan=2></td>
+										              		</tr>
+										              </tbody>
+											</table>
+										</div>
+								<div>
+						</div>
 					</c:otherwise>
 			</c:choose>
 	</div>
