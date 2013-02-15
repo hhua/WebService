@@ -7,6 +7,7 @@ import org.mybeans.form.FormBean;
 
 public class SimpleSearchForm extends FormBean{
 	private String searchPlaces;
+	private String placeTypes;
 	
 	public List<String> getValidationErrors() {
 		List<String> errors = new ArrayList<String>();
@@ -20,6 +21,14 @@ public class SimpleSearchForm extends FormBean{
 
 	public void setSearchPlaces(String searchPlaces) {
 		this.searchPlaces = trimAndConvert(searchPlaces.trim(), "<>\"");
+	}
+
+	public String getPlaceTypes() {
+		return placeTypes;
+	}
+
+	public void setPlaceTypes(String placeTypes) {
+		this.placeTypes = placeTypes;
 	}
 	
 	

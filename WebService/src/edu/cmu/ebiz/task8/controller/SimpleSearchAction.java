@@ -54,7 +54,7 @@ public class SimpleSearchAction extends Action {
 			
 			//handle request
 			String query = form.getSearchPlaces();
-			URL requestURL = generateBasicURL(query);
+			URL requestURL = generateBasicURL(query, form.getPlaceTypes());
 			
 			List<SimpleSearchPlacesBean> places = GooglePlacesParser.jsonParser(requestURL);
 
@@ -75,10 +75,15 @@ public class SimpleSearchAction extends Action {
 	}
 	
 	// generate basic Google Places text search api call
-	private URL generateBasicURL(String query){
+	private URL generateBasicURL(String query, String types){
 		try{
 			String places = query.replace(' ', '+');
-			URL url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + places + "&key=AIzaSyDy-3-hP8uDctn2XDeXw5EbV_H2Sza9WZg&sensor=false");
+			URL url;
+			if(types.equals("All places")){		
+				url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + places + "&key=AIzaSyDy-3-hP8uDctn2XDeXw5EbV_H2Sza9WZg&sensor=false");	
+			} else {
+				url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + places + "&key=AIzaSyDy-3-hP8uDctn2XDeXw5EbV_H2Sza9WZg&sensor=false" + "&types=" + types);	
+			}
 			
 			return url;
 		} catch (MalformedURLException e) {
