@@ -9,18 +9,26 @@
 
 <script type="text/javascript"
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJGCKsWDcydBbj083edCvnTBLRrIJozOw&sensor=false">
-	
-</script>
-
-<script type="text/javascript">
-
+</script>	
+ 
+ 
+ <script type="text/javascript">              
 var locations = [
-                 ['Bondi Beach', 40.44, -80.00],
-                 ['Coogee Beach', 40.441, -80.01],
-                 ['Cronulla Beach', 40.442, -80.02],
-                 ['Manly Beach', 40.44, -80.03]
-               ];
 
+              <c:forEach var="place" items="${places}">
+                  		["${place.name}",
+                  		"${place.latitude}",
+                  		"${place.longitude}"],
+               </c:forEach>
+        ];
+              	
+
+var locations1 = [
+                  ['Bondi Beach', 40.44, -80.00],
+                  ['Coogee Beach', 40.441, -80.01],
+                  ['Cronulla Beach', 40.442, -80.02],
+                  ['Manly Beach', 40.44, -80.03]
+                ];
 	function initialize() {
 		var mapOptions = {
 			center: new google.maps.LatLng(40.44, -80.00),

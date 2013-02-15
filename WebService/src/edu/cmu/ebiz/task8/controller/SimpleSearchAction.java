@@ -62,8 +62,11 @@ public class SimpleSearchAction extends Action {
 //				System.out.println(place);
 //			}
 			// Success
-			System.out.println(places.size());
-			request.setAttribute("places", places);
+			SimpleSearchPlacesBean[] placesArr = new SimpleSearchPlacesBean[places.size()];
+			for (int i = 0; i<places.size(); i++) {
+				placesArr[i] = places.get(i);
+			}
+			request.setAttribute("places", placesArr);
 			return "simplesearch.jsp";
 		} catch (FormBeanException e) {
 			errors.add(e.toString());
