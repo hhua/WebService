@@ -31,6 +31,7 @@ public class RecommendedWebsitesAction extends Action {
 			
 			ArrayList<RecommendedWebsitesBean> manage = recommendedWebsitesDAO.getManageABusinessCategory();		
 			request.setAttribute("manage", manage);
+			
 			return "recommendedwebsites.jsp";
 		} catch (Exception e) {
 			errors.add(e.getMessage());

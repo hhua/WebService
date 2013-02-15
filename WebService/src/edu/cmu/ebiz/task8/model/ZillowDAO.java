@@ -24,7 +24,7 @@ import edu.cmu.ebiz.task8.bean.PeopleSegmentBean;
 
 public class ZillowDAO {
 	private static Document document;
-	
+
 	//this method check whether user input is a valid city
 	public boolean getMsgCode(String state, String city, String area) {
 		try {
@@ -32,18 +32,18 @@ public class ZillowDAO {
 			String preparedURL = "http://www.zillow.com/webservice/GetDemographics.htm?zws-id=X1-ZWz1di5yjoznd7_2ca3z&state="+state
 					+"&city=" + city 
 					+"&neighborhood="+ area;
-			
+
 			String xmlString = GetXMLDocString.getString(preparedURL);
-			
+
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			factory.setNamespaceAware(true); // never forget this!
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			InputSource is = new InputSource(new StringReader(xmlString));
 			Document doc = builder.parse(is);
-	
+
 			XPathFactory xFactory = XPathFactory.newInstance();
 			XPath xpath = xFactory.newXPath();
-			
+
 			//before using XPath get information, first check error code!
 			XPathExpression msgCode = xpath.compile("//message/code/text()");
 			Object code = msgCode.evaluate(doc, XPathConstants.NODE);
@@ -53,7 +53,7 @@ public class ZillowDAO {
 			else {
 				return false;
 			}
-			
+
 		} catch (SAXException e) {
 			e.printStackTrace();
 		} catch (ParserConfigurationException e) {
@@ -63,11 +63,11 @@ public class ZillowDAO {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return false;
 	}
-	
-	
+
+
 	public ArrayList<PeopleSegmentBean> getSegmentation(String state, String city, String area) {
 		try {
 			// prepare statement, based on your own api
@@ -75,14 +75,17 @@ public class ZillowDAO {
 					+"&state="+ replaceSpace(state)
 					+"&city=" + replaceSpace(city)
 					+"&neighborhood=" + replaceSpace(area);
-			
+
 			String xmlString = GetXMLDocString.getString(preparedURL);
-			
+
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			factory.setNamespaceAware(true); // never forget this!
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			InputSource is = new InputSource(new StringReader(xmlString));
 			Document doc = builder.parse(is);
+
+			XPathFactory xFactory = XPathFactory.newInstance();
+			XPath xpath = xFactory.newXPath();
 
 			//here is your customize xpath expression
 			/**
@@ -95,8 +98,6 @@ public class ZillowDAO {
 			 * </liveshere>
 			 */
 			//get <title>
-			XPathFactory xFactory = XPathFactory.newInstance();
-			XPath xpath = xFactory.newXPath();
 			/**
 			XPathExpression exprTitle = xpath.compile("//page[name='People']/segmentation/liveshere/title/text()");
 			Object resultTitle = exprTitle.evaluate(doc, XPathConstants.NODESET);
@@ -122,10 +123,10 @@ public class ZillowDAO {
 					currentSeg.setName(names.item(i).getNodeValue());
 				if (descs.item(i) != null)
 					currentSeg.setDescription(descs.item(i).getNodeValue());
-				
+
 				segments.add(currentSeg);
 			} 
-			
+
 			return segments;
 		} catch (SAXException e) {
 			e.printStackTrace();
@@ -134,21 +135,19 @@ public class ZillowDAO {
 		}  catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
-	
-	
-	
+
 	public PeopleIncomeBean getIncome(String state, String city, String area) {
 		try {
 			// prepare statement, based on your own api
 			String preparedURL = "http://www.zillow.com/webservice/GetDemographics.htm?zws-id=X1-ZWz1di5yjoznd7_2ca3z&state="+replaceSpace(state)
 					+"&city=" + replaceSpace(city)
 					+"&neighborhood="+ replaceSpace(area);
-			
+
 			String xmlString = GetXMLDocString.getString(preparedURL);
-			
+
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			factory.setNamespaceAware(true); // never forget this!
 			DocumentBuilder builder = factory.newDocumentBuilder();
@@ -156,6 +155,19 @@ public class ZillowDAO {
 			Document doc = builder.parse(is);
 	
 			/**
+=======
+
+			XPathFactory xFactory = XPathFactory.newInstance();
+			XPath xpath = xFactory.newXPath();
+
+			//before using XPath get information, first check error code!
+			XPathExpression msgCode = xpath.compile("//message/code/text()");
+			Object code = msgCode.evaluate(doc, XPathConstants.NODE);
+			Node codeNode = (Node) code;
+			if (!codeNode.getNodeValue().equals("0"))
+				return null;
+
+>>>>>>> branch 'master' of ssh://git@github.com/chinesecold/WebService.git
 			//here is your customize xpath expression
 			XPathExpression exprNation = xpath.compile("//attribute[name='Median Household Income']/values/nation/value/text()");
 			Object resultNation = exprNation.evaluate(doc, XPathConstants.NODESET);
@@ -184,12 +196,12 @@ public class ZillowDAO {
 				income.setCityIncome("Data does not exist");
 			else 
 				income.setCityIncome(cityIncome.item(0).getNodeValue());
-			
+
 			if (neighborIncome == null || neighborIncome.getLength() == 0) 
 				income.setNeighborIncome("Data does not exist");
 			else
 				income.setNeighborIncome(neighborIncome.item(0).getNodeValue());
-			
+
 			return income;
 		} catch (SAXException e) {
 			e.printStackTrace();
@@ -198,7 +210,7 @@ public class ZillowDAO {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
 	/**
@@ -217,7 +229,7 @@ public class ZillowDAO {
 				sb.append(str.charAt(i));
 			}
 		}
-		
+
 		return sb.toString();
 	}
 }

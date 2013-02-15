@@ -24,7 +24,7 @@
 		</ul>
 		<div id="myTabContent" class="tab-content">
 			<div class="tab-pane fade in active" id="home">
-				<!-- Manage Table --><table class="table table-striped">
+	<!-- Manage Table --><table class="table table-striped">
 							<thead>
 								<tr class="info" style="text-align: center;">
 									<th style="text-align: left;">Name</th>
