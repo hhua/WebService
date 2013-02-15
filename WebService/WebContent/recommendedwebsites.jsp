@@ -1,8 +1,33 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page import="edu.cmu.ebiz.task8.bean.RecommendedWebsitesBean" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 
 <jsp:include page="header.jsp" />
+	  	
+
+<!-- <script>
+$(document).ready(function() {
+   $("#content div").hide(); // Initially hide all content
+   $("#tabs li:first").attr("id","current"); // Activate first tab
+   $("#content div:first").fadeIn(); // Show first tab content
+   
+   $('#tabs a').click(function(e) {
+       e.preventDefault();
+       if ($(this).closest("li").attr("id") == "current"){ //detection for current tab
+        return       
+       }
+       else{             
+       $("#content div").hide(); //Hide all content
+       $("#tabs li").attr("id",""); //Reset id's
+       $(this).parent().attr("id","current"); // Activate this
+       $('#' + $(this).attr('name')).fadeIn(); // Show content for current tab
+       }
+   });
+});
+</script> -->
 
 <h4>Recommended Websites</h4>
 	<script type="text/javascript">
@@ -24,6 +49,10 @@
 		</ul>
 		<div id="myTabContent" class="tab-content">
 			<div class="tab-pane fade in active" id="home">
+			<c:choose>
+					<c:when test="${ empty manage }">
+					</c:when>
+					<c:otherwise>
 	<!-- Manage Table --><table class="table table-striped">
 							<thead>
 								<tr class="info" style="text-align: center;">
@@ -42,8 +71,10 @@
 								</c:forEach>
 							</tbody>
 						</table>
+						</c:otherwise>
+						</c:choose>
 			</div>
-			<div class="tab-pane fade" id="profile1">
+			<div class="tab-pane fade" id="profile1"> 
 				<!-- Manage Table --><table class="table table-striped">
 							<thead>
 								<tr class="info" style="text-align: center;">
@@ -53,11 +84,11 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="sites" items="${recommendedsites}">
+								<c:forEach var="finance" items="${finance}">
 									<tr>
-										<td style="text-align: left;">${sites.name} </td>
-										<td style="text-align: left;">${sites.url}</td>
-										<td style="text-align: left;">${sites.description} </td> 
+										<td style="text-align: left;">${finance.name} </td>
+										<td style="text-align: left;">${finance.url}</td>
+										<td style="text-align: left;">${finance.description} </td> 
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -79,4 +110,5 @@
 	</div>
 
 
-  <jsp:include page="footer.jsp" />
+<jsp:include page="footer.jsp" />
+	  
