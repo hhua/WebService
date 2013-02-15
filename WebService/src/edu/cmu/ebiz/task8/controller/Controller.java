@@ -9,10 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import edu.cmu.ebiz.task8.model.Model;
+
 @SuppressWarnings("serial")
 public class Controller extends HttpServlet {
 	public void init() throws ServletException {
-        //Model model = new Model(getServletConfig());
+       	Model model = new Model();
 
         //Action.add(new AddAction(model));
     }

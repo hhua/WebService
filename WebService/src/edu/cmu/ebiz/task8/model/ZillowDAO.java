@@ -27,9 +27,10 @@ public class ZillowDAO {
 	public ArrayList<PeopleSegmentBean> getSegmentation(String state, String city, String area) {
 		try {
 			// prepare statement, based on your own api
-			String preparedURL = "http://www.zillow.com/webservice/GetDemographics.htm?zws-id=X1-ZWz1di5yjoznd7_2ca3z&state="+state
+			String preparedURL = "http://www.zillow.com/webservice/GetDemographics.htm?zws-id=X1-ZWz1di5yjoznd7_2ca3z" 
+					+"&state="+ state
 					+"&city=" + city 
-					+"&neighborhood="+ area;
+					+"&neighborhood=" + area;
 			
 			String xmlString = GetXMLDocString.getString(preparedURL);
 			
