@@ -31,7 +31,7 @@ public class GooglePlacesParser {
 
 			String jsonString = buffer.toString();
 
-			System.out.println(jsonString);
+			//System.out.println(jsonString);
 
 			// parse start
 
