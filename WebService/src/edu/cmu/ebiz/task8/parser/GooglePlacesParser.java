@@ -17,7 +17,7 @@ import edu.cmu.ebiz.task8.bean.SimpleSearchPlacesBean;
 public class GooglePlacesParser {
 
 	// parsing JSON data with text places search with Google Places API
-	public static void jsonParser(URL url) {
+	public static List<SimpleSearchPlacesBean> jsonParser(URL url) {
 		try {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(
 					url.openStream()));
@@ -111,11 +111,16 @@ public class GooglePlacesParser {
 				searchPlaces.add(place);
 				// System.out.println(place);
 			}
+			
+			return searchPlaces;
 
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		return null;
 	}
 }
