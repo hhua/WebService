@@ -56,7 +56,7 @@ $(document).ready(function() {
 	<!-- Manage Table --><table class="table table-striped">
 							<thead>
 								<tr class="info" style="text-align: center;">
-									<th style="text-align: left;">Name</th>
+									<th style="text-align: left;">Title</th>
 									<th style="text-align: left;">URL</th>
 									<th style="text-align: left;">Description</th>
 								</tr>
@@ -75,10 +75,10 @@ $(document).ready(function() {
 						</c:choose>
 			</div>
 			<div class="tab-pane fade" id="profile1"> 
-				<!-- Manage Table --><table class="table table-striped">
+				<!-- Finance Table --><table class="table table-striped">
 							<thead>
 								<tr class="info" style="text-align: center;">
-									<th style="text-align: left;">Name</th>
+									<th style="text-align: left;">Title</th>
 									<th style="text-align: left;">URL</th>
 									<th style="text-align: left;">Description</th>
 								</tr>
@@ -86,7 +86,7 @@ $(document).ready(function() {
 							<tbody>
 								<c:forEach var="finance" items="${finance}">
 									<tr>
-										<td style="text-align: left;">${finance.name} </td>
+										<td style="text-align: left;">${finance.title} </td>
 										<td style="text-align: left;">${finance.url}</td>
 										<td style="text-align: left;">${finance.description} </td> 
 									</tr>
@@ -95,16 +95,84 @@ $(document).ready(function() {
 						</table> 
 			</div>
 			<div class="tab-pane fade" id="profile2">
-				Register a Business <br> <br> <br> <br> <br> <br> 
+				<!-- Register Table --><table class="table table-striped">
+							<thead>
+								<tr class="info" style="text-align: center;">
+									<th style="text-align: left;">Title</th>
+									<th style="text-align: left;">URL</th>
+									<th style="text-align: left;">Description</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="register" items="${register}">
+									<tr>
+										<td style="text-align: left;">${register.title} </td>
+										<td style="text-align: left;">${register.url}</td>
+										<td style="text-align: left;">${register.description} </td> 
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table> 
 			</div>
 			<div class="tab-pane fade" id="profile3">
-				Start a Business <br> <br> <br> <br> <br> <br> 
+				<!-- Start Table --><table class="table table-striped">
+							<thead>
+								<tr class="info" style="text-align: center;">
+									<th style="text-align: left;">Title</th>
+									<th style="text-align: left;">URL</th>
+									<th style="text-align: left;">Description</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="start" items="${start}">
+									<tr>
+										<td style="text-align: left;">${start.title} </td>
+										<td style="text-align: left;">${start.url}</td>
+										<td style="text-align: left;">${start.description} </td> 
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table> 
 			</div>
 			<div class="tab-pane fade" id="profile4">
-				Business Law <br> <br> <br> <br> <br> <br> 
+				<!-- Others Table --><table class="table table-striped">
+							<thead>
+								<tr class="info" style="text-align: center;">
+									<th style="text-align: left;">Title</th>
+									<th style="text-align: left;">URL</th>
+									<th style="text-align: left;">Description</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="law" items="${law}">
+									<tr>
+										<td style="text-align: left;">${law.title} </td>
+										<td style="text-align: left;">${law.url}</td>
+										<td style="text-align: left;">${law.description} </td> 
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
 			</div>
 			<div class="tab-pane fade" id="profile5">
-				Others <br> <br> <br> <br> <br> <br> 
+				<!-- Others Table --><table class="table table-striped">
+							<thead>
+								<tr class="info" style="text-align: center;">
+									<th style="text-align: left;">Title</th>
+									<th style="text-align: left;">URL</th>
+									<th style="text-align: left;">Description</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="others" items="${others}">
+									<tr>
+										<td style="text-align: left;">${others.title} </td>
+										<td style="text-align: left;">${others.url}</td>
+										<td style="text-align: left;">${others.description} </td> 
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table> 
 			</div>
 		</div>
 	</div>

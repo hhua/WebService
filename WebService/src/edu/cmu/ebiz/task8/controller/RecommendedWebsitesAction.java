@@ -32,8 +32,20 @@ public class RecommendedWebsitesAction extends Action {
 			ArrayList<RecommendedWebsitesBean> manage = recommendedWebsitesDAO.getManageABusinessCategory();		
 			request.setAttribute("manage", manage);
 			
-			ArrayList<RecommendedWebsitesBean> finance = recommendedWebsitesDAO.getManageABusinessCategory();		
+			ArrayList<RecommendedWebsitesBean> finance = recommendedWebsitesDAO.getFinanceABusinessCategory();		
 			request.setAttribute("finance", finance);
+			
+			ArrayList<RecommendedWebsitesBean> register = recommendedWebsitesDAO.getRegisterABusinessCategory();		
+			request.setAttribute("register", register);
+			
+			ArrayList<RecommendedWebsitesBean> start = recommendedWebsitesDAO.getStartABusinessCategory();		
+			request.setAttribute("start", start);
+			
+			ArrayList<RecommendedWebsitesBean> law = recommendedWebsitesDAO.getLawCategory();		
+			request.setAttribute("law", law);
+			
+			ArrayList<RecommendedWebsitesBean> others = recommendedWebsitesDAO.getOtherCategory();		
+			request.setAttribute("others", others);
 			
 			return "recommendedwebsites.jsp";
 		} catch (Exception e) {
