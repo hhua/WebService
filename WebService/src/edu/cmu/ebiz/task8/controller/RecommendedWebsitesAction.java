@@ -13,31 +13,29 @@ import edu.cmu.ebiz.task8.model.RecommendedWebsitesDAO;
 
 
 
-//public class RecommendedWebsitesAction extends Action {
-//	
-//	private RecommendedWebsitesDAO recommendedWebsitesDAO;
-//
-//	public RecommendedWebsitesAction(Model model) {
-//		recommendedWebsitesDAO = model.getRecommendedWebsitesDAO();
-//	}
-//	
-//	public String getName() { return "customerhistory.do"; }
-//	
-////	public String perform(HttpServletRequest request) {
-//////		List<String> errors = new ArrayList<String>();
-//////		request.setAttribute("errors", errors);
-////		
-//////		try {
-//////			int customerId = (Integer) request.getSession(false).getAttribute("customerId");
-//////			
-//////			RecommendedWebsitesBean manage = recommendedWebsitesDAO.getManageABusinessCategory();
-//////			TransactionHistoryBean[] historyList = transactionHistoryDAO.getTransactions(customer.getCustomerId());
-//////			request.setAttribute("transactionHistory", historyList);
-//////			return "customer-viewtransaction.jsp";
-//////		} catch (MyDAOException e) {
-//////			errors.add(e.getMessage());
-//////			return "error.jsp";
-//////		} 
-////	}
-//}
-//
+public class RecommendedWebsitesAction extends Action {
+	
+	private RecommendedWebsitesDAO recommendedWebsitesDAO;
+
+	public RecommendedWebsitesAction(Model model) {
+		recommendedWebsitesDAO = model.getRecommendedWebsitesDAO();
+	}
+	
+	public String getName() { return "recommendedwebsites.do"; }
+	
+	public String perform(HttpServletRequest request) {
+		List<String> errors = new ArrayList<String>();
+		request.setAttribute("errors", errors);
+		
+		try {
+			
+			RecommendedWebsitesBean manage = recommendedWebsitesDAO.getManageABusinessCategory();		
+			request.setAttribute("manageBusiness", manage);
+			return "recommendedwebsites.jsp";
+		} catch (Exception e) {
+			errors.add(e.getMessage());
+			return "error.jsp";
+		} 
+	}
+}
+
