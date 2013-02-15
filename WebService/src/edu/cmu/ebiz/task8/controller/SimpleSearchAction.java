@@ -62,6 +62,7 @@ public class SimpleSearchAction extends Action {
 //				System.out.println(place);
 //			}
 			// Success
+			System.out.println(places.size());
 			request.setAttribute("places", places);
 			return "simplesearch.jsp";
 		} catch (FormBeanException e) {

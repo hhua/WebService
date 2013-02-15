@@ -13,61 +13,62 @@
 </script>
 
 <script type="text/javascript">
-	var citymap = {};
-	citymap['pittsburgh'] = {
-		center : new google.maps.LatLng(40.437, -80.00000),
-		population : 2842518
-	};
-	var cityCircle;
 
+var locations1 = [
+                 ['Bondi Beach', 40.44, -80.00],
+                 ['Coogee Beach', 40.441, -80.01],
+                 ['Cronulla Beach', 40.442, -80.02],
+                 ['Manly Beach', 40.44, -80.03]
+               ];
+               
+var locations = new Array();
+            	<%
+            		List<SimpleSearchPlacesBean> searchPlaces = (ArrayList<SimpleSearchPlacesBean>) request.getAttribute("places");
+
+            		for(int i = 0; searchPlaces != null && i < searchPlaces.size(); i++){		
+            	%>
+            			locations[<%=i%>] = ['<%= searchPlaces.get(i).getName() %>', <%= searchPlaces.get(i).getLatitude() %>,<%= searchPlaces.get(i).getLongitude() %>]
+            			console.log(<%=i%>);
+            	<%
+            		}
+            	%>
+            	   
 	function initialize() {
 		var mapOptions = {
-			center : new google.maps.LatLng(40.44, -80.00),
-			zoom : 14,
-			mapTypeId : google.maps.MapTypeId.ROADMAP
+			center: new google.maps.LatLng(40.44, -80.00),
+			zoom: 14,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
 		};
 		var map = new google.maps.Map(document.getElementById("map_canvas"),
-				mapOptions);
-
-		//add marker  
-		var myLatlngs = new Array();
-		var markers = new Array();
-		<%
-			List<SimpleSearchPlacesBean> searchPlaces = (ArrayList<SimpleSearchPlacesBean>) request.getAttribute("places");
-			
-			for(int i = 0; searchPlaces != null && i < searchPlaces.size(); i++){		
-		%>
+			mapOptions);
+	
+		var infowindow = new google.maps.InfoWindow();
+	
+		var marker, i;
 		
-		myLatlngs[<%= i %>] = new google.maps.LatLng(<%= searchPlaces.get(i).getLatitude() %>, <%= searchPlaces.get(i).getLongitude() %>);
-		markers[<%= i %>] = new google.maps.Marker({
-			position : myLatlngs[<%= i %>],
-			map: map,
-			title : <%= searchPlaces.get(i).getName() %>
-		});
 		
-		<%
+		for (i = 0; i < locations.length; i++) {  
+			<c:forEach var="place" items="${places}">
+			marker = new google.maps.Marker({
+				position: new google.maps.LatLng(place.latitude, place.longitude),
+				map: map
+			});
+		
+			google.maps.event.addListener(marker, 'click', (function(marker, i) {
+				return function() {
+		 		infowindow.setContent(locations[i][0]);
+				infowindow.open(map, marker);
 			}
-		%>
-		
-		// add circle
-		for ( var city in citymap) {
-			// Construct the circle for each value in citymap. We scale population by 20.
-			var populationOptions = {
-				strokeColor : "#FF0000",
-				// strokeOpacity: 0.95,
-				// strokeWeight: 1,
-				fillColor : "#FF0000",
-				fillOpacity : 0.95,
-				map : map,
-				center : citymap[city].center,
-				radius : 100
-			};
-			cityCircle = new google.maps.Circle(populationOptions);
-		}
-	}
+			})(marker, i));
+			</c:forEach>
+		}	
+
+}
+
+            	
 </script>
 
-<div class="row-fluid" class="span12" onload="initialize()">
+<div class="row-fluid" class="span12">
 	<div class="span12">
 		<jsp:include page="error-list.jsp" />
 		<br />

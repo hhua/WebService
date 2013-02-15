@@ -64,7 +64,7 @@ public class GooglePlacesParser {
 					place.setPriceLevel((Long) result.get("price_level"));
 				}
 
-				place.setRating((Double) result.get("rating"));
+				//place.setRating((Double) result.get("rating"));
 				place.setReference((String) result.get("reference"));
 				JSONArray typeArray = (JSONArray) result.get("types");
 				if (typeArray != null) {
