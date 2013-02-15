@@ -14,7 +14,6 @@
  
  <script type="text/javascript">              
 var locations = [
-
               <c:forEach var="place" items="${places}">
                   		["${place.name}",
                   		"${place.latitude}",
@@ -62,23 +61,23 @@ var locations1 = [
 </script>
 
 <div class="row-fluid" class="span12">
-	<div class="span12">
-		<jsp:include page="error-list.jsp" />
-		<br />
-		<form class="form-horizontal" method="POST" action="simple-search.do">
-			<div class="control-group">
-				<div class="controls">
-					<input type="text" id="search" placeholder="Places you want"
-						name="searchPlaces">
+	<div class="span12" style="border: 1px solid #F5F5F5; border-radius: 5px; box-shadow: 5px 5px 2px #F5F5F5">
+		<div style="padding-left: 15px;">
+			<jsp:include page="error-list.jsp" />
+			<br />
+			<p class="lead">Simple Search</p>
+			<form class="form-horizontal" method="POST" action="simple-search.do" class="form-inline">
+				<div class="input-prepend">
+						<span class="add-on"><i class="icon-map-marker"></i></span>
+						<input type="text" id="search"  class="input-xxlarge" placeholder="Places you want, e.g. Restaurant in Pittsburgh"
+							name="searchPlaces">
 				</div>
-			</div>
-			<div class="control-group">
-				<div class="controls">
-					<button type="submit" class="btn">Search</button>
-				</div>
-			</div>
-		</form>
+				<button type="submit" class="btn"><i class="icon-search"></i>Search</button>
+				
+			</form>
+		</div>
 	</div>
+	
 	<div class="span12">
 		<h4>Search result of Restaurant in Pittsburgh area</h4>
 	</div>
