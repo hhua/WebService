@@ -1,3 +1,10 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="edu.cmu.ebiz.task8.bean.SimpleSearchPlacesBean" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+
+
 <jsp:include page="header.jsp" />
 
 <script type="text/javascript"
@@ -22,14 +29,26 @@
 		var map = new google.maps.Map(document.getElementById("map_canvas"),
 				mapOptions);
 
-		//add marker    
-		var myLatlng = new google.maps.LatLng(40.440001, -80.00000);
-		var marker1 = new google.maps.Marker({
-			position : myLatlng,
-			title : "Competitor1"
+		//add marker  
+		var myLatlngs = new Array();
+		var markers = new Array();
+		<%
+			List<SimpleSearchPlacesBean> searchPlaces = (ArrayList<SimpleSearchPlacesBean>) request.getAttribute("places");
+			
+			for(int i = 0; searchPlaces != null && i < searchPlaces.size(); i++){		
+		%>
+		
+		myLatlngs[<%= i %>] = new google.maps.LatLng(<%= searchPlaces.get(i).getLatitude() %>, <%= searchPlaces.get(i).getLongitude() %>);
+		markers[<%= i %>] = new google.maps.Marker({
+			position : myLatlngs[<%= i %>],
+			map: map,
+			title : <%= searchPlaces.get(i).getName() %>
 		});
-		marker1.setMap(map);
-
+		
+		<%
+			}
+		%>
+		
 		// add circle
 		for ( var city in citymap) {
 			// Construct the circle for each value in citymap. We scale population by 20.
@@ -48,18 +67,15 @@
 	}
 </script>
 
-
-
 <div class="row-fluid" class="span12" onload="initialize()">
 	<div class="span12">
 		<jsp:include page="error-list.jsp" />
 		<br />
-		<form class="form-horizontal" method="POST"
-			action="simple-search.do">
+		<form class="form-horizontal" method="POST" action="simple-search.do">
 			<div class="control-group">
 				<div class="controls">
-					<input type="text" id="search"
-						placeholder="Places you want" name="searchPlaces">
+					<input type="text" id="search" placeholder="Places you want"
+						name="searchPlaces">
 				</div>
 			</div>
 			<div class="control-group">
@@ -111,7 +127,31 @@
 		</ul>
 		<div id="myTabContent" class="tab-content">
 			<div class="tab-pane fade in active" id="home">
-				Dispay a list of competitors <br> One <br> Two <br>
+				<c:choose>
+					<c:when test="${ empty places }">
+					</c:when>
+					<c:otherwise>
+						<table class="table table-striped span12">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Address</th>
+									<th>Rating</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="competitor" items="${places}">
+									<tr>
+										<td>${competitor.name}</td>
+										<td>${competitor.address}</td>
+										<td>${competitor.rating}</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</c:otherwise>
+				</c:choose>
 			</div>
 			<div class="tab-pane fade" id="profile">
 				Show some data <br> Population <br> race

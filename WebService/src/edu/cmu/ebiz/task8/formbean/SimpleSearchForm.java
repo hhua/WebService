@@ -9,9 +9,9 @@ public class SimpleSearchForm extends FormBean{
 	private String searchPlaces;
 	
 	public List<String> getValidationErrors() {
-		//List<String> errors = new ArrayList<String>();
+		List<String> errors = new ArrayList<String>();
 		
-		return null;
+		return errors;
 	}
 
 	public String getSearchPlaces() {

@@ -16,8 +16,13 @@ public class Controller extends HttpServlet {
 	public void init() throws ServletException {
        	Model model = new Model();
 
+
+        Action.add(new RecommendedWebsitesAction(model));
+
         //Action.add(new AddAction(model));
        	Action.add(new DemographicAction(model));
+       	Action.add(new SimpleSearchAction());
+
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
