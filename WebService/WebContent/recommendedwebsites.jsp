@@ -36,6 +36,11 @@ $(document).ready(function() {
 			$(this).tab('show');
 		})
 	</script>
+	<script>
+    function click(url){
+    	window.open(url);
+    }
+    </script>
 	<hr>
 
 	<div id="display-recommendedsites" class="span12">
@@ -65,7 +70,7 @@ $(document).ready(function() {
 								<c:forEach var="manage" items="${manage}">
 									<tr>
 										<td style="text-align: left;">${manage.title} </td>
-										<td style="text-align: left;">${manage.url}</td>
+										<td style="text-align: left;"><a href ="javascript:click('${manage.url}');">${manage.url}</a></td>
 										<td style="text-align: left;">${manage.description} </td> 
 									</tr>
 								</c:forEach>
@@ -87,7 +92,7 @@ $(document).ready(function() {
 								<c:forEach var="finance" items="${finance}">
 									<tr>
 										<td style="text-align: left;">${finance.title} </td>
-										<td style="text-align: left;">${finance.url}</td>
+										<td style="text-align: left;"><a href ="javascript:click('${finance.url}');">${finance.url}</a></td>
 										<td style="text-align: left;">${finance.description} </td> 
 									</tr>
 								</c:forEach>
@@ -107,7 +112,7 @@ $(document).ready(function() {
 								<c:forEach var="register" items="${register}">
 									<tr>
 										<td style="text-align: left;">${register.title} </td>
-										<td style="text-align: left;">${register.url}</td>
+										<td style="text-align: left;"><a href ="javascript:click('${register.url}');">${register.url}</a></td>
 										<td style="text-align: left;">${register.description} </td> 
 									</tr>
 								</c:forEach>
@@ -127,7 +132,7 @@ $(document).ready(function() {
 								<c:forEach var="start" items="${start}">
 									<tr>
 										<td style="text-align: left;">${start.title} </td>
-										<td style="text-align: left;">${start.url}</td>
+										<td style="text-align: left;"><a href ="javascript:click('${start.url}');">${start.url}</a></td>
 										<td style="text-align: left;">${start.description} </td> 
 									</tr>
 								</c:forEach>
@@ -147,7 +152,7 @@ $(document).ready(function() {
 								<c:forEach var="law" items="${law}">
 									<tr>
 										<td style="text-align: left;">${law.title} </td>
-										<td style="text-align: left;">${law.url}</td>
+										<td style="text-align: left;"><a href ="javascript:click('${law.url}');">${law.url}</a></td>
 										<td style="text-align: left;">${law.description} </td> 
 									</tr>
 								</c:forEach>
@@ -167,7 +172,7 @@ $(document).ready(function() {
 								<c:forEach var="others" items="${others}">
 									<tr>
 										<td style="text-align: left;">${others.title} </td>
-										<td style="text-align: left;">${others.url}</td>
+										<td style="text-align: left;"><a href ="javascript:click('${others.url}');">${others.url}</a></td>
 										<td style="text-align: left;">${others.description} </td> 
 									</tr>
 								</c:forEach>
