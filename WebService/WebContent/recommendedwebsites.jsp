@@ -33,7 +33,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="manage" items="${managebusiness}">
+								<c:forEach var="manage" items="${manage}">
 									<tr>
 										<td style="text-align: left;">${manage.name} </td>
 										<td style="text-align: left;">${manage.url}</td>

@@ -23,7 +23,7 @@ import edu.cmu.ebiz.task8.bean.RecommendedWebsitesBean;
 public class RecommendedWebsitesDAO {
 	private static Document document;
 
-	public RecommendedWebsitesBean getManageABusinessCategory() {
+	public ArrayList<RecommendedWebsitesBean> getManageABusinessCategory() {
 		try {
 			// prepare statement, based on your own api
 			String preparedURL = "http://api.sba.gov/rec_sites/category/managing%20a%20business.xml";
@@ -40,20 +40,43 @@ public class RecommendedWebsitesDAO {
 			XPath xpath = xFactory.newXPath();
 
 			//here is your customize xpath expression
-			XPathExpression expr = xpath.compile("//site/title/text() | //site/url/text() | //site/description/text()");
-
-			Object result = expr.evaluate(doc, XPathConstants.NODESET);
-			NodeList manageNodes = (NodeList) result;
+			XPathExpression exprTitle = xpath.compile("//site/title/text()");
+    
+			Object resultTitle = exprTitle.evaluate(doc, XPathConstants.NODESET);
+			NodeList manageTitle = (NodeList) resultTitle;
+			
+			XPathExpression exprURL = xpath.compile("//site/url/text()");
+		    
+			Object resultURL = exprURL.evaluate(doc, XPathConstants.NODESET);
+			NodeList manageURL = (NodeList) resultURL;
+			
+            XPathExpression exprDesc = xpath.compile("//site/description/text()");
+		    
+			Object resultDesc = exprDesc.evaluate(doc, XPathConstants.NODESET);
+			NodeList manageDesc = (NodeList) resultDesc;
 			//Test
-			for (int i = 0; i<manageNodes.getLength(); i++) {
-				System.out.println(manageNodes.item(i).getNodeValue());
+//			for (int i = 0; i<manageNodes.getLength(); i++) {
+//				System.out.println(manageNodes.item(i).getNodeValue());
+//			}
+			
+//			RecommendedWebsitesBean manage = new RecommendedWebsitesBean();
+			ArrayList<RecommendedWebsitesBean> manage = new ArrayList<RecommendedWebsitesBean>();
+			for(int i = 0; i< manageTitle.getLength(); i++){
+				RecommendedWebsitesBean currentManage = new RecommendedWebsitesBean();
+				currentManage.setTitle(manageTitle.item(i).getNodeValue());
+				currentManage.setURL(manageURL.item(i).getNodeValue());
+				currentManage.setDescription(manageDesc.item(i).getNodeValue());
+				
+				manage.add(currentManage);
+				System.out.print("--------"+ manageTitle.item(i).getNodeValue());
 			}
 			
-			RecommendedWebsitesBean manage = new RecommendedWebsitesBean();
-			manage.setTitle(manageNodes.item(0).getNodeValue());
-			manage.setURL(manageNodes.item(1).getNodeValue());
-			manage.setDescription(manageNodes.item(2).getNodeValue());
 			
+//			
+//			System.out.println("--------"+ manageNodes.item(1).getNodeValue());
+//			
+//			System.out.println("--------"+ manageNodes.item(2).getNodeValue());
+//			
 		} catch (SAXException e) {
 			e.printStackTrace();
 		} catch (ParserConfigurationException e) {
@@ -205,15 +228,15 @@ public class RecommendedWebsitesDAO {
 			e.printStackTrace();
 		}
 	}
-	public static void main(String[] args) {
+//	public static void main(String[] args) {
 //		getManageABusinessCategory();
-		System.out.println("------------------------------------------------");
-		getFinanceABusinessCategory();
-		System.out.println("------------------------------------------------");
-		getRegisterABusinessCategory();
-		System.out.println("------------------------------------------------");
-		getStartABusinessCategory();
-		System.out.println("------------------------------------------------");
-		getOtherCategory();
-	}
+//		System.out.println("------------------------------------------------");
+////		getFinanceABusinessCategory();
+////		System.out.println("------------------------------------------------");
+////		getRegisterABusinessCategory();
+////		System.out.println("------------------------------------------------");
+////		getStartABusinessCategory();
+////		System.out.println("------------------------------------------------");
+////		getOtherCategory();
+//	}
 }
