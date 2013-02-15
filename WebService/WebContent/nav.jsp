@@ -1,4 +1,4 @@
- <div class="masthead">
+	 	<div class="masthead" style="clear: both; width: 80%;">
 	        <h3>Small Business Portal</h3>
 	        <div class="navbar">
 	          <div class="navbar-inner">

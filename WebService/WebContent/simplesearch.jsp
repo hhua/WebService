@@ -1,5 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="edu.cmu.ebiz.task8.bean.SimpleSearchPlacesBean" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+
 
 <jsp:include page="header.jsp" />
 
@@ -25,14 +29,26 @@
 		var map = new google.maps.Map(document.getElementById("map_canvas"),
 				mapOptions);
 
-		//add marker    
-		var myLatlng = new google.maps.LatLng(40.440001, -80.00000);
-		var marker1 = new google.maps.Marker({
-			position : myLatlng,
-			title : "Competitor1"
+		//add marker  
+		var myLatlngs = new Array();
+		var markers = new Array();
+		<%
+			List<SimpleSearchPlacesBean> searchPlaces = (ArrayList<SimpleSearchPlacesBean>) request.getAttribute("places");
+			
+			for(int i = 0; searchPlaces != null && i < searchPlaces.size(); i++){		
+		%>
+		
+		myLatlngs[<%= i %>] = new google.maps.LatLng(<%= searchPlaces.get(i).getLatitude() %>, <%= searchPlaces.get(i).getLongitude() %>);
+		markers[<%= i %>] = new google.maps.Marker({
+			position : myLatlngs[<%= i %>],
+			map: map,
+			title : <%= searchPlaces.get(i).getName() %>
 		});
-		marker1.setMap(map);
-
+		
+		<%
+			}
+		%>
+		
 		// add circle
 		for ( var city in citymap) {
 			// Construct the circle for each value in citymap. We scale population by 20.

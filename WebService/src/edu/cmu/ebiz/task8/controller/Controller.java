@@ -20,6 +20,7 @@ public class Controller extends HttpServlet {
         Action.add(new RecommendedWebsitesAction(model));
 
         //Action.add(new AddAction(model));
+       	Action.add(new DemographicAction(model));
        	Action.add(new SimpleSearchAction());
 
     }

@@ -22,7 +22,7 @@ import java.net.URL;
 
 public class GetXMLDocString {
 	
-	public static String getString(String preparedURL) {
+	public synchronized static String getString(String preparedURL) {
 		try {
 			URL url = new URL(preparedURL);
 			
