@@ -52,5 +52,4 @@ public class DemographicForm extends FormBean {
 		this.area = trimAndConvert(area, "<>\"");
 	}
 	
-	
 }

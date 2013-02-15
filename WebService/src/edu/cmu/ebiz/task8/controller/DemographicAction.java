@@ -33,7 +33,7 @@ public class DemographicAction extends Action {
 		
 		try {
 			DemographicForm form = formBeanFactory.create(request);
-			
+			request.setAttribute("form", form);
 			if (!form.isPresent()) {
 				return "demographic.jsp";
 			}
@@ -42,6 +42,9 @@ public class DemographicAction extends Action {
 			if (errors.size() != 0) {
 				return "demographic.jsp";
 			}
+			
+			
+			
 			String state = form.getState();
 			String city = form.getCity();
 			String area = form.getArea();
@@ -49,11 +52,23 @@ public class DemographicAction extends Action {
 			request.setAttribute("city", city);
 			request.setAttribute("area", area);
 			
+			Boolean isValid = zillowDAO.getMsgCode(state, city, area);
+			if (!isValid) {
+				errors.add("Can't get information, please check your input");
+				return "demographic.jsp";
+			}
+			
 			PeopleIncomeBean income = zillowDAO.getIncome(state, city, area);
 			request.setAttribute("income", income);
 			
-			ArrayList<PeopleSegmentBean> segments = zillowDAO.getSegmentation(state, city, area);
-			request.setAttribute("segments", segments);
+			ArrayList<PeopleSegmentBean> segmentsList = zillowDAO.getSegmentation(state, city, area);
+			
+			PeopleSegmentBean[] segments = new PeopleSegmentBean[segmentsList.size()];
+			for(int i = 0; i<segmentsList.size(); i++) {
+				segments[i] = segmentsList.get(i);
+			}
+			
+			request.setAttribute("segmentList", segments);
 			
 			return "demographic.jsp";
 			

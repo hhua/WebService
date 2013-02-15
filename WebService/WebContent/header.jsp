@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
   	<head>
 	    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
@@ -9,5 +12,7 @@
   
   	<body  onload="initialize()"> 
   	
-  	<div class="container">
+  		<div class="container">
 	  	<jsp:include page="nav.jsp" />
+	  	
+	  	
