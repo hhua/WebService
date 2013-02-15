@@ -23,7 +23,7 @@ import edu.cmu.ebiz.task8.bean.RecommendedWebsitesBean;
 public class RecommendedWebsitesDAO {
 	private static Document document;
 
-	public ArrayList<RecommendedWebsitesBean> getManageABusinessCategory() {
+	public static ArrayList<RecommendedWebsitesBean> getManageABusinessCategory() {
 		try {
 			// prepare statement, based on your own api
 			String preparedURL = "http://api.sba.gov/rec_sites/category/managing%20a%20business.xml";
@@ -68,7 +68,7 @@ public class RecommendedWebsitesDAO {
 				currentManage.setDescription(manageDesc.item(i).getNodeValue());
 				
 				manage.add(currentManage);
-				System.out.print("--------"+ manageTitle.item(i).getNodeValue());
+				System.out.print("--------"+ manage.subList(0, 40));
 			}
 			
 			
@@ -228,15 +228,15 @@ public class RecommendedWebsitesDAO {
 			e.printStackTrace();
 		}
 	}
-//	public static void main(String[] args) {
-//		getManageABusinessCategory();
+	public static void main(String[] args) {
+		getManageABusinessCategory();
+		System.out.println("------------------------------------------------");
+//		getFinanceABusinessCategory();
 //		System.out.println("------------------------------------------------");
-////		getFinanceABusinessCategory();
-////		System.out.println("------------------------------------------------");
-////		getRegisterABusinessCategory();
-////		System.out.println("------------------------------------------------");
-////		getStartABusinessCategory();
-////		System.out.println("------------------------------------------------");
-////		getOtherCategory();
-//	}
+//		getRegisterABusinessCategory();
+//		System.out.println("------------------------------------------------");
+//		getStartABusinessCategory();
+//		System.out.println("------------------------------------------------");
+//		getOtherCategory();
+	}
 }

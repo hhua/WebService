@@ -24,7 +24,7 @@ import edu.cmu.ebiz.task8.bean.PeopleSegmentBean;
 public class ZillowDAO {
 	private static Document document;
 	
-	public ArrayList<PeopleSegmentBean> getSegmentation(String state, String city, String area) {
+	public static ArrayList<PeopleSegmentBean> getSegmentation(String state, String city, String area) {
 		try {
 			// prepare statement, based on your own api
 			String preparedURL = "http://www.zillow.com/webservice/GetDemographics.htm?zws-id=X1-ZWz1di5yjoznd7_2ca3z" 
@@ -151,10 +151,10 @@ public class ZillowDAO {
 		
 		return null;
 	}
-	/**
+	
 	public static void main(String[] args) {
 		System.out.println("-----------");
-		getIncome("PA", "Pittsburgh", "Shadyside");
+		getSegmentation("PA", "Pittsburgh", "North Oakland");
 	}
-	**/
+	
 }
