@@ -14,25 +14,13 @@
 
 <script type="text/javascript">
 
-var locations1 = [
+var locations = [
                  ['Bondi Beach', 40.44, -80.00],
                  ['Coogee Beach', 40.441, -80.01],
                  ['Cronulla Beach', 40.442, -80.02],
                  ['Manly Beach', 40.44, -80.03]
                ];
-               
-var locations = new Array();
-            	<%
-            		List<SimpleSearchPlacesBean> searchPlaces = (ArrayList<SimpleSearchPlacesBean>) request.getAttribute("places");
 
-            		for(int i = 0; searchPlaces != null && i < searchPlaces.size(); i++){		
-            	%>
-            			locations[<%=i%>] = ['<%= searchPlaces.get(i).getName() %>', <%= searchPlaces.get(i).getLatitude() %>,<%= searchPlaces.get(i).getLongitude() %>]
-            			console.log(<%=i%>);
-            	<%
-            		}
-            	%>
-            	   
 	function initialize() {
 		var mapOptions = {
 			center: new google.maps.LatLng(40.44, -80.00),
@@ -45,12 +33,10 @@ var locations = new Array();
 		var infowindow = new google.maps.InfoWindow();
 	
 		var marker, i;
-		
-		
+	
 		for (i = 0; i < locations.length; i++) {  
-			<c:forEach var="place" items="${places}">
 			marker = new google.maps.Marker({
-				position: new google.maps.LatLng(place.latitude, place.longitude),
+				position: new google.maps.LatLng(locations[i][1], locations[i][2]),
 				map: map
 			});
 		
@@ -60,7 +46,6 @@ var locations = new Array();
 				infowindow.open(map, marker);
 			}
 			})(marker, i));
-			</c:forEach>
 		}	
 
 }
