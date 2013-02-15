@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.mybeans.form.FormBeanException;
 import org.mybeans.form.FormBeanFactory;
 
+import edu.cmu.ebiz.task8.bean.SimpleSearchPlacesBean;
 import edu.cmu.ebiz.task8.formbean.SimpleSearchForm;
 import edu.cmu.ebiz.task8.parser.GooglePlacesParser;
 
@@ -55,9 +56,13 @@ public class SimpleSearchAction extends Action {
 			String query = form.getSearchPlaces();
 			URL requestURL = generateBasicURL(query);
 			
-			GooglePlacesParser.jsonParser(requestURL);
+			List<SimpleSearchPlacesBean> places = GooglePlacesParser.jsonParser(requestURL);
 
+//			for(SimpleSearchPlacesBean place : places){
+//				System.out.println(place);
+//			}
 			// Success
+			request.setAttribute("places", places);
 			return "simplesearch.jsp";
 		} catch (FormBeanException e) {
 			errors.add(e.toString());
