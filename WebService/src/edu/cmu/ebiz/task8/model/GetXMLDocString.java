@@ -20,6 +20,15 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+
 public class GetXMLDocString {
 	
 	public synchronized static String getString(String preparedURL) {
@@ -54,6 +63,23 @@ public class GetXMLDocString {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 
+		return null;
+	}
+	
+	public static NodeList getExpressionResult(Document document, String expression) {
+		try {
+			XPathFactory xFactory = XPathFactory.newInstance();
+			XPath xpath = xFactory.newXPath();
+			
+			XPathExpression exprNation = xpath.compile(expression);
+			Object result = exprNation.evaluate(document, XPathConstants.NODESET);
+			NodeList nodes = (NodeList) result;
+			
+			return nodes;
+		} catch (XPathExpressionException e) {
+			e.printStackTrace();
+		}
+		
 		return null;
 	}
 }

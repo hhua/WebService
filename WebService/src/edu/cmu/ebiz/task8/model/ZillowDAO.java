@@ -83,10 +83,7 @@ public class ZillowDAO {
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			InputSource is = new InputSource(new StringReader(xmlString));
 			Document doc = builder.parse(is);
-	
-			XPathFactory xFactory = XPathFactory.newInstance();
-			XPath xpath = xFactory.newXPath();
-			
+
 			//here is your customize xpath expression
 			/**
 			 * <liveshere>
@@ -98,6 +95,9 @@ public class ZillowDAO {
 			 * </liveshere>
 			 */
 			//get <title>
+			XPathFactory xFactory = XPathFactory.newInstance();
+			XPath xpath = xFactory.newXPath();
+			/**
 			XPathExpression exprTitle = xpath.compile("//page[name='People']/segmentation/liveshere/title/text()");
 			Object resultTitle = exprTitle.evaluate(doc, XPathConstants.NODESET);
 			NodeList titles = (NodeList) resultTitle;
@@ -109,6 +109,10 @@ public class ZillowDAO {
 			XPathExpression exprDesc = xpath.compile("//page[name='People']/segmentation/liveshere/description/text()");
 			Object resultDesc = exprDesc.evaluate(doc, XPathConstants.NODESET);
 			NodeList descs = (NodeList) resultDesc;
+			**/
+			NodeList titles = GetXMLDocString.getExpressionResult(doc, "//page[name='People']/segmentation/liveshere/title/text()");
+			NodeList names = GetXMLDocString.getExpressionResult(doc, "//page[name='People']/segmentation/liveshere/name/text()");
+			NodeList descs = GetXMLDocString.getExpressionResult(doc, "//page[name='People']/segmentation/liveshere/description/text()");
 			
 			ArrayList<PeopleSegmentBean> segments = new ArrayList<PeopleSegmentBean>();
 			for (int i = 0; i<titles.getLength(); i++) {
@@ -127,14 +131,14 @@ public class ZillowDAO {
 			e.printStackTrace();
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
-		} catch (XPathExpressionException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
+		}  catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		return null;
 	}
+	
+	
 	
 	public PeopleIncomeBean getIncome(String state, String city, String area) {
 		try {
@@ -151,16 +155,7 @@ public class ZillowDAO {
 			InputSource is = new InputSource(new StringReader(xmlString));
 			Document doc = builder.parse(is);
 	
-			XPathFactory xFactory = XPathFactory.newInstance();
-			XPath xpath = xFactory.newXPath();
-			
-			//before using XPath get information, first check error code!
-			XPathExpression msgCode = xpath.compile("//message/code/text()");
-			Object code = msgCode.evaluate(doc, XPathConstants.NODE);
-			Node codeNode = (Node) code;
-			if (!codeNode.getNodeValue().equals("0"))
-				return null;
-			
+			/**
 			//here is your customize xpath expression
 			XPathExpression exprNation = xpath.compile("//attribute[name='Median Household Income']/values/nation/value/text()");
 			Object resultNation = exprNation.evaluate(doc, XPathConstants.NODESET);
@@ -173,7 +168,12 @@ public class ZillowDAO {
 			XPathExpression exprNeighbor = xpath.compile("//attribute[name='Median Household Income']/values/neighborhood/value/text()");
 			Object resultNeighbor = exprNeighbor.evaluate(doc, XPathConstants.NODESET);
 			NodeList neighborIncome = (NodeList) resultNeighbor;
-			
+			**/
+			// easy way to get result of XPath Expression, just call GetXMLDocString
+			NodeList nationIncome = GetXMLDocString.getExpressionResult(doc, "//attribute[name='Median Household Income']/values/nation/value/text()");
+			NodeList cityIncome = GetXMLDocString.getExpressionResult(doc, "//attribute[name='Median Household Income']/values/city/value/text()");
+			NodeList neighborIncome = GetXMLDocString.getExpressionResult(doc, "//attribute[name='Median Household Income']/values/neighborhood/value/text()");
+
 			//for each area, there is only one set of data, so we don't use for loop
 			PeopleIncomeBean income = new PeopleIncomeBean();
 			if (nationIncome == null || nationIncome.getLength() == 0) 
@@ -194,8 +194,6 @@ public class ZillowDAO {
 		} catch (SAXException e) {
 			e.printStackTrace();
 		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		} catch (XPathExpressionException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
