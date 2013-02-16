@@ -2,7 +2,9 @@ package edu.cmu.ebiz.task8.model;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Formatter;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -214,14 +216,23 @@ public class ZillowDAO {
 			NodeList wM = GetXMLDocString.getExpressionResult(doc, 
 					"//page[name='People']/tables/table[name='Census Summary-RelationshipStatus']/data/attribute[name='Widowed-Male']/value/text()");
 			
-			gender.setDivorcedFemale(divorcedF.item(0).getNodeValue());
-			gender.setDivorcedMale(divorcedM.item(0).getNodeValue());
-			gender.setMarriedFemale(marryF.item(0).getNodeValue());
-			gender.setMarriedMale(marryM.item(0).getNodeValue());
-			gender.setSingleFemale(singleF.item(0).getNodeValue());
-			gender.setSingleMale(singleM.item(0).getNodeValue());
-			gender.setWidowedFemale(wF.item(0).getNodeValue());
-			gender.setWidowedMale(wM.item(0).getNodeValue());
+			long df = Math.round(Double.parseDouble(divorcedF.item(0).getNodeValue())*100);
+			gender.setDivorcedFemale(Long.toString(df));
+			
+			long dm = Math.round(Double.parseDouble(divorcedM.item(0).getNodeValue())*100);
+			gender.setDivorcedMale(Long.toString(dm));
+			long mf = Math.round(Double.parseDouble(marryF.item(0).getNodeValue())*100);
+			gender.setMarriedFemale(Long.toString(mf));
+			long mm = Math.round(Double.parseDouble(marryM.item(0).getNodeValue())*100);
+			gender.setMarriedMale(Long.toString(mm));
+			long sf = Math.round(Double.parseDouble(singleF.item(0).getNodeValue())*100);
+			gender.setSingleFemale(Long.toString(sf));
+			long sm = Math.round(Double.parseDouble(singleM.item(0).getNodeValue())*100);
+			gender.setSingleMale(Long.toString(sm));
+			long wf = Math.round(Double.parseDouble(wF.item(0).getNodeValue())*100);
+			gender.setWidowedFemale(Long.toString(wf));
+			long wm = Math.round(Double.parseDouble(wM.item(0).getNodeValue())*100);
+			gender.setWidowedMale(Long.toString(wm));
 
 			return gender;
 		} catch (SAXException e) {
@@ -289,7 +300,8 @@ public class ZillowDAO {
 			ages.setThirty(d30s);
 			ages.setForty(d40s);
 			ages.setFifty(d50s);
-			ages.setSixseventy(d60s);
+			DecimalFormat df = new DecimalFormat("#.00");
+			ages.setSixseventy(Double.parseDouble(df.format(d60s)));
 
 			return ages;
 		} catch (SAXException e) {
