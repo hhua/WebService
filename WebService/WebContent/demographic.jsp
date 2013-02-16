@@ -178,6 +178,7 @@
 											</div>
 										</div>
 								</div>
+							</div>
 								
 								<div class="row-fluid" style="margin-left: 20px">
 										<div id="age" class="searchbox span11" >

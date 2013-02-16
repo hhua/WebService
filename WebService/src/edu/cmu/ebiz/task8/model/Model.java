@@ -12,10 +12,13 @@ package edu.cmu.ebiz.task8.model;
 public class Model {
 	private ZillowDAO zillowDAO;
 	private RecommendedWebsitesDAO recommendedWebsitesDAO;
+	private PolicyDAO policyDAO;
 
+	
 	public Model() {
 		zillowDAO = new ZillowDAO();
 		recommendedWebsitesDAO = new RecommendedWebsitesDAO();
+		policyDAO = new PolicyDAO();
 	}
 	
 	public ZillowDAO getZillowDAO() { return zillowDAO; }
@@ -24,4 +27,8 @@ public class Model {
 		return recommendedWebsitesDAO;
 	}
 	
+	public PolicyDAO getPolicyDAO() {
+		return policyDAO;
+	}
+
 }
