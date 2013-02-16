@@ -154,17 +154,44 @@ public class ZillowDAO {
 			PeopleIncomeBean income = new PeopleIncomeBean();
 			if (nationIncome == null || nationIncome.getLength() == 0) 
 				income.setNationIncome("Data does not exist");
-			else
-				income.setNationIncome(nationIncome.item(0).getNodeValue());
+			else {
+				String nincome = nationIncome.item(0).getNodeValue();
+				int i = nincome.indexOf(".");
+				if (i != -1) 
+					income.setNationIncome(nincome.substring(0, i+3));
+				else 
+					income.setNationIncome(nincome);
+				
+				double nI = Double.parseDouble(nincome);
+				income.setNationP(nI/800);
+			}
+			
 			if (cityIncome == null || cityIncome.getLength() == 0) 
 				income.setCityIncome("Data does not exist");
-			else 
-				income.setCityIncome(cityIncome.item(0).getNodeValue());
+			else {
+				String cincome = cityIncome.item(0).getNodeValue();
+				int i = cincome.indexOf(".");
+				if (i != -1)
+					income.setCityIncome(cincome.substring(0, i+3));
+				else 
+					income.setCityIncome(cincome);
+				double cI = Double.parseDouble(cincome);
+				income.setCityP(cI/800);
+			}
 
 			if (neighborIncome == null || neighborIncome.getLength() == 0) 
 				income.setNeighborIncome("Data does not exist");
-			else
-				income.setNeighborIncome(neighborIncome.item(0).getNodeValue());
+			else {
+				String aincome = neighborIncome.item(0).getNodeValue();
+				int i = aincome.indexOf(".");
+				if (i != -1)
+					income.setNeighborIncome(aincome.substring(0, i+3)); 
+				else {
+					income.setNeighborIncome(aincome);
+				}
+				double neiI = Double.parseDouble(aincome);
+				income.setNeighborP(neiI/800);
+			}
 
 			return income;
 		} catch (SAXException e) {

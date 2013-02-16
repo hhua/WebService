@@ -12,7 +12,8 @@
   
   	<body  onload="initialize()"> 
   	
+  		<jsp:include page="nav.jsp" />
   		<div class="container">
-	  	<jsp:include page="nav.jsp" />
+	  	
 	  	
 	  	
