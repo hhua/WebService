@@ -127,9 +127,35 @@
 											<div id="income" class="searchbox">
 												<h4 style="border-bottom:1px solid rgb(35,116,255); padding-bottom: 5px; padding-left: 10px;">Median Household Income (USD)</h4>
 												<div style="padding-left: 5px; padding-right: 5px;">
-													<p><b>Neighborhood: </b>${income.neighborIncome }</p>
-													<p><b>City: </b>${income.cityIncome }</p>
-													<p><b>Nation: </b>${income.nationIncome }</p>
+													<table>
+														<tr>
+															<td>Neighborhood</td>
+															<td >
+																<div class="progress progress-info" style="margin-top: 25px; width: 300px;">
+																  	<div class="bar" style="width: ${income.neighborP}%"></div>
+																  	&nbsp; &nbsp; ${income.neighborIncome }
+																</div>
+															</td>
+														</tr>
+														<tr>
+															<td>City</td>
+															<td>
+																<div class="progress progress-info" style="margin-top: 25px; width: 300px;">
+																  	<div class="bar" style="width: ${income.cityP}%"></div>
+																  	&nbsp; &nbsp; ${income.cityIncome }
+																</div>
+															</td>
+														</tr>
+														<tr>
+															<td>Nation</td>
+															<td>
+																<div class="progress progress-info" style="margin-top: 25px; width: 300px;">
+																  	<div class="bar" style="width: ${income.nationP}%"></div>
+																  	&nbsp; &nbsp; ${income.nationIncome }
+																</div>
+															</td>
+														</tr>
+													</table>
 												</div>
 											</div>
 											

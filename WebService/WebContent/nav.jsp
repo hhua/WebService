@@ -1,18 +1,21 @@
-	 	<div class="masthead" style="clear: both; width: 100%;">
-	        <h3>Small Business Portal</h3>
-	        <div class="navbar">
-	          <div class="navbar-inner">
-	            <div class="container">
-	              <ul class="nav">
-	                <li><a href="index.jsp">Home</a></li>
-	                <li><a href="#">Competitor</a></li>
-	                <li><a href="demographic.do">Demographic</a></li>
-	                <li><a href="#">Real Estate</a></li>
-	                <li><a href="#">Policy</a></li>
-	                <li><a href="recommendedwebsites.do">Recommend Website</a></li>
-	                <li><a href="#">Research Industry</a></li>
-	              </ul>
-	            </div>
-	          </div>
-	        </div><!-- /.navbar -->
-	      </div>
+		<div class="row-fluid">
+		
+		<div id="headline">
+			<img src="img/drive-business.jpg" />
+	  		<h3>Small Business Portal</h3>
+	  	</div>
+	  	
+		  	<div class="nav">
+		  		<ul>
+		  			<li id="home" class="lead"><a href="">Home</a></li>
+		  			<li id="competitor" class="lead"><a href="">Competitor</a></li>
+		  			<li id="demographic" class="lead"><a href="">Demographic</a></li>
+		  			<li id="policy" class="lead"><a href="">Policy</a></li>
+		  			<li id="website" class="lead"><a href="">Recommend Website</a></li>
+		  		</ul>
+		  	</div>
+		</div>	  	
+		
+		<hr class="span12" style="margin-top: -10px;" />
+		
+		
