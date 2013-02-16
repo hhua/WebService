@@ -42,10 +42,8 @@ public class PolicyAction extends Action {
 			request.setAttribute("form", form);
 			String state = form.getState();
 			String city = form.getCity();
-			String businessType = form.getType();
-
-			//get a full fund list
-			ArrayList<PolicyBean> policy = PolicyDAO.getPolicy(state,city,businessType);
+			String businesstype = request.getParameter("businesstype");
+			ArrayList<PolicyBean> policy = PolicyDAO.getPolicy(state,city,businesstype);
 			request.setAttribute("policy", policy);
 			
 			if (!form.isPresent()) {

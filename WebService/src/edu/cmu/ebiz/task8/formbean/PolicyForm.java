@@ -30,10 +30,7 @@ public class PolicyForm extends FormBean {
 	public String getCity(){
 		return city;
 	}
-	public String getType() {
-		return businessType;
-	}
-
+	
 	public void setState(String state) {
 		this.state = trimAndConvert(state, "<>\"");;
 	}
