@@ -6,18 +6,24 @@
 
 <script type="text/javascript"
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJGCKsWDcydBbj083edCvnTBLRrIJozOw&sensor=false">
- 
+	
 </script>
 
-<script type="text/javascript" src="js/places-categories.js"></script>
-
+<script type="text/javascript"
+	src="js/places-categories.js">
+	
+</script>
 
 <script type="text/javascript">
+	
+
 	var locations = [
 			<c:forEach var="place" items="${places}">["${place.name}",
 					"${place.latitude}", "${place.longitude}"], </c:forEach> ];
 
 	function initialize() {
+		addPlacesOptions();
+		
 		var mapOptions = {
 			center : new google.maps.LatLng(40.44, -80.00),
 			zoom : 14,
@@ -64,17 +70,14 @@
 						placeholder="Places you want, e.g. Restaurant in Pittsburgh"
 						name="searchPlaces">
 				</div>
-				<select id="place-types" name="placeTypes" onload="addPlacesOptions()">
-					<option>All places</option>
-					<option>finance</option>
-					<option>accounting</option>
+				<select id="place-types" name="placeTypes"
+					onchange="addPlacesOptions(this);">
+
 				</select>
 				<button type="submit" class="btn">
 					<i class="icon-search"></i>Search
-				</button> 
-				<button type="submit" class="btn">
-					Advanced Search
 				</button>
+				<button type="submit" class="btn">Advanced Search</button>
 
 			</form>
 		</div>
@@ -107,13 +110,14 @@
   		  -->
 	<hr>
 	<h4>Detail Search Results</h4>
+	<!--  
 	<script type="text/javascript">
 		$('#myTab li').click(function(e) {
 			e.preventDefault();
 			$(this).tab('show');
 		})
 	</script>
-
+-->
 	<div id="display-simpleresult" class="span12">
 		<ul id="myTab" class="nav nav-tabs">
 			<li class="active"><a href="#home" data-toggle="tab"><b>Competitor

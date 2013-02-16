@@ -31,7 +31,7 @@ public class GooglePlacesParser {
 
 			String jsonString = buffer.toString();
 
-			//System.out.println(jsonString);
+			// System.out.println(jsonString);
 
 			// parse start
 
@@ -47,38 +47,64 @@ public class GooglePlacesParser {
 				JSONObject result = (JSONObject) array.get(i);
 
 				SimpleSearchPlacesBean place = new SimpleSearchPlacesBean();
-				place.setAddress((String) result.get("formatted_address"));
-				place.setIconURL(new URL((String) result.get("icon")));
-				place.setId((String) result.get("id"));
-				place.setName((String) result.get("name"));
-				JSONObject geometry = (JSONObject) result.get("geometry");
-				if (geometry != null) {
-					JSONObject location = (JSONObject) geometry.get("location");
+				if(result.get("formatted_address") != null){
+					place.setAddress((String) result.get("formatted_address"));
+				}
+				
+				if(result.get("icon") != null){
+					place.setIconURL(new URL((String) result.get("icon")));
+				}
+				
+				if(result.get("id") != null){
+					place.setId((String) result.get("id"));
+				}
+				
+				if(result.get("name") != null)
+					place.setName((String) result.get("name"));
+				
+				if(result.get("geometry") != null){
+					JSONObject geometry = (JSONObject) result.get("geometry");
+					if (geometry != null) {
+						JSONObject location = (JSONObject) geometry.get("location");
 
-					if (location != null) {
-						place.setLatitude((Double) location.get("lat"));
-						place.setLongitude((Double) location.get("lng"));
+						if (location != null) {
+							place.setLatitude((Double) location.get("lat"));
+							place.setLongitude((Double) location.get("lng"));
+						}
 					}
 				}
+				
 				if (result.get("price_level") != null) {
 					place.setPriceLevel((Long) result.get("price_level"));
 				}
 
-				//place.setRating((Double) result.get("rating"));
-				place.setReference((String) result.get("reference"));
-				JSONArray typeArray = (JSONArray) result.get("types");
-				if (typeArray != null) {
-					List<String> types = new ArrayList<String>();
-					for (int j = 0; j < typeArray.size(); j++) {
-						types.add((String) typeArray.get(j));
+				if (result.get("rating") != null) {
+					place.setRating((Double) result.get("rating"));
+				}
+
+				if (result.get("reference") != null) {
+					place.setReference((String) result.get("reference"));
+				}
+
+				if (result.get("types") != null) {
+					JSONArray typeArray = (JSONArray) result.get("types");
+					if (typeArray != null) {
+						List<String> types = new ArrayList<String>();
+						for (int j = 0; j < typeArray.size(); j++) {
+							types.add((String) typeArray.get(j));
+						}
+						place.setTypes(types);
 					}
-					place.setTypes(types);
 				}
-				JSONObject opening_hours = (JSONObject) result
-						.get("opening_hours");
-				if (opening_hours != null) {
-					place.setOpen((Boolean) opening_hours.get("open_now"));
+
+				if (result.get("opening_hours") != null) {
+					JSONObject opening_hours = (JSONObject) result
+							.get("opening_hours");
+					if (opening_hours != null) {
+						place.setOpen((Boolean) opening_hours.get("open_now"));
+					}
 				}
+
 				JSONArray photoArray = (JSONArray) result.get("photos");
 				if (photoArray != null) {
 					List<SearchPlacePhoto> photos = new ArrayList<SearchPlacePhoto>();
@@ -111,16 +137,16 @@ public class GooglePlacesParser {
 				searchPlaces.add(place);
 				// System.out.println(place);
 			}
-			
+
 			return searchPlaces;
 
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
 }
