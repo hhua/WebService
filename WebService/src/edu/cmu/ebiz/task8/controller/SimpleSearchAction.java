@@ -58,9 +58,9 @@ public class SimpleSearchAction extends Action {
 			
 			List<SimpleSearchPlacesBean> places = GooglePlacesParser.jsonParser(requestURL);
 
-//			for(SimpleSearchPlacesBean place : places){
-//				System.out.println(place);
-//			}
+			for(SimpleSearchPlacesBean place : places){
+				System.out.println(place);
+			}
 			// Success
 			SimpleSearchPlacesBean[] placesArr = new SimpleSearchPlacesBean[places.size()];
 			for (int i = 0; i<places.size(); i++) {
