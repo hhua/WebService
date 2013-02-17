@@ -9,28 +9,55 @@
 	
 </script>
 
-<script type="text/javascript"
-	src="js/places-categories.js">
+<script type="text/javascript" src="js/places-categories.js">
 	
 </script>
 
 <script type="text/javascript">
-	
-
 	var locations = [
 			<c:forEach var="place" items="${places}">["${place.name}",
 					"${place.latitude}", "${place.longitude}"], </c:forEach> ];
 
 	function initialize() {
-		addPlacesOptions();
-		
+		var location = new google.maps.LatLng(40.44, -80);
+
 		var mapOptions = {
-			center : new google.maps.LatLng(40.44, -80.00),
+			center : location,
+			//center : new google.maps.LatLng(40.44, -80),
 			zoom : 14,
 			mapTypeId : google.maps.MapTypeId.ROADMAP
 		};
+		
 		var map = new google.maps.Map(document.getElementById("map_canvas"),
 				mapOptions);
+
+		// Check for geolocation support
+		if (navigator.geolocation) {
+			// Use method getCurrentPosition to get coordinates
+			navigator.geolocation
+					.getCurrentPosition(function show_map(position) {
+						cur_latitude = position.coords.latitude;
+						cur_longitude = position.coords.longitude;
+						// let's show a map or do something interesting!
+						//alert(cur_latitude + ',' + cur_longitude);
+						map.setCenter(new google.maps.LatLng(cur_latitude, cur_longitude));
+						
+						var mylng = document.getElementById("longitude");
+						var mylat = document.getElementById("latitude");
+						mylng.value = cur_longitude;
+						mylat.value = cur_latitude;
+					});
+		}
+
+		// add select options
+		addPlacesOptions();
+
+		
+
+		/* var map = new google.maps.Map(document.getElementById("map_canvas"));
+		map.setCenter(new google.maps.LatLng(cur_latitude, 
+				cur_longitude), 14);
+		map.setMapTypeId(google.maps.MapTypeId.ROADMAP); */
 
 		var infowindow = new google.maps.InfoWindow();
 
@@ -70,8 +97,9 @@
 						placeholder="Places you want, e.g. Restaurant in Pittsburgh"
 						name="searchPlaces">
 				</div>
-				<select id="place-types" name="placeTypes"
-					onchange="addPlacesOptions(this);">
+				<input type="hidden" id="longitude" name="longitude"/>
+				<input type="hidden" id="latitude" name="latitude"/>
+				<select id="place-types" name="placeTypes">
 
 				</select>
 				<button type="submit" class="btn">
@@ -155,7 +183,6 @@
 			</div>
 			<div class="tab-pane fade" id="profile">
 				Show some data <br> Population <br> race
-
 			</div>
 		</div>
 	</div>
