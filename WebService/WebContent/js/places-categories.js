@@ -1,4 +1,4 @@
-var place_types = [ "accounting", "airport", "amusement_park", "aquarium", "art_gallery",
+var place_types = [ "All places", "accounting", "airport", "amusement_park", "aquarium", "art_gallery",
 		"atm", "bakery", "bank", "bar", "beauty_salon", "bicycle_store", "book_store",
 		"bowling_alley", "bus_station", "cafe", "campground", "car_dealer", "car_rental",
 		"car_repair", "car_wash", "casino", "cemetery", "church", "city_hall",
