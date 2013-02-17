@@ -8,6 +8,7 @@
 <jsp:include page="header.jsp" />
 	  	
 
+<div>
 <h4>Recommended Websites</h4>
 	<script type="text/javascript">
 		$('#myTab a').click(function(e) {
@@ -21,7 +22,7 @@
     }
     </script>
 	<hr>
-
+</div>
 	<div id="display-recommendedsites" class="span11">
 		<ul id="myTab" class="nav nav-tabs">
 			<li class="active"><a href="#home" data-toggle="tab"><b>Manage a Business</b></a></li>
@@ -160,7 +161,6 @@
 			</div>
 		</div>
 	</div>
-
 
 <jsp:include page="footer.jsp" />
 	  

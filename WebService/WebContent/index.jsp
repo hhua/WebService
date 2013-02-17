@@ -45,72 +45,20 @@
 					</form>
 				</div>
 				
-				<div id="advancedsearch">
+				<div id="advancedsearch" align="center">
+				
 					 <h2  class="lead"  align="center" >Advanced Search</h2>
-				      <div class="row-fluid">
-				      		<div class="span3 searchbox" style="border-top: 2px solid rgb(153,182,29);">
-				      				<h5>Competitor Research</h5>
-				      				<hr>
-									<div class="customerSearch">
-										<input type="text" placeholder="condition 1">
-										<input type="text" placeholder="condition 2">
-										<button class="btn">Search</button>
-									</div>
-									<hr>
-				      				<div class="customerLink">
-				      					<a href="#" >Customize Search &raquo;</a>
-				      				</div>
-				      		</div>
-				      		
-				      		<div class="span3 searchbox" style="border-top: 2px solid rgb(252,215,36);">
-				      				<h5>Demographic Research</h5>
-									<hr>
-									<form method="POST" action="demographic.do">
-									<div class="customerSearch">
-										<input type="text" name="area"  placeholder="Neighborhood Area" >
-										<input type="text" name="city"  placeholder="City" >
-										<input type="text" name="state"  placeholder="State" >
-										<button class="btn">Search</button>
-									</div>
-									</form>
-									<hr>
-				      				<div class="customerLink">
-				      					<a href="#" >Customize Search &raquo;</a>
-				      				</div>
-				      		</div>
-				      		
-				      		<div class="span3 searchbox" style="border-top: 2px solid rgb(35,116,255);">
-				      				<h5>Real Estate</h5>
-				      				<hr>
-									<div class="customerSearch">
-										<input type="text" placeholder="condition 1">
-										<input type="text" placeholder="condition 2">
-										<button class="btn">Search</button>
-									</div>
-									<hr>
-				      				
-				      				<div class="customerLink">
-				      					<a href="#" >Customize Search &raquo;</a>
-				      				</div>
-				      		</div>
-				      		
-				      		<div class="span3 searchbox" style="border-top: 2px solid rgb(153,182,29);">
-				      				<h5>Policy</h5>
-				      				<hr>
-									<div class="customerSearch">
-										<input type="text" placeholder="condition 1">
-										<input type="text" placeholder="condition 2">
-										<button class="btn">Search</button>
-									</div>
-									<hr>
-				      				
-				      				<div class="customerLink">
-				      					<a href="#" >Customize Search &raquo;</a>
-				      				</div>
-				      		</div>
-				      </div>  
-				</div>
-	
+				
+		  	  		<div class="nav_index" >
+				  		<ul>
+				  			<li id="competitor" class="lead"><a href="">Competitor</a></li>
+				  			<li id="demographic" class="lead"><a href="">Demographic</a></li>
+				  			<li id="policy" class="lead"><a href="">Policy</a></li>
+				  			<li id="website" class="lead"><a href="">Recommend Website</a></li>
+				  		</ul>
+			  		</div>
+           		</div>
+	 
 		  
 		  </div> <!--  end of container -->
 		  <div id="footer">
