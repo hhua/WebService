@@ -137,7 +137,10 @@
 									<th>Name</th>
 									<th>Address</th>
 									<th>Rating</th>
-
+									<th>Phone</th>
+									<th>URL</th>
+									<th>Website</th>
+									<th>Price Level</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -146,6 +149,10 @@
 										<td>${competitor.name}</td>
 										<td>${competitor.address}</td>
 										<td>${competitor.rating}</td>
+										<td>${competitor.phone}</td>
+										<td><a href = "${competitor.url}">See Detail Page</a></td>
+										<td><a href = "${competitor.website}">Home page</a></td>
+										<td>${competitor.priceLevel}</td>
 									</tr>
 								</c:forEach>
 							</tbody>

@@ -10,16 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import org.mybeans.form.FormBeanException;
 import org.mybeans.form.FormBeanFactory;
 
+import edu.cmu.ebiz.task8.bean.SearchPlaceDetailBean;
 import edu.cmu.ebiz.task8.bean.SimpleSearchPlacesBean;
 import edu.cmu.ebiz.task8.formbean.SimpleSearchForm;
+import edu.cmu.ebiz.task8.model.Model;
+import edu.cmu.ebiz.task8.model.SearchDAO;
 import edu.cmu.ebiz.task8.parser.GooglePlacesParser;
 
 public class SimpleSearchAction extends Action {
 	private FormBeanFactory<SimpleSearchForm> formBeanFactory = FormBeanFactory
 			.getInstance(SimpleSearchForm.class);
+	
+	private SearchDAO searchDAO;
 
-	public SimpleSearchAction() {
-
+	public SimpleSearchAction(Model model) {
+		this.searchDAO = model.getSearchDAO();
 	}
 
 	@Override
@@ -57,15 +62,13 @@ public class SimpleSearchAction extends Action {
 			URL requestURL = generateBasicURL(query, form.getPlaceTypes());
 			
 			List<SimpleSearchPlacesBean> places = GooglePlacesParser.jsonParser(requestURL);
-
-			for(SimpleSearchPlacesBean place : places){
-				System.out.println(place);
-			}
+			
 			// Success
-			SimpleSearchPlacesBean[] placesArr = new SimpleSearchPlacesBean[places.size()];
+			SearchPlaceDetailBean[] placesArr = new SearchPlaceDetailBean[places.size()];
 			for (int i = 0; i<places.size(); i++) {
-				placesArr[i] = places.get(i);
+				placesArr[i] = searchDAO.getDetails(places.get(i).getReference());
 			}
+			
 			request.setAttribute("places", placesArr);
 			return "simplesearch.jsp";
 		} catch (FormBeanException e) {

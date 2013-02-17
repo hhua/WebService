@@ -27,6 +27,7 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class GetXMLDocString {
@@ -76,6 +77,23 @@ public class GetXMLDocString {
 			NodeList nodes = (NodeList) result;
 			
 			return nodes;
+		} catch (XPathExpressionException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public static Node getSingleResult(Document document, String expression) {
+		try {
+			XPathFactory xFactory = XPathFactory.newInstance();
+			XPath xpath = xFactory.newXPath();
+			
+			XPathExpression exprNation = xpath.compile(expression);
+			Object result = exprNation.evaluate(document, XPathConstants.NODE);
+			Node node = (Node) result;
+			
+			return node;
 		} catch (XPathExpressionException e) {
 			e.printStackTrace();
 		}
