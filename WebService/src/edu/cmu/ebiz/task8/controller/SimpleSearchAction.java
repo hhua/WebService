@@ -3,6 +3,9 @@ package edu.cmu.ebiz.task8.controller;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -59,16 +62,25 @@ public class SimpleSearchAction extends Action {
 			
 			//handle request
 			String query = form.getSearchPlaces();
-			URL requestURL = generateBasicURL(query, form.getPlaceTypes());
+			URL requestURL = generateBasicURL(query, form.getPlaceTypes(), form);
 			
 			List<SimpleSearchPlacesBean> places = GooglePlacesParser.jsonParser(requestURL);
+<<<<<<< HEAD
 			
+=======
+
+>>>>>>> branch 'master' of https://github.com/chinesecold/WebService.git
 			// Success
 			SearchPlaceDetailBean[] placesArr = new SearchPlaceDetailBean[places.size()];
 			for (int i = 0; i<places.size(); i++) {
 				placesArr[i] = searchDAO.getDetails(places.get(i).getReference());
 			}
+<<<<<<< HEAD
 			
+=======
+			Arrays.sort(placesArr);
+		
+>>>>>>> branch 'master' of https://github.com/chinesecold/WebService.git
 			request.setAttribute("places", placesArr);
 			return "simplesearch.jsp";
 		} catch (FormBeanException e) {
@@ -78,14 +90,15 @@ public class SimpleSearchAction extends Action {
 	}
 	
 	// generate basic Google Places text search api call
-	private URL generateBasicURL(String query, String types){
+	private URL generateBasicURL(String query, String types, SimpleSearchForm form){
 		try{
 			String places = query.replace(' ', '+');
 			URL url;
 			if(types.equals("All places")){		
-				url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + places + "&key=AIzaSyDy-3-hP8uDctn2XDeXw5EbV_H2Sza9WZg&sensor=false");	
+				//System.out.println(form.getLatitude());
+				url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + places + "&key=AIzaSyDy-3-hP8uDctn2XDeXw5EbV_H2Sza9WZg&sensor=false&radius=500000&longitude=" + form.getLongitude() + "&latitude=" + form.getLatitude());	
 			} else {
-				url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + places + "&key=AIzaSyDy-3-hP8uDctn2XDeXw5EbV_H2Sza9WZg&sensor=false" + "&types=" + types);	
+				url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + places + "&key=AIzaSyDy-3-hP8uDctn2XDeXw5EbV_H2Sza9WZg&sensor=false&radius=500000&longitude=" + form.getLongitude() + "&latitude=" + form.getLatitude() + "&types=" + types);	
 			}
 			
 			return url;
