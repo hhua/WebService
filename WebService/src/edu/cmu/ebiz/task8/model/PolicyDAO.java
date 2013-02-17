@@ -23,7 +23,7 @@ import edu.cmu.ebiz.task8.bean.PolicyBean;
 
 public class PolicyDAO {
 	
-	public static ArrayList<PolicyBean> getPolicy(String state, String city, String businesstype) {
+	public ArrayList<PolicyBean> getPolicy(String state, String city, String businesstype) {
 		try {
 			
 			String preparedURL = "http://api.sba.gov/license_permit/state_and_city" 
@@ -76,10 +76,6 @@ public class PolicyDAO {
 						.getNodeValue());
 				}
 				
-				System.out.println(policyTitle.item(i).getNodeValue());
-				System.out.println(policyURL.item(i).getNodeValue());
-				System.out.println(policyDesc.item(i)
-						.getNodeValue());
 				policy.add(currentPolicy);
 				
 			}
@@ -97,11 +93,11 @@ public class PolicyDAO {
 		return null;
 	
 	}	
-	public static void main(String[] args) {
-		getPolicy("pa", "pittsburgh", "child care services");
-		//getPolicy();
-		System.out.println();
-	}
+//	public static void main(String[] args) {
+//		getPolicy("pa", "pittsburgh", "child care services");
+//		//getPolicy();
+//		System.out.println();
+//	}
 	private static String replaceSpace(String str) {
 		StringBuffer sb = new StringBuffer();
 		for (int i = 0; i<str.length(); i++) {

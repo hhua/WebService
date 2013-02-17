@@ -42,6 +42,7 @@
 							<option>Plumber</option>
 							<option>Restaurant</option>
 						  </select><hr>
+						  
  						  <span style="margin-top: 20px"></span>
 						  <button type="submit" class="btn"><i class="icon-search"></i>Search</button>
 					</form>
