@@ -7,7 +7,7 @@ package edu.cmu.ebiz.task8.bean;
 
 import java.util.List;
 
-public class SearchPlaceDetailBean {
+public class SearchPlaceDetailBean implements Comparable<SearchPlaceDetailBean> {
 	private String name;
 	private String type;
 	private String phone;
@@ -100,5 +100,11 @@ public class SearchPlaceDetailBean {
 				+ ", address=" + address + ", url=" + url + ", name=" + name + ", phone=" + phone + ", website=" + website
 				+ ", priceLevel=" + priceLevel + ", rating=" + rating
 				+ ", types=" + type + ", reference=" + reference + "]";
+	}
+	
+	@Override
+	public int compareTo(SearchPlaceDetailBean arg0) {
+		return (int)(arg0.getRating() * 10 - rating * 10);
+		
 	}
 }
