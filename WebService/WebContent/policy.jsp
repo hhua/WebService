@@ -30,17 +30,17 @@
 						  <span style="margin-left: 20px"></span>
 						  
  						  <select class="span4" name="businesstype">
-							<option>General Business Licenses</option>
-							<option>Auto Dealership</option>
-							<option>Barber Shop</option>
-							<option>Beauty Salon</option>
-							<option>Child Care Services</option>
-							<option>Construction Contractor</option>
-							<option>Debt Collection Agency</option>
-							<option>Electrician</option>
-							<option>Massage Therapist</option>
-							<option>Plumber</option>
-							<option>Restaurant</option>
+							<option value = "General Business Licenses">General Business Licenses</option>
+							<option value = "Auto Dealership">Auto Dealership</option>
+							<option value = "Barber Shop">Barber Shop</option>
+							<option value = "Beauty Salon">Beauty Salon</option>
+							<option value = "Child Care Services">Child Care Services</option>
+							<option value = "Construction Contractor">Construction Contractor</option>
+							<option value = "Debt Collection Agency">Debt Collection Agency</option>
+							<option value = "Electrician">Electrician</option>
+							<option value = "Massage Therapist">Massage Therapist</option>
+							<option value = "Plumber">Plumber</option>
+							<option value = "Restaurant">Restaurant</option>
 						  </select><hr>
 						  
  						  <span style="margin-top: 20px"></span>
@@ -52,7 +52,7 @@
 					</div>
 					
 					<div class="span12 searchbox" style="margin-left: 0px;" >
-								<h5 class="lead">Demographic Information of <b>${form.city }, ${form.state }</b></h5>
+								<h5 class="lead">Business License Information of <b>${form.city }, ${form.state }</b></h5>
 								<div class="row-fluid" style="margin-left: 20px">
 									<table class="table table-striped">
 										<thead>

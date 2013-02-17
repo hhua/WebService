@@ -43,7 +43,7 @@ public class PolicyAction extends Action {
 			String state = form.getState();
 			String city = form.getCity();
 			String businesstype = request.getParameter("businesstype");
-			ArrayList<PolicyBean> policy = PolicyDAO.getPolicy(state,city,businesstype);
+			ArrayList<PolicyBean> policy = policyDAO.getPolicy(state,city,businesstype);
 			request.setAttribute("policy", policy);
 			
 			if (!form.isPresent()) {

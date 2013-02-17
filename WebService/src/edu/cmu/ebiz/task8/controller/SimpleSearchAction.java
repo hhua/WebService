@@ -3,6 +3,7 @@ package edu.cmu.ebiz.task8.controller;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,16 +11,21 @@ import javax.servlet.http.HttpServletRequest;
 import org.mybeans.form.FormBeanException;
 import org.mybeans.form.FormBeanFactory;
 
+import edu.cmu.ebiz.task8.bean.SearchPlaceDetailBean;
 import edu.cmu.ebiz.task8.bean.SimpleSearchPlacesBean;
 import edu.cmu.ebiz.task8.formbean.SimpleSearchForm;
+import edu.cmu.ebiz.task8.model.Model;
+import edu.cmu.ebiz.task8.model.SearchDAO;
 import edu.cmu.ebiz.task8.parser.GooglePlacesParser;
 
 public class SimpleSearchAction extends Action {
 	private FormBeanFactory<SimpleSearchForm> formBeanFactory = FormBeanFactory
 			.getInstance(SimpleSearchForm.class);
+	
+	private SearchDAO searchDAO;
 
-	public SimpleSearchAction() {
-
+	public SimpleSearchAction(Model model) {
+		this.searchDAO = model.getSearchDAO();
 	}
 
 	@Override
@@ -54,18 +60,15 @@ public class SimpleSearchAction extends Action {
 			
 			//handle request
 			String query = form.getSearchPlaces();
-			URL requestURL = generateBasicURL(query, form.getPlaceTypes());
+			URL requestURL = generateBasicURL(query, form.getPlaceTypes(), form);
 			
 			List<SimpleSearchPlacesBean> places = GooglePlacesParser.jsonParser(requestURL);
-
-			for(SimpleSearchPlacesBean place : places){
-				System.out.println(place);
-			}
-			// Success
-			SimpleSearchPlacesBean[] placesArr = new SimpleSearchPlacesBean[places.size()];
+			SearchPlaceDetailBean[] placesArr = new SearchPlaceDetailBean[places.size()];
 			for (int i = 0; i<places.size(); i++) {
-				placesArr[i] = places.get(i);
+				placesArr[i] = searchDAO.getDetails(places.get(i).getReference());
 			}
+			Arrays.sort(placesArr);
+			
 			request.setAttribute("places", placesArr);
 			return "simplesearch.jsp";
 		} catch (FormBeanException e) {
@@ -75,14 +78,15 @@ public class SimpleSearchAction extends Action {
 	}
 	
 	// generate basic Google Places text search api call
-	private URL generateBasicURL(String query, String types){
+	private URL generateBasicURL(String query, String types, SimpleSearchForm form){
 		try{
 			String places = query.replace(' ', '+');
 			URL url;
 			if(types.equals("All places")){		
-				url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + places + "&key=AIzaSyDy-3-hP8uDctn2XDeXw5EbV_H2Sza9WZg&sensor=false");	
+				//System.out.println(form.getLatitude());
+				url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + places + "&key=AIzaSyDy-3-hP8uDctn2XDeXw5EbV_H2Sza9WZg&sensor=false&radius=500000&longitude=" + form.getLongitude() + "&latitude=" + form.getLatitude());	
 			} else {
-				url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + places + "&key=AIzaSyDy-3-hP8uDctn2XDeXw5EbV_H2Sza9WZg&sensor=false" + "&types=" + types);	
+				url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + places + "&key=AIzaSyDy-3-hP8uDctn2XDeXw5EbV_H2Sza9WZg&sensor=false&radius=500000&longitude=" + form.getLongitude() + "&latitude=" + form.getLatitude() + "&types=" + types);	
 			}
 			
 			return url;

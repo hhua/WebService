@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SimpleSearchPlacesBean {
+public class SimpleSearchPlacesBean implements Comparable<SimpleSearchPlacesBean>{
 	private double longitude;
 	private double latitude;
 	private String address;
@@ -126,6 +126,13 @@ public class SimpleSearchPlacesBean {
 				+ ", priceLevel=" + priceLevel + ", rating=" + rating
 				+ ", types=" + types + ", reference=" + reference + ", photos="
 				+ photos + "]";
+	}
+
+	@Override
+	public int compareTo(SimpleSearchPlacesBean arg0) {
+		// TODO Auto-generated method stub
+		return (int)(arg0.getRating() * 10 - rating * 10);
+		
 	}
 	
 }

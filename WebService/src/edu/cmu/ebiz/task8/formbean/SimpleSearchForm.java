@@ -8,9 +8,12 @@ import org.mybeans.form.FormBean;
 public class SimpleSearchForm extends FormBean{
 	private String searchPlaces;
 	private String placeTypes;
+	private String longitude;
+	private String latitude;
 	
 	public List<String> getValidationErrors() {
 		List<String> errors = new ArrayList<String>();
+		//System.out.println(longitude);
 		
 		return errors;
 	}
@@ -30,6 +33,21 @@ public class SimpleSearchForm extends FormBean{
 	public void setPlaceTypes(String placeTypes) {
 		this.placeTypes = placeTypes;
 	}
-	
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = trimAndConvert(longitude.trim(), "<>\"");
+	}
+
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = trimAndConvert(latitude.trim(), "<>\"");
+	}
 	
 }

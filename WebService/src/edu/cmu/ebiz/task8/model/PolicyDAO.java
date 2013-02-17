@@ -56,26 +56,44 @@ public class PolicyDAO {
 			Object resultURL = exprURL.evaluate(doc, XPathConstants.NODESET);
 			NodeList policyURL = (NodeList) resultURL;
 
-			XPathExpression exprDesc = xpath
-					.compile("//site/description/text()");
+			XPathExpression exprDesc = xpath.compile("//site/description/text()");
 
 			Object resultDesc = exprDesc.evaluate(doc, XPathConstants.NODESET);
 			NodeList policyDesc = (NodeList) resultDesc;
 
 			ArrayList<PolicyBean> policy = new ArrayList<PolicyBean>();
+			PolicyBean currentPolicy = new PolicyBean();
+			if(policyTitle == null || policyTitle.getLength() == 0){
+				currentPolicy.setTitle("N/A");
+				currentPolicy.setUrl("N/A");
+				currentPolicy.setDescription("N/A");
+				policy.add(currentPolicy);
+			}
 			for (int i = 0; i < policyTitle.getLength(); i++) {
-				PolicyBean currentPolicy = new PolicyBean();
-				if(policyTitle.item(i)!=null){
+								
+				if (policyTitle.item(i) == null || policyTitle.getLength() == 0){
+				currentPolicy.setTitle("N/A");
+			}
+				else{
 				currentPolicy.setTitle(policyTitle.item(i).getNodeValue());
 				}
-				if(policyURL.item(i)!=null){
+
+				
+				if (policyURL.item(i) == null || policyURL.getLength() == 0){
+				currentPolicy.setUrl("N/A");
+			}
+				else{
 				currentPolicy.setUrl(policyURL.item(i).getNodeValue());
 				}
-				if (policyDesc.item(i)!=null){
-				currentPolicy.setDescription(policyDesc.item(i)
-						.getNodeValue());
+
+				if (policyDesc.item(i) == null || policyDesc.getLength() == 0){
+				currentPolicy.setDescription("N/A");
+			}
+				else{
+				currentPolicy.setDescription(policyDesc.item(i).getNodeValue());
 				}
 				
+
 				policy.add(currentPolicy);
 				
 			}
