@@ -16,7 +16,7 @@
 <script type="text/javascript">
 	var locations = [
 			<c:forEach var="place" items="${places}">["${place.name}",
-					"${place.latitude}", "${place.longitude}"], </c:forEach> ];
+					"${place.latitude}", "${place.longitude}", "$place.address", "$place.rating", "$place.iconURL"], </c:forEach> ];
 
 	function initialize() {
 		var location = new google.maps.LatLng(40.44, -80);
@@ -70,10 +70,12 @@
 				map : map
 			});
 
+			var contentString = '<div><h4>' + locations[i][0] + '</h4><p class="address">' + locations[i][3] + '</p><p>Rating: ' + locations[i][4] + '</p></div>';
+		    
 			google.maps.event.addListener(marker, 'click',
 					(function(marker, i) {
 						return function() {
-							infowindow.setContent(locations[i][0]);
+							infowindow.setContent(contentString);
 							infowindow.open(map, marker);
 						}
 					})(marker, i));
@@ -120,22 +122,7 @@
 		<div id="map_canvas" style="width: 800px; height: 600px;"></div>
 	</div>
 
-	<!--
-  		<div class=“span8” id="display-simpleresult">
-  			<table class="table">
- 				<thead>
- 					<tr>
- 						<th>head</th>
- 					</tr>
- 				</thead>
- 				<tbody>
- 					<tr>
- 						<th>body</th>
- 					</tr>
- 				</tbody>
-			</table>
-  		</div>
-  		  -->
+
 	<hr>
 	<h4>Detail Search Results</h4>
 	<!--  
