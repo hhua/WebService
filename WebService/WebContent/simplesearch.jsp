@@ -179,6 +179,8 @@
 						</div>
 						<div id="competitorDetail">
 								<c:forEach var="competitor" items="${places}" varStatus="theCount">
+								
+									<!--  Place detail information here, inside the DIV -->
 									<div id="div${theCount.index}" style="display: none;">
 										${competitor.name} <br>
 										${competitor.address} <br>

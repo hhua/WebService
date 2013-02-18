@@ -20,11 +20,11 @@ public class DemographicForm extends FormBean {
 		if (city == null || city.trim().length() == 0) {
 			errors.add("City is required!");
 		}
-		
+		/*
 		if (area == null || area.trim().length() == 0) {
 			errors.add("Area is required!");
 		}
-		
+		*/
 		return errors;
 	}
 
