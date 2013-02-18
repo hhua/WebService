@@ -173,8 +173,7 @@
 								            $(".showdetail").click(function () {
 											    $("#" + $(this).attr("name")).show().siblings('div').hide();
 											});
-
-										</script>
+								</script>
 						</div>
 						<div id="competitorDetail">
 								<c:forEach var="competitor" items="${places}" varStatus="theCount">
