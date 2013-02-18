@@ -69,7 +69,7 @@
 
 <jsp:include page="header.jsp" />
 	
-	<div class="row-fluid" >
+	<div class="row-fluid"  style="min-width: 1000px;">
 			
 			<div class="span12 searchbox" >
 				<h5 class="lead">Search Demographic Information</h5>
@@ -206,7 +206,7 @@
 	  							   				</c:when>
 	  							   				<c:otherwise>
 	  							   				
-											 <div id="chart_div1" style="width: 900px; height: 300px;"></div>
+											 <div id="chart_div1" style="width: 800px; height: 300px;"></div>
 											<table class="table table-bordered">
 													 <thead>
 											                <tr>
