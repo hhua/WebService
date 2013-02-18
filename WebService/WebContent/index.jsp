@@ -47,35 +47,35 @@
 	  		<div id="mainbody" align="center">
 	  			
 	  			<a href="simplesearch.jsp">
-		  			<div id="competitor" class="navbox">
+		  			<div id="competitor1" class="navbox">
 		  				<p class="step">Know Your Competitor</p>
 		  				<p>Function Instruction</p>
 		  			</div>
 	  			</a>
 	  			
 	  			<a href="demographic.jsp">
-		  			<div id="demographic" class="navbox">
+		  			<div id="demographic1" class="navbox">
 		  				<p class="step">Research Potential Market</p>
 		  				<p>Function Instruction</p>
 		  			</div>
 	  			</a>
 	  			
 	  			<a href="policy.jsp">
-		  			<div id="policy" class="navbox">
+		  			<div id="policy1" class="navbox">
 		  				<p class="step">Get Licenses and Permits</p>
 		  				<p>Function Instruction</p>
 		  			</div>
 	  			</a>
 	  			
 	  			<a href="policy.jsp">
-		  			<div id="loan" class="navbox">
+		  			<div id="loan1" class="navbox">
 		  				<p class="step">Get Some Money</p>
 		  				<p>Function Instruction</p>
 		  			</div>
 	  			</a>
 	  			
 	  			<a href="recommendedwebsites.do">
-		  			<div id="recommend" class="navbox">
+		  			<div id="recommend1" class="navbox">
 		  				<p class="step">Learn From Websites</p>
 		  				<p>Function Instruction</p>
 		  			</div>

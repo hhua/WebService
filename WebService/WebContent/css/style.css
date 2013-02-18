@@ -273,61 +273,61 @@
 	-webkit-transition: background 300ms linear;
 }
 
-#competitor {
+#competitor1 {
 	margin-right: 325px;
 	width: 275px;
 	border: 2px solid rgb(72,63,37);
 	color: rgb(72,63,37);
 }
 
-#competitor:hover {
+#competitor1:hover {
 	color: white;
 	background: rgb(72,63,37);
 }
 
-#policy {
+#policy1 {
 	margin-right: 325px;
 	width: 275px;
 	border: 2px solid rgb(164,187,102);
 	color: rgb(164,187,102);
 }
 
-#policy:hover {
+#policy1:hover {
 	color: white;
 	background: rgb(164,187,102);
 }
 
-#recommend {
+#recommend1 {
 	margin-right: 325px;
 	width: 275px;
 	border: 2px solid rgb(225,173,4);
 	color: rgb(225,173,4);
 }
 
-#recommend:hover {
+#recommend1:hover {
 	color: white;
 	background: rgb(225,173,4);
 }
 
-#demographic {
+#demographic1 {
 	margin-left: 325px;
 	width: 275px;
 	border: 2px solid rgb(192,82,24);
 	color: rgb(192,82,24);
 }
 
-#demographic:hover {
+#demographic1:hover {
 	color: white;
 	background: rgb(192,82,24);
 }
 
-#loan {
+#loan1 {
 	margin-left: 325px;
 	width: 275px;
 	border: 2px solid rgb(97,171,195);
 	color: rgb(97,171,195); 
 }
-#loan:hover {
+#loan1:hover {
 	color: white;
 	background: rgb(97,171,195);
 	
