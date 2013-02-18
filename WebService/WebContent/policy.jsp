@@ -48,9 +48,7 @@
 					</form>
 					</div>
 					
-					<div>
-					</div>
-					
+				</div>	
 					<div class="span12 searchbox" style="margin-left: 0px;" >
 								<h5 class="lead">Business License Information of <b>${form.city }, ${form.state }</b></h5>
 								<div class="row-fluid" style="margin-left: 20px">
@@ -78,10 +76,7 @@
 							</tbody>
 						</table> 
 								</div>
-								</div>
-			
-					
-				</div>	
+					</div>
 				
 	</div>
 
