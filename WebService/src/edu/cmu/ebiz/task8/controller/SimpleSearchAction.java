@@ -68,7 +68,7 @@ public class SimpleSearchAction extends Action {
 				placesArr[i] = searchDAO.getDetails(places.get(i).getReference());
 			}
 			Arrays.sort(placesArr);
-			
+
 			request.setAttribute("places", placesArr);
 			return "simplesearch.jsp";
 		} catch (FormBeanException e) {

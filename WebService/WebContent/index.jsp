@@ -46,7 +46,6 @@
 				</div>
 				
 				<div id="advancedsearch" align="center">
-				
 					 <h2  class="lead"  align="center" >Advanced Search</h2>
 				
 		  	  		<div class="nav_index" >
@@ -57,7 +56,7 @@
 				  			<li id="website" class="lead"><a href="">Recommend Website</a></li>
 				  		</ul>
 			  		</div>
-           		</div>
+			  		</div>
 	 
 		  
 		  </div> <!--  end of container -->

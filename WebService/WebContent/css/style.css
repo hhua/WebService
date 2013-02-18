@@ -229,3 +229,13 @@
 .nav_index ul li a{
 	text-decoration: none;
 }
+
+
+.showdetail {
+	opacity: 0.8;
+}
+
+.showdetail:hover {
+	opacity: 1;
+	background: #F5F5F5;
+}
