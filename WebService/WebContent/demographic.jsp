@@ -109,21 +109,32 @@
 						<div class="span12 searchbox" style="margin-left: 0px;" >
 								<h5 class="lead">Demographic Information of <b>${area }, ${city }, ${state }</b></h5>
 								<div class="row-fluid" style="margin-left: 20px">
-										<div id="segment" class="span6 searchbox">
-											<h4 style="border-bottom:1px solid rgb(35,116,255); padding-bottom: 5px; padding-left: 10px;">Segmentation of People</h4>
-											<c:forEach var="segment" items="${segmentList}">
-													<div style="border-bottom: 1px solid #F5F5F5; padding-left: 5px; padding-right: 5px;">
-														<p style="padding-left: 5px;"><b>${segment.title }</b></p>
-														<ul>
-															<li>${segment.name }</li>
-															<li>${segment.description }</li>
-														</ul>
-													</div>
-											</c:forEach>
+											
+											<div id="segment" class="span6">
+											<div id="gender" class="searchbox ">
+												<h4 style="border-bottom:1px solid rgb(35,116,255); padding-bottom: 5px; padding-left: 10px;">Area Map</h4>
+												<div align="center"><img src="${mapurl}"></div> <br>
+												<i style="margin-left: 10px;">If this is not the area you want to research, please check your input.</i>
+											</div>
+											<div class="searchbox">
+												<h4 style="border-bottom:1px solid rgb(35,116,255); padding-bottom: 5px; padding-left: 10px;">Segmentation of People</h4>
+												<c:forEach var="segment" items="${segmentList}">
+														<div style="border-bottom: 1px solid #F5F5F5; padding-left: 5px; padding-right: 5px;">
+															<p style="padding-left: 5px;"><b>${segment.title }</b></p>
+															<ul>
+																<li>${segment.name }</li>
+																<li>${segment.description }</li>
+															</ul>
+														</div>
+												</c:forEach>
+											</div>
 										</div>
 										
 										
 										<div id="incomeGender" class="span5">
+											
+											
+											
 											<div id="income" class="searchbox">
 												<h4 style="border-bottom:1px solid rgb(35,116,255); padding-bottom: 5px; padding-left: 10px;">Median Household Income (USD)</h4>
 												<div style="padding-left: 5px; padding-right: 5px;">
@@ -161,20 +172,15 @@
 											
 											<div id="gender" class="searchbox">
 												<h4 style="border-bottom:1px solid rgb(35,116,255); padding-bottom: 5px; padding-left: 10px;">Gender statistics</h4>
-												
-												<div id="chart_div"></div>
-												<!-- 
-												<div style="padding-left: 5px; padding-right: 5px;">
-													<p><b>Divorced-Female: </b>${gender.divorcedFemale }</p>
-													<p><b>Divorced-Male: </b>${gender.divorcedMale }</p>
-													<p><b>Married-Female: </b>${gender.marriedFemale }</p>
-													<p><b>Married-Male: </b>${gender.marriedMale }</p>
-													<p><b>Single-Female: </b>${gender.singleFemale }</p>
-													<p><b>Single-Male: </b>${gender.singleMale }</p>
-													<p><b>Widowed-Female: </b>${gender.widowedFemale }</p>
-													<p><b>Widowed-Male: </b>${gender.widowedMale }</p>
-												</div>
-												 -->
+												<c:set var="zero1" value = "0"></c:set> 
+												<c:choose>
+		  							   				<c:when test= "${gender.singleFemale eq zero1 }">
+		  							   						<h4>Data does not exist</h4>
+		  							   				</c:when>
+		  							   				<c:otherwise>
+		  							   						<div id="chart_div"></div>
+		  							   				</c:otherwise>
+												</c:choose>
 											</div>
 										</div>
 								</div>
@@ -183,17 +189,13 @@
 								<div class="row-fluid" style="margin-left: 20px">
 										<div id="age" class="searchbox span11" >
 											<h4 style="border-bottom:1px solid rgb(35,116,255); padding-bottom: 5px; padding-left: 10px;">Age information of People</h4>
-											<!-- 
-											<div class="progress span11">
-												<div class="bar bar-success progress-striped" style="width: ${age.zero }%;">0s</div>
-											  	<div class="bar bar-success" style="width: ${age.ten }%;">10s</div>
-											  	<div class="bar bar-info" style="width: ${age.twenty }%;">20s</div>
-											  	<div class="bar bar-info" style="width: ${age.thirty }%;">30s</div>
-											  	<div class="bar" style="width: ${age.forty }%;">40s</div>
-											  	<div class="bar" style="width: ${age.fifty }%;">50s</div>
-											  	<div class="bar bar-warning" style="width: ${age.sixseventy }%;"> >=60s</div>
-											</div>
-											 -->
+											<c:set var="zero" value = "0.0"></c:set> 
+  							   				<c:choose>
+	  							   				<c:when test= "${age.twenty eq zero }">
+	  							   						<h4>Data does not exist</h4>
+	  							   				</c:when>
+	  							   				<c:otherwise>
+	  							   				
 											 <div id="chart_div1" style="width: 900px; height: 300px;"></div>
 											<table class="table table-bordered">
 													 <thead>
@@ -230,6 +232,9 @@
 										              		</tr>
 										              </tbody>
 											</table>
+											
+											</c:otherwise>
+  							   				</c:choose>
 										</div>
 									</div>
 										

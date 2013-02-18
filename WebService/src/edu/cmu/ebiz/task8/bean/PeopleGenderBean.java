@@ -9,6 +9,22 @@ public class PeopleGenderBean {
 	private String singleMale;
 	private String widowedFemale;
 	private String widowedMale;
+	
+	public PeopleGenderBean() {
+		
+	}
+	
+	public PeopleGenderBean(String msg) {
+		this.divorcedFemale = msg;
+		this.divorcedMale = msg;
+		this.marriedFemale = msg;
+		this.marriedMale = msg;
+		this.singleFemale = msg;
+		this.singleMale = msg;
+		this.widowedFemale = msg;
+		this.widowedMale = msg; 
+	}
+	
 	public String getDivorcedFemale() {
 		return divorcedFemale;
 	}

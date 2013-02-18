@@ -76,6 +76,10 @@ public class DemographicAction extends Action {
 			PeopleAgeBean age = zillowDAO.getAgeDecade(state, city, area);
 			request.setAttribute("age", age);
 			
+			String[] latlong = zillowDAO.getLatLong(state, city, area);
+			request.setAttribute("mapurl", "http://maps.googleapis.com/maps/api/staticmap?"
+						+"center=" + latlong[0] + "," + latlong[1]
+						+"&zoom=14&size=450x300&sensor=false");
 			return "demographic.jsp";
 			
 		} catch (FormBeanException e) {
