@@ -80,6 +80,11 @@ public class DemographicAction extends Action {
 			request.setAttribute("mapurl", "http://maps.googleapis.com/maps/api/staticmap?"
 						+"center=" + latlong[0] + "," + latlong[1]
 						+"&zoom=14&size=450x300&sensor=false");
+			if (latlong[0].equals("0"))
+				request.setAttribute("hasMap", null);
+			else {
+				request.setAttribute("hasMap", "Yes");
+			}
 			return "demographic.jsp";
 			
 		} catch (FormBeanException e) {

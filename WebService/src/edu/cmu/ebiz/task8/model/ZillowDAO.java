@@ -45,14 +45,9 @@ public class ZillowDAO {
 			InputSource is = new InputSource(new StringReader(xmlString));
 			Document doc = builder.parse(is);
 
-			XPathFactory xFactory = XPathFactory.newInstance();
-			XPath xpath = xFactory.newXPath();
-
 			//before using XPath get information, first check error code!
-			XPathExpression msgCode = xpath.compile("//message/code/text()");
-			Object code = msgCode.evaluate(doc, XPathConstants.NODE);
-			Node codeNode = (Node) code;
-			if (codeNode.getNodeValue().equals("0"))
+			NodeList codeNode = GetXMLDocString.getExpressionResult(doc, "//message/code/text()");
+			if (codeNode.item(0).getNodeValue().equals("0"))
 				return true;
 			else {
 				return false;
@@ -61,8 +56,6 @@ public class ZillowDAO {
 		} catch (SAXException e) {
 			e.printStackTrace();
 		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		} catch (XPathExpressionException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -377,9 +370,13 @@ public class ZillowDAO {
 			
 			NodeList lat = GetXMLDocString.getExpressionResult(doc, "//region/latitude/text()");
 			NodeList longt = GetXMLDocString.getExpressionResult(doc, "//region/longitude/text()");
-			
-			latlong[0] = lat.item(0).getNodeValue();
-			latlong[1] = longt.item(0).getNodeValue();
+			if (lat == null || lat.getLength() == 0) {
+				latlong[0] = "0";
+				latlong[1] = "0";
+			} else {
+				latlong[0] = lat.item(0).getNodeValue();
+				latlong[1] = longt.item(0).getNodeValue();
+			}
 
 			return latlong;
 		} catch (SAXException e) {

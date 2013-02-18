@@ -113,8 +113,18 @@
 											<div id="segment" class="span6">
 											<div id="gender" class="searchbox ">
 												<h4 style="border-bottom:1px solid rgb(35,116,255); padding-bottom: 5px; padding-left: 10px;">Area Map</h4>
-												<div align="center"><img src="${mapurl}"></div> <br>
-												<i style="margin-left: 10px;">If this is not the area you want to research, please check your input.</i>
+												<c:choose>
+														<c:when test="${empty hasMap }">
+															<p>Area Map does not exist</p>
+														</c:when>
+														<c:otherwise>
+															<div align="center">
+																<img src="${mapurl}"> <br>
+																<i>If this is not the area you want to research, please check your input.</i>
+															</div>
+														</c:otherwise>
+												</c:choose>
+												
 											</div>
 											<div class="searchbox">
 												<h4 style="border-bottom:1px solid rgb(35,116,255); padding-bottom: 5px; padding-left: 10px;">Segmentation of People</h4>
