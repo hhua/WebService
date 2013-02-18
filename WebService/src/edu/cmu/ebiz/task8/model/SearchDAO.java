@@ -23,11 +23,11 @@ import edu.cmu.ebiz.task8.bean.SearchPlaceDetailBean;
 public class SearchDAO {
 	public SearchPlaceDetailBean getDetails(String reference) {
 		try {
+			
 			String preparedURL = "https://maps.googleapis.com/maps/api/place/details/xml?" +
 					"reference=" + reference +
 					"&sensor=false" +
-					"&key=AIzaSyDy-3-hP8uDctn2XDeXw5EbV_H2Sza9WZg";
-
+					"&key=AIzaSyBJGCKsWDcydBbj083edCvnTBLRrIJozOw";
 			String xmlString = GetXMLDocString.getString(preparedURL);
 
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
