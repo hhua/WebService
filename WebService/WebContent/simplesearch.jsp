@@ -126,11 +126,6 @@
 		<h4 class="lead">Search result of</h4>
 
 	</div>
-	<div class="span12" align="center"
-		style="margin-left: 0px; padding-left: 0px;">
-		<div id="map_canvas" style="width: 960px; height: 600px;"></div>
-	</div>
-
 
 	<hr>
 	
@@ -165,8 +160,23 @@
 								            $(".showdetail").click(function () {
 											    $("#" + $(this).attr("name")).show('fast').siblings('div').hide();
 											});
+								              
+								             /**
+								             $(".showdetail").click(function () {
+								            	    $("#" + $(this).attr('name')).toggle("slow");
+								            	});
+											**/
 								</script>
 						</div>
+						
+						
+							<div class="span12" align="center"
+								style="margin-left: 0px; padding-left: 0px;">
+								<div id="map_canvas" style="width: 600px; height: 400px;"></div>
+							</div>
+						
+						
+						
 						<div id="competitorDetail">
 								<c:forEach var="competitor" items="${places}" varStatus="theCount">
 								

@@ -40,19 +40,22 @@ public class PolicyAction extends Action {
 		try {
 			PolicyForm form = formBeanFactory.create(request);
 			request.setAttribute("form", form);
+			
+			if (!form.isPresent()) {
+	            return "policy.jsp";
+	        }
+			
+	        errors.addAll(form.getValidationErrors());
+	        if (errors.size() != 0) {
+	            return "policy.jsp";
+	        } 
+
 			String state = form.getState();
 			String city = form.getCity();
 			String businesstype = request.getParameter("businesstype");
 			ArrayList<PolicyBean> policy = policyDAO.getPolicy(state,city,businesstype);
 			request.setAttribute("policy", policy);
-			
-			if (!form.isPresent()) {
-	            return "policy.jsp";
-	        }
-	        errors.addAll(form.getValidationErrors());
-	        if (errors.size() != 0) {
-	            return "policy.jsp";
-	        } 
+	        
 			return "policy.jsp";
 			
 		} catch ( Exception e) {
