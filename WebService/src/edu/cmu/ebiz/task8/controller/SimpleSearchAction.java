@@ -94,10 +94,13 @@ public class SimpleSearchAction extends Action {
 			String places = query.replace(' ', '+');
 			URL url;
 			if(types.equals("All categories")){		
-				//System.out.println(form.getLatitude());
+
 				url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + places + "+" + form.getSearchLocation() + "&key=" + Constants.GOOGLE_API_KEY + "&sensor=false&longitude=" + form.getLongitude() + "&latitude=" + form.getLatitude());	
+
 			} else {
+
 				url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + places + "+" + form.getSearchLocation() + "&key=" + Constants.GOOGLE_API_KEY + "&sensor=false&longitude=" + form.getLongitude() + "&latitude=" + form.getLatitude() + "&types=" + types);	
+
 			}
 			
 			return url;

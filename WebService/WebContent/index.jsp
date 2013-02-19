@@ -41,7 +41,7 @@
 	  		</div>
 	  		
 	  		<div style="border-top: 1px solid #F5F5F5">
-	  			<p class="lead">To start a business, here are some information you might need to do</p> 
+	  			<p class="lead">To start a business, here are some things you might need to do</p> 
 	  		</div>
 	  		
 	  		<div id="mainbody" align="center">
