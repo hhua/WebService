@@ -16,7 +16,7 @@
 <script type="text/javascript">
 	var locations = [
 			<c:forEach var="place" items="${places}">["${place.name}",
-					"${place.latitude}", "${place.longitude}", "${place.address}", "${place.rating}", "${place.iconURL}"], </c:forEach> ];
+					"${place.latitude}", "${place.longitude}", "${place.address}", "${place.rating}"], </c:forEach> ];
 
 	function initialize() {
 		var location = new google.maps.LatLng(40.44, -80);
@@ -37,8 +37,9 @@
 			navigator.geolocation
 					.getCurrentPosition(function show_map(position) {
 						if(locations.length != 0){
-							cur_latitude = locations[0][0];
-							cur_longitude = locations[0][1];
+							cur_latitude = locations[0][1];
+							cur_longitude = locations[0][2];
+							//console.log(cur_latitude);
 						}else{
 							cur_latitude = position.coords.latitude;
 							cur_longitude = position.coords.longitude;
