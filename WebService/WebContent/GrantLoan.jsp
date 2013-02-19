@@ -13,7 +13,7 @@
 					 	  <!--   <label class="control-label" for="inputLoc">Location</label> -->
 					 	 <div class="input-prepend">
 						  		<span class="add-on">State</span>
-						  		<input type="text" id="inputArea" name="area" class="input input-large simplein" placeholder="State" value="${ form.state }">
+						  		<input type="text" id="inputArea" name="state" class="input input-large simplein" placeholder="State" value="${ form.state }">
 						  </div>
  						  <span style="margin-left: 20px"></span>
 						  <button type="submit" class="btn"><i class="icon-search"></i>Search</button>
@@ -33,7 +33,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="loans" items="${loans}">
+								<c:forEach var="loans" items="${loansList}">
 									<tr>
 										<td style="text-align: left;">${loans.program} </td>
 										<td style="text-align: left;">${loans.agency} </td>

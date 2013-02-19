@@ -24,7 +24,7 @@ public class GrantLoansAction extends Action {
 	private GrantLoansDAO grantLoansDAO;
 	
 	public GrantLoansAction(Model model) {
-		grantLoansDAO = model.getGrantLoans();
+		grantLoansDAO = model.getGrantLoansDAO();
 	}
 
 	public String getName() { return "grantloan.do"; };

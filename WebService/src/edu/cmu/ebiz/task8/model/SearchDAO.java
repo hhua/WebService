@@ -27,12 +27,7 @@ public class SearchDAO {
 			String preparedURL = "https://maps.googleapis.com/maps/api/place/details/xml?" +
 					"reference=" + reference +
 					"&sensor=false" +
-<<<<<<< HEAD
-					"&key=AIzaSyBJGCKsWDcydBbj083edCvnTBLRrIJozOw";
-
-=======
 					"&key=AIzaSyCVMKMZJQibQk8tl4kMGf23-jgDdMSpP4o";
->>>>>>> branch 'master' of https://github.com/chinesecold/WebService.git
 			String xmlString = GetXMLDocString.getString(preparedURL);
 
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
