@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <jsp:include page="header.jsp" />
 
@@ -16,7 +16,8 @@
 <script type="text/javascript">
 	var locations = [
 			<c:forEach var="place" items="${places}">["${place.name}",
-					"${place.latitude}", "${place.longitude}", "${place.address}", "${place.rating}"], </c:forEach> ];
+					"${place.latitude}", "${place.longitude}",
+					"${place.address}", "${place.rating}"], </c:forEach> ];
 
 	function initialize() {
 		var location = new google.maps.LatLng(40.44, -80);
@@ -27,7 +28,7 @@
 			zoom : 13,
 			mapTypeId : google.maps.MapTypeId.ROADMAP
 		};
-		
+
 		var map = new google.maps.Map(document.getElementById("map_canvas"),
 				mapOptions);
 
@@ -36,19 +37,20 @@
 			// Use method getCurrentPosition to get coordinates
 			navigator.geolocation
 					.getCurrentPosition(function show_map(position) {
-						if(locations.length != 0){
+						if (locations.length != 0) {
 							cur_latitude = locations[0][1];
 							cur_longitude = locations[0][2];
 							//console.log(cur_latitude);
-						}else{
+						} else {
 							cur_latitude = position.coords.latitude;
 							cur_longitude = position.coords.longitude;
 						}
-						
+
 						// let's show a map or do something interesting!
 						//alert(cur_latitude + ',' + cur_longitude);
-						map.setCenter(new google.maps.LatLng(cur_latitude, cur_longitude));
-						
+						map.setCenter(new google.maps.LatLng(cur_latitude,
+								cur_longitude));
+
 						var mylng = document.getElementById("longitude");
 						var mylat = document.getElementById("latitude");
 						mylng.value = cur_longitude;
@@ -76,8 +78,10 @@
 				map : map
 			});
 
-			var contentString = '<div><h4>' + locations[i][0] + '</h4><address>' + locations[i][3] + '</address><p>Rating: ' + locations[i][4] + '</p></div>';
-		    
+			var contentString = '<div><h4>' + locations[i][0]
+					+ '</h4><address>' + locations[i][3]
+					+ '</address><p>Rating: ' + locations[i][4] + '</p></div>';
+
 			google.maps.event.addListener(marker, 'click',
 					(function(marker, i) {
 						return function() {
@@ -103,14 +107,12 @@
 					<span class="add-on"><i class="icon-map-marker"></i></span> <input
 						type="text" id="search" class="input-xxlarge"
 						placeholder="Places you want, e.g. Restaurant in Pittsburgh"
-						name="searchPlaces"><input
-						type="text"
-						placeholder="Location"
-						name="searchLocation">
+						name="searchPlaces"><input type="text"
+						placeholder="Location" name="searchLocation">
 				</div>
-				<input type="hidden" id="longitude" name="longitude"/>
-				<input type="hidden" id="latitude" name="latitude"/>
-				<select id="place-types" name="placeTypes">
+				<input type="hidden" id="longitude" name="longitude" /> <input
+					type="hidden" id="latitude" name="latitude" /> <select
+					id="place-types" name="placeTypes">
 
 				</select>
 				<button type="submit" class="btn">
@@ -122,69 +124,50 @@
 		</div>
 	</div>
 
-	<div class="span12">
-		<h4 class="lead">Search result of</h4>
+	<div id="result" class="row-fluid">
 
-	</div>
-	<div class="span12" align="center"
-		style="margin-left: 0px; padding-left: 0px;">
-		<div id="map_canvas" style="width: 960px; height: 600px;"></div>
-	</div>
+		<div id="searchresult" class="span3">
+			<h4 class="lead">Detail Search Results</h4>
+			<c:choose>
+				<c:when test="${ empty places }">
+				</c:when>
+				<c:otherwise>
 
+					<div id="competitorList"
+						style="float: left; border-right: 2px solid #f5f5f5">
+						<script src="http://code.jquery.com/jquery-latest.js"></script>
+						<c:forEach var="competitor" items="${places}" varStatus="theCount">
+							<div class="showdetail" name="div${theCount.index}">
+								${competitor.name} ${competitor.rating} ${competitor.priceLevel}
+								<script type="text/javascript"
+									src="http://code.jquery.com/jquery-latest.js"></script>
 
-	<hr>
-	
-	<!--  
-	<script type="text/javascript">
-		$('#myTab li').click(function(e) {
-			e.preventDefault();
-			$(this).tab('show');
-		})
-	</script>
--->
-	<div id="result" class="span11">
-		
-		<div id="searchresult" >
-				<c:choose>
-					<c:when test="${ empty places }">
-					</c:when>
-					<c:otherwise>
-						<h4 class="lead">Detail Search Results</h4>
-						<div id="competitorList" style="float: left; border-right: 2px solid #f5f5f5">
-							<script src="http://code.jquery.com/jquery-latest.js"></script>
-							<c:forEach var="competitor" items="${places}" varStatus="theCount">
-									<div class="showdetail" name="div${theCount.index}">
-										${competitor.name}
-										
-										${competitor.rating}
-										
-										${competitor.priceLevel}
-										<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-										
-									</div>
-									
-								</c:forEach>
-								<script type="text/javascript">
-								              // Show chosen div, and hide all others
-								            $(".showdetail").click(function () {
-											    $("#" + $(this).attr("name")).show('fast').siblings('div').hide();
-											});
-								</script>
-						</div>
-						<div id="competitorDetail">
-								<c:forEach var="competitor" items="${places}" varStatus="theCount">
-								
-									<!--  Place detail information here, inside the DIV -->
-									<div id="div${theCount.index}" style="display: none;">
-										${competitor.name} <br>
-										${competitor.address} <br>
-										${competitor.phone} <br>
-										<a href = "${competitor.website}">Home page</a> <br>
-										<a href = "${competitor.url}">See Detail Page</a> <br>
-										
-									</div>
-								</c:forEach>
-						</div>
+							</div>
+
+						</c:forEach>
+						<script type="text/javascript">
+							// Show chosen div, and hide all others
+							$(".showdetail").click(
+									function() {
+										$("#" + $(this).attr("name")).show(
+												'fast').siblings('div').hide();
+									});
+						</script>
+					</div>
+					<div id="competitorDetail">
+						<c:forEach var="competitor" items="${places}" varStatus="theCount">
+
+							<!--  Place detail information here, inside the DIV -->
+							<div id="div${theCount.index}" style="display: none;">
+								${competitor.name} <br>
+								<address>${competitor.address}</address>
+								${competitor.phone} <br> <a href="${competitor.website}">Home
+									page</a> <br> <a href="${competitor.url}">See Detail Page</a>
+								<br>
+
+							</div>
+						</c:forEach>
+					</div>
 					<!--
 						<table class="table table-hover span12">
 							<thead>
@@ -216,12 +199,25 @@
 							</tbody>
 						</table>
 						-->
-					</c:otherwise>
-				</c:choose>
-			</div>
+				</c:otherwise>
+			</c:choose>
 		</div>
-
+		<div class="span9" style="margin: 0px; padding: 0px; clear: right;">
+			<div id="map_canvas" style="width: 800px; height: 560px;"></div>
+		</div>
+	</div>
 </div>
+
+<!--  
+	<script type="text/javascript">
+		$('#myTab li').click(function(e) {
+			e.preventDefault();
+			$(this).tab('show');
+		})
+	</script>
+-->
+
+
 
 <jsp:include page="footer.jsp" />
 
