@@ -16,7 +16,7 @@
 <script type="text/javascript">
 	var locations = [
 			<c:forEach var="place" items="${places}">["${place.name}",
-					"${place.latitude}", "${place.longitude}", "$place.address", "$place.rating", "$place.iconURL"], </c:forEach> ];
+					"${place.latitude}", "${place.longitude}", "${place.address}", "${place.rating}", "${place.iconURL}"], </c:forEach> ];
 
 	function initialize() {
 		var location = new google.maps.LatLng(40.44, -80);
@@ -24,7 +24,7 @@
 		var mapOptions = {
 			center : location,
 			//center : new google.maps.LatLng(40.44, -80),
-			zoom : 14,
+			zoom : 13,
 			mapTypeId : google.maps.MapTypeId.ROADMAP
 		};
 		
@@ -36,8 +36,14 @@
 			// Use method getCurrentPosition to get coordinates
 			navigator.geolocation
 					.getCurrentPosition(function show_map(position) {
-						cur_latitude = position.coords.latitude;
-						cur_longitude = position.coords.longitude;
+						if(locations.length != 0){
+							cur_latitude = locations[0][0];
+							cur_longitude = locations[0][1];
+						}else{
+							cur_latitude = position.coords.latitude;
+							cur_longitude = position.coords.longitude;
+						}
+						
 						// let's show a map or do something interesting!
 						//alert(cur_latitude + ',' + cur_longitude);
 						map.setCenter(new google.maps.LatLng(cur_latitude, cur_longitude));
@@ -46,13 +52,12 @@
 						var mylat = document.getElementById("latitude");
 						mylng.value = cur_longitude;
 						mylat.value = cur_latitude;
+
 					});
 		}
 
 		// add select options
 		addPlacesOptions();
-
-		
 
 		/* var map = new google.maps.Map(document.getElementById("map_canvas"));
 		map.setCenter(new google.maps.LatLng(cur_latitude, 
@@ -97,7 +102,10 @@
 					<span class="add-on"><i class="icon-map-marker"></i></span> <input
 						type="text" id="search" class="input-xxlarge"
 						placeholder="Places you want, e.g. Restaurant in Pittsburgh"
-						name="searchPlaces">
+						name="searchPlaces"><input
+						type="text"
+						placeholder="Location"
+						name="searchLocation">
 				</div>
 				<input type="hidden" id="longitude" name="longitude"/>
 				<input type="hidden" id="latitude" name="latitude"/>

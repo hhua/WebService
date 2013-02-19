@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.mybeans.form.FormBeanException;
 import org.mybeans.form.FormBeanFactory;
 
+import edu.cmu.ebiz.task8.basic.Constants;
 import edu.cmu.ebiz.task8.bean.SearchPlaceDetailBean;
 import edu.cmu.ebiz.task8.bean.SimpleSearchPlacesBean;
 import edu.cmu.ebiz.task8.formbean.SimpleSearchForm;
@@ -70,7 +71,16 @@ public class SimpleSearchAction extends Action {
 			}
 			Arrays.sort(placesArr);
 			
-			request.setAttribute("places", placesArr);
+			if(placesArr.length <= 10)
+				request.setAttribute("places", placesArr);
+			else{
+				SearchPlaceDetailBean[] returnPlaces = new SearchPlaceDetailBean[10];
+				for(int i = 0; i < 10; i++){
+					returnPlaces[i] = placesArr[i];
+				}
+				request.setAttribute("places", returnPlaces);
+			}
+			
 			return "simplesearch.jsp";
 		} catch (FormBeanException e) {
 			errors.add(e.toString());
@@ -83,11 +93,11 @@ public class SimpleSearchAction extends Action {
 		try{
 			String places = query.replace(' ', '+');
 			URL url;
-			if(types.equals("All places")){		
+			if(types.equals("All categories")){		
 				//System.out.println(form.getLatitude());
-				url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + places + "&key=AIzaSyBJGCKsWDcydBbj083edCvnTBLRrIJozOw&sensor=false&radius=500000&longitude=" + form.getLongitude() + "&latitude=" + form.getLatitude());	
+				url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + places + "+" + form.getSearchLocation() + "&key=" + Constants.GOOGLE_API_KEY + "&sensor=false&longitude=" + form.getLongitude() + "&latitude=" + form.getLatitude());	
 			} else {
-				url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + places + "&key=AIzaSyBJGCKsWDcydBbj083edCvnTBLRrIJozOw&sensor=false&radius=500000&longitude=" + form.getLongitude() + "&latitude=" + form.getLatitude() + "&types=" + types);	
+				url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + places + "+" + form.getSearchLocation() + "&key=" + Constants.GOOGLE_API_KEY + "&sensor=false&longitude=" + form.getLongitude() + "&latitude=" + form.getLatitude() + "&types=" + types);	
 			}
 			
 			return url;
