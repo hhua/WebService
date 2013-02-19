@@ -11,7 +11,7 @@
     }
     </script>
 
-<div class="row-fluid">
+<div class="row-fluid" >
 			<div class="span12 searchbox" >
 				<h5 class="lead">Search Business License and Permits Information</h5>
 				<jsp:include page="error-list.jsp" />
@@ -48,11 +48,17 @@
 					</form>
 					</div>
 					
-				</div>	
-					<div class="span12 searchbox" style="margin-left: 0px;" >
+				</div>
+				<c:choose>
+					<c:when test="${empty policy}">
+							
+					</c:when>
+					<c:otherwise>
+					    	<div class="span12 searchbox" style="margin-left: 0px;" >
 								<h5 class="lead">Business License Information of <b>${form.city }, ${form.state }</b></h5>
 								<div class="row-fluid" style="margin-left: 20px">
-									<table class="table table-striped">
+						
+									<table class="table table-bordered" style="width: 650px;" >
 										<thead>
 										<tr class="info" style="text-align: center;">
 										<th style="text-align: left;">Title</th>
@@ -77,6 +83,9 @@
 						</table> 
 								</div>
 					</div>
+					</c:otherwise>
+					</c:choose>	
+				
 				
 	</div>
 
