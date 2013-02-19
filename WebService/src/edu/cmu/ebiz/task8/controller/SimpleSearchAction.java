@@ -84,9 +84,9 @@ public class SimpleSearchAction extends Action {
 			URL url;
 			if(types.equals("All places")){		
 				//System.out.println(form.getLatitude());
-				url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + places + "&key=AIzaSyDy-3-hP8uDctn2XDeXw5EbV_H2Sza9WZg&sensor=false&radius=500000&longitude=" + form.getLongitude() + "&latitude=" + form.getLatitude());	
+				url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + places + "&key=AIzaSyBJGCKsWDcydBbj083edCvnTBLRrIJozOw&sensor=false&radius=500000&longitude=" + form.getLongitude() + "&latitude=" + form.getLatitude());	
 			} else {
-				url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + places + "&key=AIzaSyDy-3-hP8uDctn2XDeXw5EbV_H2Sza9WZg&sensor=false&radius=500000&longitude=" + form.getLongitude() + "&latitude=" + form.getLatitude() + "&types=" + types);	
+				url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + places + "&key=AIzaSyBJGCKsWDcydBbj083edCvnTBLRrIJozOw&sensor=false&radius=500000&longitude=" + form.getLongitude() + "&latitude=" + form.getLatitude() + "&types=" + types);	
 			}
 			
 			return url;
