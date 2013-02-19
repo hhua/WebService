@@ -20,7 +20,9 @@ public class SearchPlaceDetailBean implements Comparable<SearchPlaceDetailBean> 
 	private String website;
 	private int priceLevel;
 	private PlaceReviewBean[] reviews;
-	
+	private String photoReference;
+	private String imgUrl;
+
 	public String getName() {
 		return name;
 	}
@@ -69,6 +71,14 @@ public class SearchPlaceDetailBean implements Comparable<SearchPlaceDetailBean> 
 		return reviews;
 	}
 
+	public String getPhotoReference() {
+		return photoReference;
+	}
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -115,6 +125,14 @@ public class SearchPlaceDetailBean implements Comparable<SearchPlaceDetailBean> 
 
 	public void setReviews(PlaceReviewBean[] reviews) {
 		this.reviews = reviews;
+	}
+
+	public void setPhotoReference(String photoReference) {
+		this.photoReference = photoReference;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 
 	@Override

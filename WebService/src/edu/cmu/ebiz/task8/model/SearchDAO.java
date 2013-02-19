@@ -80,6 +80,18 @@ public class SearchDAO {
 				bean.setPriceLevel(priceLevelI);
 			}
 			
+			Node photoReference = GetXMLDocString.getSingleResult(doc, "//result/photo/photo_reference/text()");
+			if (photoReference == null) {
+				bean.setPhotoReference("");
+				bean.setImgUrl("#");
+			} else {
+				bean.setPhotoReference(photoReference.getNodeValue());
+				String imgUrl = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=300&" +
+						"photoreference=" + bean.getPhotoReference() + "&sensor=true&" +
+						"key=" + Constants.GOOGLE_API_KEY;
+				bean.setImgUrl(imgUrl);
+			}
+			
 			NodeList reviewsTime = GetXMLDocString.getExpressionResult(doc, "//result/review/time/text()");
 			if (reviewsTime == null) {
 				bean.setReviews(null);
