@@ -17,7 +17,7 @@
 	var locations = [
 			<c:forEach var="place" items="${places}">["${place.name}",
 					"${place.latitude}", "${place.longitude}",
-					"${place.address}", "${place.rating}"], </c:forEach> ];
+					"${place.address}", "${place.rating}", "${place.priceLevel}, $place.website"], </c:forEach> ];
 
 	function initialize() {
 		var location = new google.maps.LatLng(40.44, -80);
@@ -80,7 +80,7 @@
 
 			var contentString = '<div><h4>' + locations[i][0]
 					+ '</h4><address>' + locations[i][3]
-					+ '</address><p>Rating: ' + locations[i][4] + '</p></div>';
+					+ '</address><p>Rating: ' + locations[i][4] + ' Price Level: ' + location[i][5] + '</p></div>';
 
 			google.maps.event.addListener(marker, 'click',
 					(function(marker, i) {
@@ -100,7 +100,7 @@
 		<div style="padding-left: 15px;">
 			<jsp:include page="error-list.jsp" />
 			<br />
-			<p class="lead">Simple Search</p>
+			<p class="lead">Search</p>
 			<form class="form-horizontal form-inline" method="POST"
 				action="simple-search.do">
 				<div class="input-prepend">
@@ -118,7 +118,6 @@
 				<button type="submit" class="btn">
 					<i class="icon-search"></i>Search
 				</button>
-				<button type="submit" class="btn">Advanced Search</button>
 
 			</form>
 		</div>
@@ -126,7 +125,7 @@
 
 	<div id="result" class="row-fluid">
 
-		<div id="searchresult" class="span3">
+		<div id="searchresult" class="span4">
 			<h4 class="lead">Detail Search Results</h4>
 			<c:choose>
 				<c:when test="${ empty places }">
@@ -202,7 +201,7 @@
 				</c:otherwise>
 			</c:choose>
 		</div>
-		<div class="span9" style="margin: 0px; padding: 0px; clear: right;">
+		<div class="span8" style="margin: 0px; padding: 0px; clear: right;">
 			<div id="map_canvas" style="width: 800px; height: 560px;"></div>
 		</div>
 	</div>
