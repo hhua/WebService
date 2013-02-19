@@ -58,10 +58,7 @@ public class SimpleSearchForm extends FormBean{
 	public void setSearchLocation(String searchLocation) {
 		
 		this.searchLocation = trimAndConvert(searchLocation.trim(), "<>\"");
-		String[] tmp = searchLocation.split(" ");
-		for (String term : tmp){
-			this.searchLocation += "%20" + term ;
-		}
+		this.searchLocation = this.searchLocation.replace(' ', '+');
 	}
 	
 }
