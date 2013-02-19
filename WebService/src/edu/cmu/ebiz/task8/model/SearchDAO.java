@@ -14,10 +14,12 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import edu.cmu.ebiz.task8.basic.Constants;
+import edu.cmu.ebiz.task8.bean.PlaceReviewBean;
 import edu.cmu.ebiz.task8.bean.SearchPlaceDetailBean;
 
 public class SearchDAO {
@@ -76,6 +78,28 @@ public class SearchDAO {
 			} else {
 				int priceLevelI = Integer.parseInt(priceLevel.getNodeValue());
 				bean.setPriceLevel(priceLevelI);
+			}
+			
+			NodeList reviewsTime = GetXMLDocString.getExpressionResult(doc, "//result/review/time/text()");
+			if (reviewsTime == null) {
+				bean.setReviews(null);
+				return bean;
+			}
+			
+			PlaceReviewBean[] reviews = new PlaceReviewBean[reviewsTime.getLength()];
+			bean.setReviews(reviews);
+			
+			NodeList reviewsText = GetXMLDocString.getExpressionResult(doc, "//result/review/text/text()");
+			NodeList reviewsAuthor = GetXMLDocString.getExpressionResult(doc, "//result/review/author_name/text()");
+			NodeList reviewsUrl = GetXMLDocString.getExpressionResult(doc, "//result/review/author_url/text()");
+			
+			for (int i = 0; i < reviews.length; i++) {
+				reviews[i] = new PlaceReviewBean();
+				int time = Integer.parseInt(reviewsTime.item(i).getNodeValue());
+				reviews[i].setTime(time);
+				reviews[i].setText(reviewsText.item(i).getNodeValue());
+				reviews[i].setAuthor(reviewsAuthor.item(i).getNodeValue());
+				reviews[i].setUrl(reviewsUrl.item(i).getNodeValue());
 			}
 			
 			return bean;
