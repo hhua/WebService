@@ -67,7 +67,7 @@
 		  			</div>
 	  			</a>
 	  			
-	  			<a href="policy.jsp">
+	  			<a href="grantloan.do">
 		  			<div id="loan1" class="navbox">
 		  				<p class="step">Get Some Money</p>
 		  				<p>Function Instruction</p>

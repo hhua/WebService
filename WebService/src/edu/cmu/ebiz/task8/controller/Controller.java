@@ -23,6 +23,7 @@ public class Controller extends HttpServlet {
        	Action.add(new DemographicAction(model));
        	Action.add(new SimpleSearchAction(model));
        	Action.add(new PolicyAction(model));
+       	Action.add(new GrantLoansAction(model));
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -11,7 +11,7 @@
 			  			<li id="competitor" class="lead"><a href="simplesearch.jsp">Competitor</a></li>
 			  			<li id="demographic" class="lead"><a href="demographic.do">Demographic</a></li>
 			  			<li id="policy" class="lead"><a href="policy.do">Licenses & Permits</a></li>
-			  			<li id="policy" class="lead"><a href="GrantLoan.jsp">Grants & Loans</a></li>
+			  			<li id="policy" class="lead"><a href="grantloan.do">Grants & Loans</a></li>
 			  			<li id="website" class="lead"><a href="recommendedwebsites.do">Websites</a></li>
 			  		</ul>
 			  	</div>
