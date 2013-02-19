@@ -9,7 +9,7 @@
 			<div class="span12 searchbox" >
 				<h5 class="lead">Business Loans and Grants</h5>
 				<jsp:include page="error-list.jsp" />
-				<form class="form-inline" method="POST" action="grantloan.do" style="margin-left: 20px;">
+					<form class="form-inline" method="POST" action="grantloan.do" style="margin-left: 20px;">
 					 	  <!--   <label class="control-label" for="inputLoc">Location</label> -->
 					 	 <div class="input-prepend">
 						  		<span class="add-on">State</span>
@@ -18,32 +18,33 @@
  						  <span style="margin-left: 20px"></span>
 						  <button type="submit" class="btn"><i class="icon-search"></i>Search</button>
 					</form>
-					
+				</div>
+				<div class="span11">	
 					<c:choose>
-					<c:when test="${ empty loansList }">
-					</c:when>
-					<c:otherwise>
-					<table class="table table-striped">
-							<thead>
-								<tr class="info" style="text-align: center;">
-									<th style="text-align: left;">Program</th>
-									<th style="text-align: left;">Agency</th>
-									<th style="text-align: left;">URL</th>
-									<th style="text-align: left;">Description</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="loans" items="${loansList}">
-									<tr>
-										<td style="text-align: left;">${loans.program} </td>
-										<td style="text-align: left;">${loans.agency} </td>
-										<td style="text-align: left;"><a href ="javascript:click('${loans.url}');">${loans.url}</a></td>
-										<td style="text-align: left;">${loans.description} </td> 
+						<c:when test="${ empty loansList }">
+						</c:when>
+						<c:otherwise>
+						<table class="table table-striped">
+								<thead>
+									<tr class="info" style="text-align: center;">
+										<th style="text-align: left;">Program</th>
+										<th style="text-align: left; width: 250px">Agency</th>
+										<th style="text-align: left; width: 400px;">Description</th>
+										<th style="text-align: left;"></th>
 									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-						</c:otherwise>
+								</thead>
+								<tbody>
+									<c:forEach var="loans" items="${loansList}">
+										<tr>
+											<td style="text-align: left;">${loans.program} </td>
+											<td style="text-align: left;">${loans.agency} </td>
+											<td style="text-align: left;">${loans.description} </td>
+											<td style="text-align: left;"><a href ="javascript:click('${loans.url}');" class="btn">Visit</a></td> 
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+							</c:otherwise>
 						</c:choose>
 			</div>
 			</div>

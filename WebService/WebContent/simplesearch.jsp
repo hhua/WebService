@@ -153,16 +153,12 @@
 							<script src="http://code.jquery.com/jquery-latest.js"></script>
 							<c:forEach var="competitor" items="${places}" varStatus="theCount">
 									<div class="showdetail" name="div${theCount.index}">
-										${competitor.name}
-										
-										${competitor.rating}
-										
-										${competitor.priceLevel}
-										<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-										
+										<h5>${competitor.name}</h5>
+										<p>Rating: ${competitor.rating}</p>
+										<p>Pirce Level: ${competitor.priceLevel}</p>
 									</div>
-									
 								</c:forEach>
+								<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 								<script type="text/javascript">
 								              // Show chosen div, and hide all others
 								            $(".showdetail").click(function () {
