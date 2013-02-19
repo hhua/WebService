@@ -14,10 +14,10 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import edu.cmu.ebiz.task8.basic.Constants;
 import edu.cmu.ebiz.task8.bean.SearchPlaceDetailBean;
 
 public class SearchDAO {
@@ -26,8 +26,7 @@ public class SearchDAO {
 			
 			String preparedURL = "https://maps.googleapis.com/maps/api/place/details/xml?" +
 					"reference=" + reference +
-					"&sensor=false" +
-					"&key=AIzaSyCVMKMZJQibQk8tl4kMGf23-jgDdMSpP4o";
+					"&sensor=false&key=" + Constants.GOOGLE_API_KEY ;
 			String xmlString = GetXMLDocString.getString(preparedURL);
 
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

@@ -10,6 +10,7 @@ public class SimpleSearchForm extends FormBean{
 	private String placeTypes;
 	private String longitude;
 	private String latitude;
+	private String searchLocation;
 	
 	public List<String> getValidationErrors() {
 		List<String> errors = new ArrayList<String>();
@@ -48,6 +49,14 @@ public class SimpleSearchForm extends FormBean{
 
 	public void setLatitude(String latitude) {
 		this.latitude = trimAndConvert(latitude.trim(), "<>\"");
+	}
+
+	public String getSearchLocation() {
+		return searchLocation;
+	}
+
+	public void setSearchLocation(String searchLocation) {
+		this.searchLocation = trimAndConvert(searchLocation.trim(), " <>\"");
 	}
 	
 }

@@ -68,8 +68,10 @@
 								    </script>
 
 <jsp:include page="header.jsp" />
+
 	
 	<div class="row-fluid"  style="min-width: 1000px;">
+
 			
 			<div class="span12 searchbox" >
 				<h5 class="lead">Search Demographic Information</h5>
