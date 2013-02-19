@@ -181,7 +181,7 @@
 			</c:choose>
 		</div>
 		<div class="span8" style="margin: 0px; padding: 0px; clear: right;">
-			<div id="map_canvas" style="width: 800px; height: 560px;"></div>
+			<div id="map_canvas" style="width: 800px; height: 560px;margin-top: 15px;"></div>
 		</div>
 	</div>
 </div>
