@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <jsp:include page="header.jsp" />
 
@@ -117,7 +117,7 @@
 	</div>
 	<div class="span12" align="center"
 		style="margin-left: 0px; padding-left: 0px;">
-		<div id="map_canvas" style="width: 800px; height: 600px;"></div>
+		<div id="map_canvas" style="width: 800px; height: 400px;"></div>
 	</div>
 
 	<!--
@@ -137,7 +137,7 @@
   		</div>
   		  -->
 	<hr>
-	<h4>Detail Search Results</h4>
+	
 	<!--  
 	<script type="text/javascript">
 		$('#myTab li').click(function(e) {
@@ -146,19 +146,50 @@
 		})
 	</script>
 -->
-	<div id="display-simpleresult" class="span12">
-		<ul id="myTab" class="nav nav-tabs">
-			<li class="active"><a href="#home" data-toggle="tab"><b>Competitor
-						Information</b></a></li>
-			<li><a href="#profile" data-toggle="tab"><b>Demographic
-						Information</b></a></li>
-		</ul>
-		<div id="myTabContent" class="tab-content">
-			<div class="tab-pane fade in active" id="home">
+	<div id="result" class="span11">
+		
+		<div id="searchresult" >
 				<c:choose>
 					<c:when test="${ empty places }">
 					</c:when>
 					<c:otherwise>
+						<h4 class="lead">Detail Search Results</h4>
+						<div id="competitorList" style="float: left; border-right: 2px solid #f5f5f5">
+							<script src="http://code.jquery.com/jquery-latest.js"></script>
+							<c:forEach var="competitor" items="${places}" varStatus="theCount">
+									<div class="showdetail" name="div${theCount.index}">
+										${competitor.name}
+										
+										${competitor.rating}
+										
+										${competitor.priceLevel}
+										<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+										
+									</div>
+									
+								</c:forEach>
+								<script type="text/javascript">
+								              // Show chosen div, and hide all others
+								            $(".showdetail").click(function () {
+											    $("#" + $(this).attr("name")).show('fast').siblings('div').hide();
+											});
+								</script>
+						</div>
+						<div id="competitorDetail">
+								<c:forEach var="competitor" items="${places}" varStatus="theCount">
+								
+									<!--  Place detail information here, inside the DIV -->
+									<div id="div${theCount.index}" style="display: none;">
+										${competitor.name} <br>
+										${competitor.address} <br>
+										${competitor.phone} <br>
+										<a href = "${competitor.website}">Home page</a> <br>
+										<a href = "${competitor.url}">See Detail Page</a> <br>
+										
+									</div>
+								</c:forEach>
+						</div>
+					<!--
 						<table class="table table-hover span12">
 							<thead>
 								<tr>
@@ -182,17 +213,17 @@
 										<td><a href = "${competitor.website}">Home page</a></td>
 										<td>${competitor.priceLevel}</td>
 									</tr>
+									<div id="${competitor.name}">
+										${competitor.name} THIS IS TEST
+									</div>
 								</c:forEach>
 							</tbody>
 						</table>
+						-->
 					</c:otherwise>
 				</c:choose>
 			</div>
-			<div class="tab-pane fade" id="profile">
-				Show some data <br> Population <br> race
-			</div>
 		</div>
-	</div>
 
 </div>
 

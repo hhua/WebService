@@ -63,6 +63,7 @@ public class SimpleSearchAction extends Action {
 			URL requestURL = generateBasicURL(query, form.getPlaceTypes(), form);
 			
 			List<SimpleSearchPlacesBean> places = GooglePlacesParser.jsonParser(requestURL);
+			//System.out.println(places.size());
 			SearchPlaceDetailBean[] placesArr = new SearchPlaceDetailBean[places.size()];
 			for (int i = 0; i<places.size(); i++) {
 				placesArr[i] = searchDAO.getDetails(places.get(i).getReference());
@@ -84,9 +85,17 @@ public class SimpleSearchAction extends Action {
 			URL url;
 			if(types.equals("All places")){		
 				//System.out.println(form.getLatitude());
+<<<<<<< HEAD
 				url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + places + "&key=AIzaSyBJGCKsWDcydBbj083edCvnTBLRrIJozOw&sensor=false&radius=500000&longitude=" + form.getLongitude() + "&latitude=" + form.getLatitude());	
+=======
+				url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + places + "&key=AIzaSyCVMKMZJQibQk8tl4kMGf23-jgDdMSpP4o&sensor=false&radius=500000&longitude=" + form.getLongitude() + "&latitude=" + form.getLatitude());	
+>>>>>>> branch 'master' of https://github.com/chinesecold/WebService.git
 			} else {
+<<<<<<< HEAD
 				url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + places + "&key=AIzaSyBJGCKsWDcydBbj083edCvnTBLRrIJozOw&sensor=false&radius=500000&longitude=" + form.getLongitude() + "&latitude=" + form.getLatitude() + "&types=" + types);	
+=======
+				url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + places + "&key=AIzaSyCVMKMZJQibQk8tl4kMGf23-jgDdMSpP4o&sensor=false&radius=500000&longitude=" + form.getLongitude() + "&latitude=" + form.getLatitude() + "&types=" + types);	
+>>>>>>> branch 'master' of https://github.com/chinesecold/WebService.git
 			}
 			
 			return url;
