@@ -56,9 +56,9 @@
 }
 
 .nav ul li a:hover {
-	color: rgb(189,209,37);
-	font-size: 1.1em;
-	/* border-bottom: 2px solid rgb(220,236,251); */
+	color: rgb(25,113,201);
+	font-weight: bold;
+	/** border-bottom: 2px solid rgb(220,236,251);  **/
 }
 
 .split  {
@@ -237,7 +237,8 @@
 
 .showdetail:hover {
 	opacity: 1;
-	background: #F5F5F5;
+	background: rgb(220,235,255);
+	-webkit-transition: background 300ms linear;
 }
 
 #bodycontainer {

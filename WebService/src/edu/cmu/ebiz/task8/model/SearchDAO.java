@@ -27,7 +27,7 @@ public class SearchDAO {
 			String preparedURL = "https://maps.googleapis.com/maps/api/place/details/xml?" +
 					"reference=" + reference +
 					"&sensor=false" +
-					"&key=AIzaSyBJGCKsWDcydBbj083edCvnTBLRrIJozOw";
+					"&key=AIzaSyCVMKMZJQibQk8tl4kMGf23-jgDdMSpP4o";
 			String xmlString = GetXMLDocString.getString(preparedURL);
 
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

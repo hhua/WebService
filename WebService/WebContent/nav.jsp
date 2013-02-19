@@ -59,6 +59,6 @@
            </div>
           </div>
             -->
-		<hr class="span11" style="margin-top: 10px;" />
+		
 		
 		

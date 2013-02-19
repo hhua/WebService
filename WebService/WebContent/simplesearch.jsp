@@ -171,7 +171,7 @@
 								<script type="text/javascript">
 								              // Show chosen div, and hide all others
 								            $(".showdetail").click(function () {
-											    $("#" + $(this).attr("name")).show().siblings('div').hide();
+											    $("#" + $(this).attr("name")).show('fast').siblings('div').hide();
 											});
 								</script>
 						</div>
