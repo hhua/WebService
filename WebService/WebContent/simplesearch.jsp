@@ -47,7 +47,7 @@
 						}
 
 						// let's show a map or do something interesting!
-						//alert(cur_latitude + ',' + cur_longitude);
+						alert(cur_latitude + ',' + cur_longitude);
 						map.setCenter(new google.maps.LatLng(cur_latitude,
 								cur_longitude));
 
@@ -122,6 +122,10 @@
 			</form>
 		</div>
 	</div>
+						<div class="span12" align="center"
+								style="margin-left: 0px; padding-left: 0px;">
+								<div id="map_canvas" style="width: 600px; height: 400px;"></div>
+						</div>
 
 	<div id="result" class="row-fluid">
 
@@ -130,6 +134,7 @@
 			<h4 class="lead">Detail Search Results</h4>
 			<c:choose>
 				<c:when test="${ empty places }">
+					test
 				</c:when>
 				<c:otherwise>
 
