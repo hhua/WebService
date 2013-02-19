@@ -14,12 +14,14 @@ public class Model {
 	private RecommendedWebsitesDAO recommendedWebsitesDAO;
 	private PolicyDAO policyDAO;
 	private SearchDAO searchDAO;
+	private GrantLoansDAO grantLoansDAO;
 	
 	public Model() {
 		zillowDAO = new ZillowDAO();
 		recommendedWebsitesDAO = new RecommendedWebsitesDAO();
 		policyDAO = new PolicyDAO();
 		searchDAO = new SearchDAO();
+		grantLoansDAO = new GrantLoansDAO();
 	}
 	
 	public ZillowDAO getZillowDAO() { return zillowDAO; }
@@ -34,5 +36,9 @@ public class Model {
 
 	public SearchDAO getSearchDAO() {
 		return searchDAO;
+	}
+	
+	public GrantLoansDAO getGrantLoansDAO() {
+		return grantLoansDAO;
 	}
 }

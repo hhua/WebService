@@ -29,8 +29,6 @@ public class GrantLoansDAO {
 
 			String jsonString = buffer.toString();
 
-			//System.out.println(jsonString);
-
 			// parse start
 
 			Object obj = JSONValue.parse(jsonString);
@@ -41,12 +39,11 @@ public class GrantLoansDAO {
 			List<GrantLoansBean> loans = new ArrayList<GrantLoansBean>();
 			// store results
 			for (int i = 0; i < array.size(); i++) {
-				// System.out.println(array.get(i));
 				JSONObject result = (JSONObject) array.get(i);
 
 				GrantLoansBean loan = new GrantLoansBean();
 				loan.setAgency((String) result.get("agency"));
-				loan.setProgram(((String) result.get("program")));
+				loan.setProgram(((String) result.get("title")));
 				loan.setDescription((String) result.get("description"));
 				loan.setUrl((String) result.get("url"));
 				
