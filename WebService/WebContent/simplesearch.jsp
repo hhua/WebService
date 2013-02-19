@@ -159,7 +159,6 @@
 										
 										${competitor.priceLevel}
 										<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-										<button >Show Detail</button>
 										
 									</div>
 									
@@ -169,11 +168,12 @@
 								            $(".showdetail").click(function () {
 											    $("#" + $(this).attr("name")).show().siblings('div').hide();
 											});
-
-										</script>
+								</script>
 						</div>
 						<div id="competitorDetail">
 								<c:forEach var="competitor" items="${places}" varStatus="theCount">
+								
+									<!--  Place detail information here, inside the DIV -->
 									<div id="div${theCount.index}" style="display: none;">
 										${competitor.name} <br>
 										${competitor.address} <br>
