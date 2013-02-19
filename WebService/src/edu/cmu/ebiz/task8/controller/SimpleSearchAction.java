@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -64,23 +65,16 @@ public class SimpleSearchAction extends Action {
 			URL requestURL = generateBasicURL(query, form.getPlaceTypes(), form);
 			
 			List<SimpleSearchPlacesBean> places = GooglePlacesParser.jsonParser(requestURL);
+			if(places != null )
+				Collections.sort(places);
+			
 			//System.out.println(places.size());
 			if(places != null){
 				SearchPlaceDetailBean[] placesArr = new SearchPlaceDetailBean[places.size()];
-				for (int i = 0; i<places.size(); i++) {
+				for (int i = 0; i<places.size() && i < 10; i++) {
 					placesArr[i] = searchDAO.getDetails(places.get(i).getReference());
 				}
-				Arrays.sort(placesArr);
 				
-				if(placesArr.length <= 10)
-					request.setAttribute("places", placesArr);
-				else{
-					SearchPlaceDetailBean[] returnPlaces = new SearchPlaceDetailBean[10];
-					for(int i = 0; i < 10; i++){
-						returnPlaces[i] = placesArr[i];
-					}
-					request.setAttribute("places", returnPlaces);
-				}
 			}
 			
 			
