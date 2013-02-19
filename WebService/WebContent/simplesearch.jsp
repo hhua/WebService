@@ -16,7 +16,7 @@
 <script type="text/javascript">
 	var locations = [
 			<c:forEach var="place" items="${places}">["${place.name}",
-					"${place.latitude}", "${place.longitude}", "${place.address}", "${place.rating}", "${place.iconURL}"], </c:forEach> ];
+					"${place.latitude}", "${place.longitude}", "${place.address}", "${place.rating}"], </c:forEach> ];
 
 	function initialize() {
 		var location = new google.maps.LatLng(40.44, -80);
@@ -37,8 +37,9 @@
 			navigator.geolocation
 					.getCurrentPosition(function show_map(position) {
 						if(locations.length != 0){
-							cur_latitude = locations[0][0];
-							cur_longitude = locations[0][1];
+							cur_latitude = locations[0][1];
+							cur_longitude = locations[0][2];
+							//console.log(cur_latitude);
 						}else{
 							cur_latitude = position.coords.latitude;
 							cur_longitude = position.coords.longitude;
@@ -75,7 +76,7 @@
 				map : map
 			});
 
-			var contentString = '<div><h4>' + locations[i][0] + '</h4><p class="address">' + locations[i][3] + '</p><p>Rating: ' + locations[i][4] + '</p></div>';
+			var contentString = '<div><h4>' + locations[i][0] + '</h4><address>' + locations[i][3] + '</address><p>Rating: ' + locations[i][4] + '</p></div>';
 		    
 			google.maps.event.addListener(marker, 'click',
 					(function(marker, i) {
@@ -127,7 +128,7 @@
 	</div>
 	<div class="span12" align="center"
 		style="margin-left: 0px; padding-left: 0px;">
-		<div id="map_canvas" style="width: 800px; height: 400px;"></div>
+		<div id="map_canvas" style="width: 960px; height: 600px;"></div>
 	</div>
 
 

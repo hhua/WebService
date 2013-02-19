@@ -38,8 +38,8 @@
 	font-size: 1.5em;
 	color: rgb(38,38,38);
 	line-height: 1.5em;
-	
-	border-radius: 2px;
+	border-right: 2px solid #DFDFDF;
+	/*border-radius: 2px;*/
 }
 
 .nav ul li:last-child {

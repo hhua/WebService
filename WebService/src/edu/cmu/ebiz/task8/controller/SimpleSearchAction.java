@@ -65,21 +65,25 @@ public class SimpleSearchAction extends Action {
 			
 			List<SimpleSearchPlacesBean> places = GooglePlacesParser.jsonParser(requestURL);
 			//System.out.println(places.size());
-			SearchPlaceDetailBean[] placesArr = new SearchPlaceDetailBean[places.size()];
-			for (int i = 0; i<places.size(); i++) {
-				placesArr[i] = searchDAO.getDetails(places.get(i).getReference());
-			}
-			Arrays.sort(placesArr);
 			
-			if(placesArr.length <= 10)
-				request.setAttribute("places", placesArr);
-			else{
-				SearchPlaceDetailBean[] returnPlaces = new SearchPlaceDetailBean[10];
-				for(int i = 0; i < 10; i++){
-					returnPlaces[i] = placesArr[i];
+			if(places != null){
+				SearchPlaceDetailBean[] placesArr = new SearchPlaceDetailBean[places.size()];
+				for (int i = 0; i<places.size(); i++) {
+					placesArr[i] = searchDAO.getDetails(places.get(i).getReference());
 				}
-				request.setAttribute("places", returnPlaces);
+				Arrays.sort(placesArr);
+				
+				if(placesArr.length <= 10)
+					request.setAttribute("places", placesArr);
+				else{
+					SearchPlaceDetailBean[] returnPlaces = new SearchPlaceDetailBean[10];
+					for(int i = 0; i < 10; i++){
+						returnPlaces[i] = placesArr[i];
+					}
+					request.setAttribute("places", returnPlaces);
+				}
 			}
+			
 			
 			return "simplesearch.jsp";
 		} catch (FormBeanException e) {
