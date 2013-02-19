@@ -11,23 +11,24 @@
     }
     </script>
 
-<div class="row-fluid" >
+<div class="row-fluid" style="min-width: 900px;">
 			<div class="span12 searchbox" >
 				<h5 class="lead">Search Business License and Permits Information</h5>
 				<jsp:include page="error-list.jsp" />
 				<div>
 				<form class="form-inline" method="POST" action="policy.do" style="margin-left: 20px;">
+				
 				          <div class="input-prepend">
 					 	  		<span class="add-on">State</span>
 						  		<input type="text"  name="state" class="input" style="height: 20px;" placeholder="State" value="${form.state }">
 						  </div>
- 						  <span style="margin-left: 20px"></span>
+ 						  <span style="margin-left: 30px"></span>
  						  
 						  <div class="input-prepend">
 						  		<span class="add-on">City</span>
 						  		<input type="text"  name="city" class="input" style="height: 20px;" placeholder="City" value="${form.city }">
 						  </div>
-						  <span style="margin-left: 20px"></span>
+						  <span style="margin-left: 30px"></span>
 						  
  						  <select class="span4" name="businesstype">
 							<option value = "General Business Licenses">General Business Licenses</option>
@@ -41,9 +42,9 @@
 							<option value = "Massage Therapist">Massage Therapist</option>
 							<option value = "Plumber">Plumber</option>
 							<option value = "Restaurant">Restaurant</option>
-						  </select><hr>
+						  </select><!-- <hr> -->
 						  
- 						  <span style="margin-top: 20px"></span>
+ 						  <span style="margin-left: 20px"></span>
 						  <button type="submit" class="btn"><i class="icon-search"></i>Search</button>
 					</form>
 					</div>
@@ -58,7 +59,7 @@
 								<h5 class="lead">Business License Information of <b>${form.city }, ${form.state }</b></h5>
 								<div class="row-fluid" style="margin-left: 20px">
 						
-									<table class="table table-bordered" style="width: 650px;" >
+									<table class="table table-bordered" style="width: 800px;" >
 										<thead>
 										<tr class="info" style="text-align: center;">
 										<th style="text-align: left;">Title</th>
