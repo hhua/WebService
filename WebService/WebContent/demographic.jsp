@@ -185,7 +185,7 @@
 												
 											</div>
 											<div class="searchbox">
-												<h4 style="border-bottom:1px solid rgb(35,116,255); padding-bottom: 5px; padding-left: 10px;">Segmentation of People</h4>
+												<h4 style="border-bottom:1px solid rgb(35,116,255); padding-bottom: 5px; padding-left: 10px;">People who live here</h4>
 												<c:forEach var="segment" items="${segmentList}">
 														<div style="border-bottom: 1px solid #F5F5F5; padding-left: 5px; padding-right: 5px;">
 															<p style="padding-left: 5px;"><b>${segment.title }</b></p>

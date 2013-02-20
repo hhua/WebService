@@ -82,6 +82,7 @@
 						  <span style="margin-left: 30px"></span>
 						  
  						  <select class="span3" name="businesstype">
+ 						    <option value = "Restaurant">Restaurant</option>
 							<option value = "General Business Licenses">General Business Licenses</option>
 							<option value = "Auto Dealership">Auto Dealership</option>
 							<option value = "Barber Shop">Barber Shop</option>
@@ -92,7 +93,7 @@
 							<option value = "Electrician">Electrician</option>
 							<option value = "Massage Therapist">Massage Therapist</option>
 							<option value = "Plumber">Plumber</option>
-							<option value = "Restaurant">Restaurant</option>
+							
 						  </select><!-- <hr> -->
 						  
  						  <span style="margin-left: 20px"></span>
