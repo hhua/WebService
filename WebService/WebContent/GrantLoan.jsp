@@ -91,7 +91,7 @@
 											<td style="text-align: left;">${loans.program} </td>
 											<td style="text-align: left;">${loans.agency} </td>
 											<td style="text-align: left;">${loans.description} </td>
-											<td style="text-align: left;"><a href ="javascript:click('${loans.url}');" class="btn">Visit</a></td> 
+											<td style="text-align: left;"><a href ="${loans.url}" class="btn" target="_blank">Visit</a></td> 
 										</tr>
 									</c:forEach>
 								</tbody>
