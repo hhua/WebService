@@ -6,12 +6,12 @@
 package edu.cmu.ebiz.task8.bean;
 
 public class PlaceReviewBean {
-	private int time;
+	private String time;
 	private String text;
 	private String author;
 	private String url;
 	
-	public int getTime() {
+	public String getTime() {
 		return time;
 	}
 	public String getText() {
@@ -24,7 +24,7 @@ public class PlaceReviewBean {
 		return url;
 	}
 	
-	public void setTime(int time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 	public void setText(String text) {

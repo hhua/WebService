@@ -7,6 +7,9 @@ package edu.cmu.ebiz.task8.model;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -46,7 +49,7 @@ public class SearchDAO {
 
 			Node name = GetXMLDocString.getSingleResult(doc,
 					"//result/name/text()");
-			bean.setName(name.getNodeValue());
+			bean.setName(name == null ? "N/A" : name.getNodeValue());
 
 			Node phone = GetXMLDocString.getSingleResult(doc,
 					"//result/formatted_phone_number/text()");
@@ -58,12 +61,12 @@ public class SearchDAO {
 
 			Node latitude = GetXMLDocString.getSingleResult(doc,
 					"//result/geometry/location/lat/text()");
-			double latitudeD = Double.parseDouble(latitude.getNodeValue());
+			double latitudeD = latitude == null ? 0.0 : Double.parseDouble(latitude.getNodeValue());
 			bean.setLatitude(latitudeD);
 
 			Node longitude = GetXMLDocString.getSingleResult(doc,
 					"//result/geometry/location/lng/text()");
-			double longitudeD = Double.parseDouble(longitude.getNodeValue());
+			double longitudeD = longitude == null ? 0.0 : Double.parseDouble(longitude.getNodeValue());
 			bean.setLongitude(longitudeD);
 
 			Node rating = GetXMLDocString.getSingleResult(doc,
@@ -77,11 +80,11 @@ public class SearchDAO {
 
 			Node url = GetXMLDocString.getSingleResult(doc,
 					"//result/url/text()");
-			bean.setUrl(url == null ? "N/A" : url.getNodeValue());
+			bean.setUrl(url == null ? "#" : url.getNodeValue());
 
 			Node website = GetXMLDocString.getSingleResult(doc,
 					"//result/website/text()");
-			bean.setWebsite(website == null ? "N/A" : website.getNodeValue());
+			bean.setWebsite(website == null ? "#" : website.getNodeValue());
 
 			Node priceLevel = GetXMLDocString.getSingleResult(doc,
 					"//result/price_level/text()");
@@ -113,30 +116,28 @@ public class SearchDAO {
 				return bean;
 			}
 			
-			PlaceReviewBean[] reviews = new PlaceReviewBean[reviewsTime
-					.getLength()];
+			PlaceReviewBean[] reviews = new PlaceReviewBean[reviewsTime.getLength()];
 			bean.setReviews(reviews);
 
-			NodeList reviewsText = GetXMLDocString.getExpressionResult(doc,
-					"//result/review/text/text()");
-			NodeList reviewsAuthor = GetXMLDocString.getExpressionResult(doc,
-					"//result/review/author_name/text()");
-			NodeList reviewsUrl = GetXMLDocString.getExpressionResult(doc,
-					"//result/review/author_url/text()");
+			NodeList reviewsText = GetXMLDocString.getExpressionResult(doc,	"//result/review/text/text()");
+			NodeList reviewsAuthor = GetXMLDocString.getExpressionResult(doc, "//result/review/author_name/text()");
+			NodeList reviewsUrl = GetXMLDocString.getExpressionResult(doc, "//result/review/author_url/text()");
 
 			for (int i = 0; i < reviews.length; i++) {
 				reviews[i] = new PlaceReviewBean();
-				int time = Integer.parseInt(reviewsTime.item(i).getNodeValue());
-				reviews[i].setTime(time);
-				if (reviewsText == null || reviewsText.getLength() == 0) {
-					reviews[i].setText("There is no reviews.");
+				
+				if (reviewsTime.item(i) == null) {
+					reviews[i].setTime("N/A");
 				} else {
-					reviews[i].setText(reviewsText.item(i).getNodeValue());
+					DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
+					long time = Long.parseLong(reviewsTime.item(i).getNodeValue()) * 1000; // Because it returns seconds, not milliseconds.
+					Date date = new Date(time);
+					reviews[i].setTime(df.format(date));
 				}
 				
-				reviews[i].setAuthor(reviewsAuthor.item(i).getNodeValue());
-				if (reviewsUrl.item(i) != null)
-					reviews[i].setUrl(reviewsUrl.item(i).getNodeValue());
+				reviews[i].setText(reviewsText.item(i) == null ? "There is no reviews." : reviewsText.item(i).getNodeValue());
+				reviews[i].setAuthor(reviewsAuthor.item(i) == null ? "Anonymous" : reviewsAuthor.item(i).getNodeValue());
+				reviews[i].setUrl(reviewsUrl.item(i) == null ? "#" : reviewsUrl.item(i).getNodeValue());
 			}
 
 			return bean;
