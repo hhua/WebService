@@ -19,6 +19,8 @@
 					"${place.latitude}", "${place.longitude}",
 					"${place.address}", "${place.rating}", "${place.priceLevel}", "${place.website}", "${place.imgUrl}"], </c:forEach> ];
 
+	var contentStrings = [];
+	
 	function initialize() {
 		var location = new google.maps.LatLng(40.44, -80);
 
@@ -67,27 +69,31 @@
 
 		var infowindow = new google.maps.InfoWindow();
 
-		var marker, i;
+		var i;
 
 		for (i = 0; i < locations.length; i++) {
-			marker = new google.maps.Marker({
+			var marker = new google.maps.Marker({
 				position : new google.maps.LatLng(locations[i][1],
 						locations[i][2]),
 				map : map
 			});
-
+			
+			
 			var contentString = '<div class="row-fluid" ><div class="span12" style="text-align: left;"><h4 class="text-left">' + locations[i][0]
 			+ '</h4><p class="text-left">' + locations[i][3]
 			+ '</p><p class="text-left">Rating: ' + locations[i][4] + ' | Price Level: ' + locations[i][5] + '</p><p class="text-left"><a href="' + locations[i][6] + '">Homepage</a></p></div></div>';
 
+			contentStrings[i] = contentString;
+			
 			google.maps.event.addListener(marker, 'click',
 					(function(marker, i) {
 						return function() {
-							infowindow.setContent(contentString);
+							console.log(contentStrings[i]);
+							infowindow.setContent(contentStrings[i]);
 							infowindow.open(map, marker);
 						};
 					})(marker, i));
-		}
+		} 
 
 	}
 </script>
