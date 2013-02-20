@@ -80,7 +80,7 @@
  						  
 						  <div class="input-prepend">
 						  		<span class="add-on">City</span>
-						  		<input type="text"  name="city" class="input" style="height: 20px;" placeholder="City" value="${form.city }">
+						  		<input type="text"  name="city" class="input" style="height: 20px;" placeholder="City" >
 						  </div>
 						  <span style="margin-left: 30px"></span>
 						  

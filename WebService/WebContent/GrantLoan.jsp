@@ -7,7 +7,7 @@
 	<div class="row-fluid" >
 			
 			<div class="span12 searchbox" >
-				<h5 class="lead">Business Loans and Grants</h5>
+				<h5 class="lead">State Loans and Grants</h5>
 				<jsp:include page="error-list.jsp" />
 					<form class="form-inline" method="POST" action="grantloan.do" style="margin-left: 20px;">
 					 	   <label class="control-label" for="inputLoc">State</label>
@@ -98,6 +98,38 @@
 							</table>
 							</c:otherwise>
 						</c:choose>
+						<div>
+						
+						
+						<c:choose>
+							<c:when test="${ empty FederalLoansList }">
+							</c:when>
+							<c:otherwise>
+							<h5 class="lead">Federal Loans and Grants</h5>
+							<table class="table table-striped">
+							<thead>
+								<tr class="info" style="text-align: center;">
+										<th style="text-align: left;">Program</th>
+										<th style="text-align: left; width: 250px">Agency</th>
+										<th style="text-align: left; width: 400px;">Description</th>
+										<th style="text-align: left;"></th>
+									</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="FederalLoans" items="${FederalLoansList}">
+								<tr>
+									<td style="text-align: left;">${FederalLoans.program} </td>
+									<td style="text-align: left;">${FederalLoans.agency} </td>
+									<td style="text-align: left;">${FederalLoans.description} </td>
+									<td style="text-align: left;"><a href ="${FederalLoans.url}" class="btn" target="_blank">Visit</a></td> 
+								</tr>
+								</c:forEach>
+							</tbody>
+							</table>
+							</c:otherwise>
+						</c:choose>
+						</div>
+						
 			</div>
 			</div>
 			

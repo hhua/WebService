@@ -47,9 +47,7 @@ public class GrantLoansDAO {
 				loan.setDescription((String) result.get("description"));
 				loan.setUrl((String) result.get("url"));
 				
-
 				loans.add(loan);
-				System.out.println(loan.getAgency()+loan.getDescription()+loan.getProgram()+loan.getUrl());
 			}
 			
 			return loans;

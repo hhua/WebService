@@ -56,6 +56,22 @@ public class GrantLoansAction extends Action {
 				e.printStackTrace();
 			}
 			
+
+			URL url2 = null;
+			try {
+				url2 = new URL("http://api.sba.gov/loans_grants/federal.json");
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+			
+			List<GrantLoansBean> FederalLoansList = grantLoansDAO.jsonParser(url2) ;
+			GrantLoansBean[] FederalLoans = new GrantLoansBean[FederalLoansList.size()];
+			for(int i = 0; i<FederalLoansList.size(); i++) {
+				FederalLoans[i] = FederalLoansList.get(i);
+			}
+			request.setAttribute("FederalLoansList", FederalLoans);
+
+			
 			List<GrantLoansBean> loansList = grantLoansDAO.jsonParser(url) ;
 			GrantLoansBean[] loans = new GrantLoansBean[loansList.size()];
 			for(int i = 0; i<loansList.size(); i++) {

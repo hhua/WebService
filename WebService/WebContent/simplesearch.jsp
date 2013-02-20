@@ -103,17 +103,25 @@
 			<form class="form-horizontal form-inline" method="POST"
 				action="simple-search.do">
 				<div class="input-prepend">
-					<span class="add-on"><i class="icon-map-marker"></i></span> <input
-						type="text" id="search" class="input-xxlarge"
-						placeholder="Places you want, e.g. Restaurant in Pittsburgh"
-						name="searchPlaces"><input type="text"
-						placeholder="Location" name="searchLocation">
+					<span class="add-on"><i class="icon-edit"></i></span> 
+					<input
+						type="text" id="search" class="input-xlarge"
+						placeholder="Keywords, e.g. Restaurant"
+						name="searchPlaces">
 				</div>
+				
+				<div class="input-prepend">
+					<span class="add-on"><i class="icon-map-marker"></i></span> <input type="text"
+							placeholder="Location" name="searchLocation">
+				</div>
+				
 				<input type="hidden" id="longitude" name="longitude" /> <input
-					type="hidden" id="latitude" name="latitude" /> <select
-					id="place-types" name="placeTypes">
+					type="hidden" id="latitude" name="latitude" /> 
+					
+					<select
+						id="place-types" name="placeTypes" style="width: 160px;">
 
-				</select>
+					</select>
 				<button type="submit" class="btn">
 					<i class="icon-search"></i>Search
 				</button>
@@ -124,13 +132,18 @@
 
 	</div> <!--  end of search box -->
 
+		<div align="center" style="margin-left: 0px; margin-top: 40px; padding-left: 0px; float: left;">
+				<div id="map_canvas" style="width: 800px; height: 400px;"></div>
+		</div>
+
 	<div style="border-bottom: 2px solid #f6f6f6;">
-		<div id="searchresult" style="float: left; margin-top: 5px; border-right: 2px solid #f5f5f5; width: 275px;">
+		<div id="searchresult" style="float: left; margin-top: 15px; margin-right: 20px; border-right: 2px solid #f5f5f5; width: 275px;">
 			<c:choose>
 				<c:when test="${ empty places }">
 					
 				</c:when>
 				<c:otherwise>
+					
 					<h4 class="lead">Search Results</h4>
 					<div id="competitorList" style="float: left; overflow:auto; height: 330px; width: 100%;">
 						<script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -138,7 +151,7 @@
 									<a href="#div${theCount.index}" style="text-decoration: none; color: black;">
 									<div class="showdetail" name="div${theCount.index}" style="border-bottom: 1.5px solid #F5F5F5; width: 100%; ">
 										<h5 style="line-height: 1em;">${competitor.name}</h5>
-										<p style="line-height: 1em;"><b>Rating:</b> ${competitor.rating} | <b>Pirce Level:</b> ${competitor.priceLevel}</p> 
+										<p style="line-height: 1em;"><b>Rating:</b> ${competitor.rating} | <b>Price Level:</b> ${competitor.priceLevel}</p> 
 									</div>
 									</a>
 								</c:forEach>
@@ -162,9 +175,7 @@
 			</c:choose>
 		</div>
 		
-		<div align="center" style="margin-left: 0px; margin-top: 40px; padding-left: 0px;">
-				<div id="map_canvas" style="width: 800px; height: 400px;"></div>
-		</div>
+
 	</div>	
 		
 		<div style="margin-top: 5px;">
@@ -177,7 +188,7 @@
 											</div>
 											<div class="span3" style="float: left; margin-left: 15px;">
 												<h4>${competitor.name}</h4>
-												<p style="line-height: 1em;"><b>Rating:</b> ${competitor.rating} | <b>Pirce Level:</b> ${competitor.priceLevel}</p>
+												<p style="line-height: 1em;"><b>Rating:</b> ${competitor.rating} | <b>Price Level:</b> ${competitor.priceLevel}</p>
 												<b>Address:</b><address>${competitor.address}</address>
 												<b>Phone:</b> ${competitor.phone} <br> 
 												<a href="${competitor.website}">Home Page</a> <br> 

@@ -2,7 +2,7 @@
 			
 			<div id="headline">
 				<img src="img/drive-business.jpg" />
-		  		<h3>Small Business Portal</h3>
+		  		<h3>Portal for Small Business</h3>
 		  	</div>
 		    
 			  	<div class="nav">

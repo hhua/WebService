@@ -128,7 +128,12 @@ public class SearchDAO {
 				reviews[i] = new PlaceReviewBean();
 				int time = Integer.parseInt(reviewsTime.item(i).getNodeValue());
 				reviews[i].setTime(time);
-				reviews[i].setText(reviewsText.item(i).getNodeValue());
+				if (reviewsText == null || reviewsText.getLength() == 0) {
+					reviews[i].setText("There is no reviews.");
+				} else {
+					reviews[i].setText(reviewsText.item(i).getNodeValue());
+				}
+				
 				reviews[i].setAuthor(reviewsAuthor.item(i).getNodeValue());
 				if (reviewsUrl.item(i) != null)
 					reviews[i].setUrl(reviewsUrl.item(i).getNodeValue());

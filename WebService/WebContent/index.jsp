@@ -13,32 +13,9 @@
   		<div id="bodycontainer" align="center">
   			
 	  		<div id="header">
-	  			<h1>Small Business Portal</h1>
+	  			<h1>Portal for Small Businesses</h1>
 	  		</div>
 	  		
-	  		<div id="simple">
-	  			<p class="lead">You can just do a simple search</p>
-	  			<form class="form-horizontal form-inline" method="POST"
-				action="simple-search.do">
-				<div class="input-prepend">
-					<span class="add-on"><i class="icon-map-marker"></i></span> <input
-						type="text" id="search" class="input-xlarge"
-						placeholder="Places you want, e.g. Restaurant in Pittsburgh"
-						name="searchPlaces">
-				</div>
-				<input type="hidden" id="longitude" name="longitude"/>
-				<input type="hidden" id="latitude" name="latitude"/>
-				<select id="place-types" name="placeTypes">
-
-				</select>
-				<button type="submit" class="btn">
-					<i class="icon-search"></i>Search
-				</button>
-				<button type="submit" class="btn">Advanced Search</button>
-
-			</form>
-	  			
-	  		</div>
 	  		
 	  		<div style="border-top: 1px solid #F5F5F5">
 	  			<p class="lead">To start a business, here are some things you might need to do</p> 
@@ -48,28 +25,28 @@
 	  			
 	  			<a href="simplesearch.jsp">
 		  			<div id="competitor1" class="navbox">
-		  				<p class="step">Know Your Competitor</p>
+		  				<p class="step">Know Your Competitors</p>
 		  				<p>Function Instruction</p>
 		  			</div>
 	  			</a>
 	  			
 	  			<a href="demographic.jsp">
 		  			<div id="demographic1" class="navbox">
-		  				<p class="step">Research Potential Market</p>
+		  				<p class="step">Research Demographics</p>
 		  				<p>Function Instruction</p>
 		  			</div>
 	  			</a>
 	  			
 	  			<a href="policy.jsp">
 		  			<div id="policy1" class="navbox">
-		  				<p class="step">Get Licenses and Permits</p>
+		  				<p class="step">View Licenses and Permits</p>
 		  				<p>Function Instruction</p>
 		  			</div>
 	  			</a>
 	  			
 	  			<a href="grantloan.do">
 		  			<div id="loan1" class="navbox">
-		  				<p class="step">Get Some Money</p>
+		  				<p class="step">Loans and Grants</p>
 		  				<p>Function Instruction</p>
 		  			</div>
 	  			</a>
