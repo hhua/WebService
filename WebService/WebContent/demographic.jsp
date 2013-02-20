@@ -247,8 +247,8 @@
 		  							   				</c:when>
 		  							   				<c:otherwise>
 		  							   						<div style="text-align: center; font-size: 1.2em;">
-		  							   								Female: ${gender.totalFemale }% 
-		  							   								Male:  ${gender.totalMale }%
+		  							   								<img alt="" src="img/f.jpg" style="height: 40px;"><b>Female: ${gender.totalFemale }% </b>
+		  							   								<img alt="" src="img/m.jpeg" style="height: 40px;"><b>Male:  ${gender.totalMale }%</b>
 		  							   						</div>
 		  							   						<div id="chart_div"></div>
 		  							   						

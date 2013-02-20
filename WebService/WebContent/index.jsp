@@ -17,8 +17,8 @@
 	  		</div>
 	  		
 	  		
-	  		<div style="border-top: 1px solid #F5F5F5">
-	  			<p class="lead">Guide to starting your business..</p> 
+	  		<div style="margin-top: 20px; ">
+	  			<p class="handwrite">Guide to starting your business..</p> 
 	  		</div>
 	  		
 	  		<div id="mainbody" align="center">

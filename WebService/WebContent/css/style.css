@@ -258,7 +258,7 @@
 
 #mainbody {
 	min-width:740px;
-	margin: 10px auto;
+	margin: 30px auto;
 	height: 600px;
 	background-image:url('interactive.png');
 	background-position:top center;
@@ -379,3 +379,10 @@
 	font-size: 1.5em;
 }
 
+
+@import url(http://fonts.googleapis.com/css?family=Satisfy);
+.handwrite {
+	font-family: 'Satisfy', cursive;
+	font-size: 2em;
+	font-weight: bold;
+}
