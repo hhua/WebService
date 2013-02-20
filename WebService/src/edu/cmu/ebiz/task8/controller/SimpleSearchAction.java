@@ -65,11 +65,12 @@ public class SimpleSearchAction extends Action {
 			URL requestURL = generateBasicURL(query, form.getPlaceTypes(), form);
 			
 			List<SimpleSearchPlacesBean> places = GooglePlacesParser.jsonParser(requestURL);
+			/*
 			if(places != null ){
 				Collections.sort(places);
 				
 			}
-				
+			*/
 			
 			//System.out.println(places.size());
 			SearchPlaceDetailBean[] placesArr;
