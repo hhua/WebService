@@ -17,14 +17,13 @@
 	var locations = [
 			<c:forEach var="place" items="${places}">["${place.name}",
 					"${place.latitude}", "${place.longitude}",
-					"${place.address}", "${place.rating}", "${place.priceLevel}, $place.website"], </c:forEach> ];
+					"${place.address}", "${place.rating}", "${place.priceLevel}", "${place.website}", "${place.imgUrl}"], </c:forEach> ];
 
 	function initialize() {
 		var location = new google.maps.LatLng(40.44, -80);
 
 		var mapOptions = {
 			center : location,
-			//center : new google.maps.LatLng(40.44, -80),
 			zoom : 13,
 			mapTypeId : google.maps.MapTypeId.ROADMAP
 		};
@@ -54,7 +53,7 @@
 						var mylat = document.getElementById("latitude");
 						mylng.value = cur_longitude;
 						mylat.value = cur_latitude;
-
+ 
 					});
 		}
 
@@ -77,16 +76,17 @@
 				map : map
 			});
 
-			var contentString = '<div><h4>' + locations[i][0]
-					+ '</h4><address>' + locations[i][3]
-					+ '</address><p>Rating: ' + locations[i][4] + ' Price Level: ' + location[i][5] + '</p></div>';
+			//console.log(locations[i][7]);
+			var contentString = '<div class="row-fluid" ><div class="span6" style="text-align: left;"><h4 class="text-left">' + locations[i][0]
+			+ '</h4><p class="text-left">' + locations[i][3]
+			+ '</p><p class="text-left">Rating: ' + locations[i][4] + ' | Price Level: ' + locations[i][5] + '</p><p class="text-left"><a href="' + locations[i][6] + '">Homepage</a></p></div><div class="span6"><img src="' + locations[i][7] + '" style="width:200px; height: 130px;"/></div></div>';
 
 			google.maps.event.addListener(marker, 'click',
 					(function(marker, i) {
 						return function() {
 							infowindow.setContent(contentString);
 							infowindow.open(map, marker);
-						}
+						};
 					})(marker, i));
 		}
 

@@ -5,8 +5,6 @@
 
 package edu.cmu.ebiz.task8.bean;
 
-import java.util.List;
-
 public class SearchPlaceDetailBean implements Comparable<SearchPlaceDetailBean> {
 	private String name;
 	private String type;
