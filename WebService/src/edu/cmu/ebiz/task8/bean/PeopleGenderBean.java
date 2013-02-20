@@ -9,7 +9,25 @@ public class PeopleGenderBean {
 	private String singleMale;
 	private String widowedFemale;
 	private String widowedMale;
+	private String totalMale;
+	private String totalFemale;
 	
+	public String getTotalMale() {
+		return totalMale;
+	}
+
+	public String getTotalFemale() {
+		return totalFemale;
+	}
+
+	public void setTotalMale(String totalMale) {
+		this.totalMale = totalMale;
+	}
+
+	public void setTotalFemale(String totalFemale) {
+		this.totalFemale = totalFemale;
+	}
+
 	public PeopleGenderBean() {
 		
 	}

@@ -239,23 +239,36 @@ public class ZillowDAO {
 			if (divorcedF == null || divorcedF.getLength() == 0) {
 				gender = new PeopleGenderBean("0");
 			} else {
+				long totalMale = 0, totalFemale = 0;
+				
 				long df = Math.round(Double.parseDouble(divorcedF.item(0).getNodeValue())*100);
 				gender.setDivorcedFemale(Long.toString(df));
-				
+				totalFemale += df;
 				long dm = Math.round(Double.parseDouble(divorcedM.item(0).getNodeValue())*100);
 				gender.setDivorcedMale(Long.toString(dm));
+				
 				long mf = Math.round(Double.parseDouble(marryF.item(0).getNodeValue())*100);
 				gender.setMarriedFemale(Long.toString(mf));
+				totalFemale += mf;
 				long mm = Math.round(Double.parseDouble(marryM.item(0).getNodeValue())*100);
 				gender.setMarriedMale(Long.toString(mm));
+				
 				long sf = Math.round(Double.parseDouble(singleF.item(0).getNodeValue())*100);
 				gender.setSingleFemale(Long.toString(sf));
+				totalFemale += sf;
+				
 				long sm = Math.round(Double.parseDouble(singleM.item(0).getNodeValue())*100);
 				gender.setSingleMale(Long.toString(sm));
+				
 				long wf = Math.round(Double.parseDouble(wF.item(0).getNodeValue())*100);
 				gender.setWidowedFemale(Long.toString(wf));
+				totalFemale += wf;
 				long wm = Math.round(Double.parseDouble(wM.item(0).getNodeValue())*100);
 				gender.setWidowedMale(Long.toString(wm));
+				
+				totalMale = 100 - totalFemale;
+				gender.setTotalFemale(Long.toString(totalFemale));
+				gender.setTotalMale(Long.toString(totalMale));
 			}
 			return gender;
 		} catch (SAXException e) {

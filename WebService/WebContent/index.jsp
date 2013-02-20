@@ -18,7 +18,7 @@
 	  		
 	  		
 	  		<div style="border-top: 1px solid #F5F5F5">
-	  			<p class="lead">To start a business, here are some things you might need to do</p> 
+	  			<p class="lead">Guide to starting your business..</p> 
 	  		</div>
 	  		
 	  		<div id="mainbody" align="center">
@@ -26,35 +26,35 @@
 	  			<a href="simplesearch.jsp">
 		  			<div id="competitor1" class="navbox">
 		  				<p class="step">Know Your Competitors</p>
-		  				<p>Function Instruction</p>
+		  				<p style="margin-left: 10px;">Locations, Reviews, Ratings</p>
 		  			</div>
 	  			</a>
 	  			
 	  			<a href="demographic.jsp">
 		  			<div id="demographic1" class="navbox">
 		  				<p class="step">Research Demographics</p>
-		  				<p>Function Instruction</p>
+		  				<p style="margin-left: 10px;">Income, Segmentation of People, Gender and Age Stats</p>
 		  			</div>
 	  			</a>
 	  			
 	  			<a href="policy.jsp">
 		  			<div id="policy1" class="navbox">
-		  				<p class="step">View Licenses and Permits</p>
-		  				<p>Function Instruction</p>
+		  				<p class="step">Licenses and Permits</p>
+		  				<p style="margin-left: 10px;">Description of Licenses and Permits </p>
 		  			</div>
 	  			</a>
 	  			
 	  			<a href="grantloan.do">
 		  			<div id="loan1" class="navbox">
 		  				<p class="step">Loans and Grants</p>
-		  				<p>Function Instruction</p>
+		  				<p style="margin-left: 10px;">Loan and Grant programs with descriptions</p>
 		  			</div>
 	  			</a>
 	  			
 	  			<a href="recommendedwebsites.do">
 		  			<div id="recommend1" class="navbox">
 		  				<p class="step">Learn From Websites</p>
-		  				<p>Function Instruction</p>
+		  				<p style="margin-left: 10px;">Pointers to recommended websites</p>
 		  			</div>
 	  			</a>
 	  		</div>

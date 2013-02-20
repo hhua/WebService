@@ -246,7 +246,12 @@
 		  							   						<h4>Data does not exist</h4>
 		  							   				</c:when>
 		  							   				<c:otherwise>
+		  							   						<div style="text-align: center; font-size: 1.2em;">
+		  							   								Female: ${gender.totalFemale }% 
+		  							   								Male:  ${gender.totalMale }%
+		  							   						</div>
 		  							   						<div id="chart_div"></div>
+		  							   						
 		  							   				</c:otherwise>
 												</c:choose>
 											</div>
