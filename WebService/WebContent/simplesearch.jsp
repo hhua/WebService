@@ -76,10 +76,9 @@
 				map : map
 			});
 
-			//console.log(locations[i][7]);
-			var contentString = '<div class="row-fluid" ><div class="span6" style="text-align: left;"><h4 class="text-left">' + locations[i][0]
+			var contentString = '<div class="row-fluid" ><div class="span12" style="text-align: left;"><h4 class="text-left">' + locations[i][0]
 			+ '</h4><p class="text-left">' + locations[i][3]
-			+ '</p><p class="text-left">Rating: ' + locations[i][4] + ' | Price Level: ' + locations[i][5] + '</p><p class="text-left"><a href="' + locations[i][6] + '">Homepage</a></p></div><div class="span6"><img src="' + locations[i][7] + '" style="width:200px; height: 130px;"/></div></div>';
+			+ '</p><p class="text-left">Rating: ' + locations[i][4] + ' | Price Level: ' + locations[i][5] + '</p><p class="text-left"><a href="' + locations[i][6] + '">Homepage</a></p></div></div>';
 
 			google.maps.event.addListener(marker, 'click',
 					(function(marker, i) {
