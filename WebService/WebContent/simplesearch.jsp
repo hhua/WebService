@@ -47,7 +47,6 @@
 						}
 
 						// let's show a map or do something interesting!
-						alert(cur_latitude + ',' + cur_longitude);
 						map.setCenter(new google.maps.LatLng(cur_latitude,
 								cur_longitude));
 
@@ -94,7 +93,7 @@
 	}
 </script>
 
-<div class="row-fluid" class="span12">
+<div class="row-fluid" class="span12" id="thisSearch">
 	<div class="span12"
 		style="border: 1px solid #F5F5F5; border-radius: 5px; box-shadow: 5px 5px 2px #F5F5F5">
 		<div style="padding-left: 15px;">
@@ -122,30 +121,26 @@
 			</form>
 		</div>
 	</div>
-						<div class="span12" align="center"
-								style="margin-left: 0px; padding-left: 0px;">
-								<div id="map_canvas" style="width: 600px; height: 400px;"></div>
-						</div>
 
-	<div id="result" class="row-fluid">
+	</div> <!--  end of search box -->
 
-
-		<div id="searchresult" class="span4">
-			<h4 class="lead">Detail Search Results</h4>
+	<div style="border-bottom: 2px solid #f6f6f6;">
+		<div id="searchresult" style="float: left; margin-top: 5px; border-right: 2px solid #f5f5f5; width: 275px;">
 			<c:choose>
 				<c:when test="${ empty places }">
-					test
+					
 				</c:when>
 				<c:otherwise>
-
-					<div id="competitorList" style="float: left; border-right: 2px solid #f5f5f5">
+					<h4 class="lead">Search Results</h4>
+					<div id="competitorList" style="float: left; overflow:auto; height: 330px; width: 100%;">
 						<script src="http://code.jquery.com/jquery-latest.js"></script>
 								<c:forEach var="competitor" items="${places}" varStatus="theCount">
-									<div class="showdetail" name="div${theCount.index}">
-										<h5>${competitor.name}</h5>
-										<p>Rating: ${competitor.rating}</p>
-										<p>Pirce Level: ${competitor.priceLevel}</p>
+									<a href="#div${theCount.index}" style="text-decoration: none; color: black;">
+									<div class="showdetail" name="div${theCount.index}" style="border-bottom: 1.5px solid #F5F5F5; width: 100%; ">
+										<h5 style="line-height: 1em;">${competitor.name}</h5>
+										<p style="line-height: 1em;"><b>Rating:</b> ${competitor.rating} | <b>Pirce Level:</b> ${competitor.priceLevel}</p> 
 									</div>
+									</a>
 								</c:forEach>
 								<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 								<script type="text/javascript">
@@ -153,44 +148,61 @@
 								            $(".showdetail").click(function () {
 											    $("#" + $(this).attr("name")).show('fast').siblings('div').hide();
 											});
-								              
-								             /**
-								             $(".showdetail").click(function () {
+								             
+								             
+								          /**   $(".showdetail").click(function () {
 								            	    $("#" + $(this).attr('name')).toggle("slow");
 								            	});
-											**/
+								          **/
+											
 								</script>
 						</div>
-
-						<div class="span12" align="center"
-								style="margin-left: 0px; padding-left: 0px;">
-								<div id="map_canvas" style="width: 600px; height: 400px;"></div>
-						</div>
-
-					<div id="competitorDetail">
-						<c:forEach var="competitor" items="${places}" varStatus="theCount">
-
-							<!--  Place detail information here, inside the DIV -->
-							<div id="div${theCount.index}" style="display: none;">
-								${competitor.name} <br>
-								<address>${competitor.address}</address>
-								${competitor.phone} <br> <a href="${competitor.website}">Home
-									page</a> <br> <a href="${competitor.url}">See Detail Page</a>
-								<br>
-
-							</div>
-						</c:forEach>
-					</div>
 
 				</c:otherwise>
 			</c:choose>
 		</div>
-		<div class="span8" style="margin: 0px; padding: 0px; clear: right;">
-			<div id="map_canvas" style="width: 800px; height: 560px;margin-top: 15px;"></div>
+		
+		<div align="center" style="margin-left: 0px; margin-top: 40px; padding-left: 0px;">
+				<div id="map_canvas" style="width: 800px; height: 400px;"></div>
 		</div>
-	</div>
-</div>
-
+	</div>	
+		
+		<div style="margin-top: 5px;">
+						
+				<c:forEach var="competitor" items="${places}" varStatus="theCount">
+						<div id="div${theCount.index}" style="display: none;" class="row-fluid">
+								<div style="clear: both;" class="span12">
+											<div class="span2" style="margin-left: 15px;">
+												<img src="${competitor.imgUrl}" style="float: left; width:300px; height: 200px;"/>
+											</div>
+											<div class="span3" style="float: left; margin-left: 15px;">
+												<h4>${competitor.name}</h4>
+												<p style="line-height: 1em;"><b>Rating:</b> ${competitor.rating} | <b>Pirce Level:</b> ${competitor.priceLevel}</p>
+												<b>Address:</b><address>${competitor.address}</address>
+												<b>Phone:</b> ${competitor.phone} <br> 
+												<a href="${competitor.website}">Home Page</a> <br> 
+												<a href="#thisSearch" class="btn" style="margin-top: 20px;">Back to result list</a>
+											</div>
+										<div class="span7" style="overflow: auto; height: 400px;">
+												<b>Reviews:</b>
+												<br>
+												<c:forEach var="reviews" items="${competitor.reviews }">
+														<div style="border-bottom: 1.5px solid #f5f5f5; padding-top: 5px; padding-bottom: 5px;">
+																<p> 
+																	<b>Time:</b>  ${reviews.time}
+																	<b>Author:</b> ${reviews.author}
+																	<a href="${reviews.url}">Link</a>
+																</p>
+																${reviews.text};
+														</div>
+												 </c:forEach>
+											</div>
+									</div>
+						 </div>
+					</c:forEach>
+					
+			</div>
+									
 
 
 <jsp:include page="footer.jsp" />

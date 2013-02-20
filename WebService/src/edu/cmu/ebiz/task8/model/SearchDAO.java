@@ -99,7 +99,7 @@ public class SearchDAO {
 				bean.setImgUrl("#");
 			} else {
 				bean.setPhotoReference(photoReference.getNodeValue());
-				String imgUrl = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=300&"
+				String imgUrl = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&maxheight=200&"
 						+ "photoreference="
 						+ bean.getPhotoReference()
 						+ "&sensor=true&" + "key=" + Constants.GOOGLE_API_KEY;
