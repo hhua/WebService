@@ -8,7 +8,7 @@
 		
  	</head>
   
-  	<body onload="initialize()"> 
+  	<body onload="initialize()" id="indexbody"> 
   		
   		<div id="bodycontainer" align="center">
   			
