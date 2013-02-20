@@ -191,6 +191,7 @@
 												<b>Address:</b><address>${competitor.address}</address>
 												<b>Phone:</b> ${competitor.phone} <br> 
 												<a href="${competitor.website}">Home Page</a> <br> 
+												<a href="${competitor.url}">See more details on Google</a> <br> 
 												<a href="#thisSearch" class="btn" style="margin-top: 20px;">Back to result list</a>
 											</div>
 										<div class="span7" style="overflow: auto; height: 400px;">
