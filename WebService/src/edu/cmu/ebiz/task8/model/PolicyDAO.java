@@ -23,13 +23,13 @@ import edu.cmu.ebiz.task8.bean.PolicyBean;
 
 public class PolicyDAO {
 	
-	public ArrayList<PolicyBean> getPolicy(String state, String city, String businesstype) {
+	public ArrayList<PolicyBean> getPolicy(String state,String businesstype) {
 		try {
 			
-			String preparedURL = "http://api.sba.gov/license_permit/state_and_city" 
+			String preparedURL = "http://api.sba.gov/license_permit/state_only" 
 					+"/"+ replaceSpace(businesstype)
-					+"/" + replaceSpace(state)
-					+"/" + replaceSpace(city);
+					+"/" + replaceSpace(state);
+					
 			
 			String xmlString = GetXMLDocString.getString(preparedURL);
 
@@ -112,7 +112,7 @@ public class PolicyDAO {
 	
 	}	
 //	public static void main(String[] args) {
-//		getPolicy("pa", "pittsburgh", "child care services");
+//		getPolicy("pa", "child care services");
 //		//getPolicy();
 //		System.out.println();
 //	}
