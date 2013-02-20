@@ -78,10 +78,7 @@
 						  </div>
  						  <span style="margin-left: 30px"></span>
  						  
-						  <div class="input-prepend">
-						  		<span class="add-on">City</span>
-						  		<input type="text"  name="city" class="input" style="height: 20px;" placeholder="City" >
-						  </div>
+						 
 						  <span style="margin-left: 30px"></span>
 						  
  						  <select class="span3" name="businesstype">
@@ -110,7 +107,7 @@
 					</c:when>
 					<c:otherwise>
 					    	<div class="span12 searchbox" style="margin-left: 0px;" >
-								<h5 class="lead">Business License Information of <b>${form.city }, ${form.state }</b></h5>
+								<h5 class="lead">Business License Information of <b>${form.state }</b></h5>
 								<div class="row-fluid" style="margin-left: 20px">
 						
 									<table class="table table-bordered" style="width: 800px;" >

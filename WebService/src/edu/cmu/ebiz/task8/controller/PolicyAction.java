@@ -51,9 +51,8 @@ public class PolicyAction extends Action {
 	        } 
 
 			String state = form.getState();
-			String city = form.getCity();
 			String businesstype = request.getParameter("businesstype");
-			ArrayList<PolicyBean> policy = policyDAO.getPolicy(state,city,businesstype);
+			ArrayList<PolicyBean> policy = policyDAO.getPolicy(state,businesstype);
 			request.setAttribute("policy", policy);
 	        
 			return "policy.jsp";
