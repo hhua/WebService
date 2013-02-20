@@ -108,7 +108,7 @@ public class SearchDAO {
 
 			NodeList reviewsTime = GetXMLDocString.getExpressionResult(doc,
 					"//result/review/time/text()");
-			if (reviewsTime == null) {
+			if (reviewsTime == null || reviewsTime.getLength() == 0) {
 				bean.setReviews(null);
 				return bean;
 			}

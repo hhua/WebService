@@ -131,12 +131,12 @@
 
 	</div> <!--  end of search box -->
 
-		<div align="center" style="margin-left: 0px; margin-top: 40px; padding-left: 0px; float: left;">
+		<div align="center" style="margin-left: 0px; margin-right: 20px; margin-top: 40px; padding-left: 0px; float: left;">
 				<div id="map_canvas" style="width: 800px; height: 400px;"></div>
 		</div>
 
-	<div style="border-bottom: 2px solid #f6f6f6;">
-		<div id="searchresult" style="float: left; margin-top: 15px; margin-right: 20px; border-right: 2px solid #f5f5f5; width: 275px;">
+	<div style="border-bottom: 2px solid #f6f6f6; margin-right: 40px; ">
+		<div id="searchresult" style="float: left; margin-top: 25px; border-right: 2px solid #f5f5f5; width: 275px;">
 			<c:choose>
 				<c:when test="${ empty places }">
 					
@@ -177,7 +177,7 @@
 
 	</div>	
 		
-		<div style="margin-top: 5px;">
+		<div style="margin-top: 10px;">
 						
 				<c:forEach var="competitor" items="${places}" varStatus="theCount">
 						<div id="div${theCount.index}" style="display: none;" class="row-fluid">
