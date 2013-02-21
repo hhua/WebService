@@ -81,7 +81,10 @@
 			
 			var contentString = '<div class="row-fluid" ><div class="span12" style="text-align: left;"><h4 class="text-left">' + locations[i][0]
 			+ '</h4><p class="text-left">' + locations[i][3]
-			+ '</p><p class="text-left">Rating: ' + locations[i][4] + ' | Price Level: ' + locations[i][5] + '</p><p class="text-left"><a href="' + locations[i][6] + '">Homepage</a></p></div></div>';
+			+ '</p><p class="text-left">Rating: ' + locations[i][4] + ' | Price Level: ' + locations[i][5] 
+			+ '</p><p class="text-left"><a href="' + locations[i][6] + '">Homepage</a></p>' 
+			+ '<img src=\"' + locations[i][7] + '\" />' 
+			+ '</div></div>';
 
 			contentStrings[i] = contentString;
 			
@@ -141,7 +144,7 @@
 				<div id="map_canvas" style="width: 800px; height: 400px;"></div>
 		</div>
 
-	<div style="border-bottom: 2px solid #f6f6f6; margin-right: 40px; ">
+	<div style="border-bottom: 2px solid #f6f6f6; margin-left: 40px; ">
 		<div id="searchresult" style="float: left; margin-top: 25px; border-right: 2px solid #f5f5f5; width: 275px;">
 			<c:choose>
 				<c:when test="${ empty places }">
